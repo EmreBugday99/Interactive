@@ -157,13 +157,19 @@
   <ItemGroup>
     <ClCompile Include="file-io\DiskReader.cpp" />
     <ClCompile Include="external\glad.c" />
+    <ClCompile Include="renderer\buffers\IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="renderer\ShaderProgram.cpp" />
+    <ClCompile Include="renderer\shader\ShaderProgram.cpp" />
+    <ClCompile Include="renderer\buffers\VertexBuffer.cpp" />
+    <ClCompile Include="renderer\buffers\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file-io\DiskReader.h" />
-    <ClInclude Include="renderer\ShaderProgram.h" />
-    <ClInclude Include="renderer\ShaderTypes.h" />
+    <ClInclude Include="renderer\buffers\IndexBuffer.h" />
+    <ClInclude Include="renderer\shader\ShaderProgram.h" />
+    <ClInclude Include="renderer\shader\ShaderTypes.h" />
+    <ClInclude Include="renderer\buffers\VertexBuffer.h" />
+    <ClInclude Include="renderer\buffers\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.frag">

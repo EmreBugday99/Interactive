@@ -1,6 +1,6 @@
 #include "ShaderProgram.h"
 #include <iostream>
-#include "../file-io/DiskReader.h"
+#include "../../file-io/DiskReader.h"
 
 ShaderProgram::ShaderProgram()
 {
