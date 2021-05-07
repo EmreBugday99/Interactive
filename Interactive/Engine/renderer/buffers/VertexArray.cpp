@@ -16,19 +16,19 @@ VertexArray::~VertexArray()
 	Delete();
 }
 
-VertexBuffer* VertexArray::CreateVertexBuffer(GLfloat* vertices, GLsizeiptr size)
+VertexBuffer* VertexArray::CreateVertexBuffer(GLuint layoutIndex, GLfloat* vertices, GLuint elementCount, GLuint groupCount)
 {
-	Bind();
-
-	// At this execution order size always comes from behind compensating the size starting from 0 when vector is empty.
-	// Current amount of VBOs is accepted as the current index for the new VBO.
-	const GLuint index = VertexBuffers.size();
-
 	VertexBuffer* vertexBuffer = new VertexBuffer();
 	VertexBuffers.push_back(vertexBuffer);
 
-	vertexBuffer->SetBufferData(vertices, size, index);
+	Bind();
+	vertexBuffer->Bind();
 
+	vertexBuffer->SetBufferData(vertices, elementCount, groupCount);
+	glEnableVertexAttribArray(layoutIndex);
+	glVertexAttribPointer(layoutIndex, groupCount, GL_FLOAT, GL_FALSE, 0, 0);
+	
+	vertexBuffer->Unbind();
 	Unbind();
 
 	return vertexBuffer;

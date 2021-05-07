@@ -3,7 +3,8 @@
 IndexBuffer::IndexBuffer()
 {
 	BufferId = 0;
-	IndicesCount = 0;
+	Size = 0;
+	ElementCount = 0;
 
 	glGenBuffers(1, &BufferId);
 }
@@ -23,12 +24,14 @@ void IndexBuffer::Unbind()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void IndexBuffer::SetBufferData(GLuint* indices, GLsizeiptr indicesCount)
+void IndexBuffer::SetBufferData(GLuint* indices, GLuint elementCount)
 {
 	Bind();
 
-	IndicesCount = indicesCount;
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesCount, indices, GL_STATIC_DRAW);
+	ElementCount = elementCount;
+	Size = elementCount * sizeof(GLuint);
+
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, Size, indices, GL_STATIC_DRAW);
 
 	Unbind();
 }

@@ -10,19 +10,16 @@ int main()
 
 	GLfloat vertices[] =
 	{
-		-0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
-		0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower right corner
-		0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f, // Upper corner
-		-0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner left
-		0.5f / 2, 0.5f * float(sqrt(3)) / 6, 0.0f, // Inner right
-		0.0f, -0.5f * float(sqrt(3)) / 3, 0.0f // Inner down
+		0, 0, 0,
+		0, 3, 0,
+		8, 3, 0,
+		8, 0, 0
 	};
 
 	GLuint indices[] =
 	{
-		0, 3, 5, // Lower left triangle
-		3, 2, 4, // Lower right triangle
-		5, 4, 1 // Upper triangle
+		0, 1, 2,
+		2, 3, 0
 	};
 
 	Window* window = new Window("Test Window Interactive", 1920, 1080);
@@ -33,8 +30,8 @@ int main()
 	shader1->LinkProgram();
 
 	VertexArray* vertexArray1 = new VertexArray();
-	vertexArray1->CreateVertexBuffer(vertices, sizeof(vertices));
-	vertexArray1->CreateIndexBuffer(indices, sizeof(indices));
+	VertexBuffer* vbo1 = vertexArray1->CreateVertexBuffer(0, vertices, 12, 3);
+	IndexBuffer* ibo1 = vertexArray1->CreateIndexBuffer(indices, 6);
 
 	while (window->IsOpen() == false)
 	{
@@ -44,7 +41,7 @@ int main()
 		vertexArray1->Bind();
 		vertexArray1->IBuffer->Bind();
 
-		glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, ibo1->GetElementCount(), GL_UNSIGNED_INT, 0);
 
 		vertexArray1->Unbind();
 		vertexArray1->IBuffer->Unbind();

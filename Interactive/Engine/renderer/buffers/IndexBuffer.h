@@ -3,11 +3,13 @@
 
 class IndexBuffer
 {
-public:
-	//TODO: MAKE THIS PRIVATE AND IMPLEMENT PUBLIC GETTER
+private:
+	// Id of this buffer inside the graphics card
 	GLuint BufferId;
-	//TODO: MAKE THIS PRIVATE AND IMPLEMENT PUBLIC GETTER
-	GLsizeiptr IndicesCount;
+	// How much memory is allocated for this buffer (in bytes)
+	GLsizeiptr Size;
+	// Amount of elements/vertices inside the buffer
+	GLuint ElementCount;
 
 public:
 	IndexBuffer();
@@ -15,6 +17,10 @@ public:
 
 	void Bind();
 	void Unbind();
-	void SetBufferData(GLuint* indices, GLsizeiptr indicesCount);
+	void SetBufferData(GLuint* indices, GLuint elementCount);
 	void Delete();
+
+	GLuint GetBufferId() const { return BufferId; }
+	GLsizeiptr GetSize() const { return Size; }
+	GLuint GetElementCount() const { return ElementCount; }
 };

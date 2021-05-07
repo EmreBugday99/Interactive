@@ -7,18 +7,17 @@ class VertexBuffer;
 class VertexArray
 {
 public:
+	// Id of array buffer inside the graphics card
 	GLuint ArrayId;
-
-	//TODO: MAKE THIS PRIVATE AND IMPLEMENT PUBLIC GETTER
+	// VBOs this VAO is responsible for maintaining
 	std::vector<VertexBuffer*> VertexBuffers;
-	//TODO: MAKE THIS PRIVATE AND IMPLEMENT PUBLIC GETTER
 	IndexBuffer* IBuffer;
 
 public:
 	VertexArray();
 	~VertexArray();
 
-	VertexBuffer* CreateVertexBuffer(GLfloat* vertices, GLsizeiptr size);
+	VertexBuffer* CreateVertexBuffer(GLuint layoutIndex, GLfloat* vertices, GLuint elementCount, GLuint groupCount);
 	IndexBuffer* CreateIndexBuffer(GLuint* indices, GLsizeiptr indicesCount);
 	void Bind();
 	void Unbind();
