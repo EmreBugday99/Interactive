@@ -44,7 +44,7 @@ void ShaderProgram::AttachShader(ShaderTypes shaderType, std::string shaderPath)
 		std::string logMessage;
 		glGetShaderInfoLog(shader, messageLength, &messageLength, &logMessage[0]);
 
-		std::cerr << "Error: Shader Compile Error!" << std::endl;
+		std::cerr << "[ERROR]: Shader Compile Error!" << std::endl;
 		if (shaderType == ShaderTypes::VertexShader)
 			std::cerr << "Shader Type: Vertex Shader" << std::endl;
 		else if (shaderType == ShaderTypes::FragmentShader)
@@ -67,7 +67,7 @@ void ShaderProgram::LinkProgram()
 	glValidateProgram(ProgramId);
 
 	// We no longer need to store individual shaders as we have a working program
-	for (GLuint shader: Shaders)
+	for (GLuint shader : Shaders)
 	{
 		glDeleteShader(shader);
 	}
@@ -80,7 +80,48 @@ void ShaderProgram::UseProgram()
 	glUseProgram(ProgramId);
 }
 
+void ShaderProgram::SetUniformData(GLchar* uniformName, GLint& value)
+{
+	glUniform1i(GetUniformLocation(uniformName), value);
+}
+
+void ShaderProgram::SetUniformData(GLchar* uniformName, GLfloat& value)
+{
+	glUniform1f(GetUniformLocation(uniformName), value);
+}
+
+void ShaderProgram::SetUniformData(GLchar* uniformName, glm::vec2& value)
+{
+	glUniform2f(GetUniformLocation(uniformName), value.x, value.y);
+}
+
+void ShaderProgram::SetUniformData(GLchar* uniformName, glm::vec3& value)
+{
+	glUniform3f(GetUniformLocation(uniformName), value.x, value.y, value.z);
+}
+
+void ShaderProgram::SetUniformData(GLchar* uniformName, glm::vec4& value)
+{
+	glUniform4f(GetUniformLocation(uniformName), value.x, value.y, value.z, value.w);
+}
+
+void ShaderProgram::SetUniformData(GLchar* uniformName, glm::mat4& value)
+{
+	glUniformMatrix4fv(GetUniformLocation(uniformName), 1, GL_FALSE, glm::value_ptr(value));
+}
+
 void ShaderProgram::DeleteProgram()
 {
 	glDeleteProgram(ProgramId);
+}
+
+GLint ShaderProgram::GetUniformLocation(GLchar* uniformName)
+{
+	const GLint location = glGetUniformLocation(ProgramId, uniformName);
+
+	// TODO: Integrate this into log handling when implemented
+	if (location == -1)
+		std::cerr << "[ERROR] Failed to get Uniform Location!" << std::endl;
+
+	return location;
 }
