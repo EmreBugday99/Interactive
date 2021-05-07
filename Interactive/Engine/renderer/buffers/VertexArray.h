@@ -14,6 +14,7 @@ public:
 	//TODO: MAKE THIS PRIVATE AND IMPLEMENT PUBLIC GETTER
 	IndexBuffer* IBuffer;
 
+public:
 	VertexArray();
 	~VertexArray();
 

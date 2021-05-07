@@ -20,6 +20,8 @@ VertexBuffer* VertexArray::CreateVertexBuffer(GLfloat* vertices, GLsizeiptr size
 {
 	Bind();
 
+	// At this execution order size always comes from behind compensating the size starting from 0 when vector is empty.
+	// Current amount of VBOs is accepted as the current index for the new VBO.
 	const GLuint index = VertexBuffers.size();
 
 	VertexBuffer* vertexBuffer = new VertexBuffer();

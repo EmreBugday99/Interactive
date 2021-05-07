@@ -162,6 +162,7 @@
     <ClCompile Include="renderer\shader\ShaderProgram.cpp" />
     <ClCompile Include="renderer\buffers\VertexBuffer.cpp" />
     <ClCompile Include="renderer\buffers\VertexArray.cpp" />
+    <ClCompile Include="renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file-io\DiskReader.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="renderer\shader\ShaderTypes.h" />
     <ClInclude Include="renderer\buffers\VertexBuffer.h" />
     <ClInclude Include="renderer\buffers\VertexArray.h" />
+    <ClInclude Include="renderer\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.frag">

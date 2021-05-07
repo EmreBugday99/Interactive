@@ -9,14 +9,14 @@ class ShaderProgram
 public:
 	GLuint ProgramId;
 
+private:
+	std::vector<GLuint> Shaders;
+
+public:
 	ShaderProgram();
 	~ShaderProgram();
 	void AttachShader(ShaderTypes shaderType, std::string shaderPath);
 	void LinkProgram();
 	void UseProgram();
 	void DeleteProgram();
-
-
-private:
-	std::vector<GLuint> Shaders;
 };

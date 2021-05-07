@@ -8,7 +8,8 @@ public:
 	GLuint BufferId;
 	//TODO: MAKE THIS PRIVATE AND IMPLEMENT PUBLIC GETTER
 	GLsizeiptr VerticesSize;
-	
+
+public:
 	VertexBuffer();
 	~VertexBuffer();
 

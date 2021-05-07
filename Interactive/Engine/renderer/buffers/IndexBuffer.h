@@ -9,6 +9,7 @@ public:
 	//TODO: MAKE THIS PRIVATE AND IMPLEMENT PUBLIC GETTER
 	GLsizeiptr IndicesCount;
 
+public:
 	IndexBuffer();
 	~IndexBuffer();
 
