@@ -74,21 +74,29 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
+    <IntDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\Intermediates</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\Intermediates</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\Intermediates</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(SolutionDir)\Libraries\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IntDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\Intermediates</IntDir>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\$(Platform)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -97,6 +105,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,6 +122,9 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -129,6 +141,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,6 +158,9 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

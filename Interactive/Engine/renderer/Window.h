@@ -8,11 +8,12 @@ class InteractiveEngine;
 class Window
 {
 private:
-	GLint m_Width;
-	GLint m_Height;
-	std::string m_Name;
-
-	GLFWwindow* m_Window;
+	friend struct GLFWwindow;
+	GLint Width;
+	GLint Height;
+	std::string WindowName;
+	
+	GLFWwindow* GlWindow;
 
 public:
 	Window(std::string windowName, int width, int height);
@@ -20,11 +21,12 @@ public:
 
 	void Update();
 	void Clear();
-	bool IsOpen() const { return glfwWindowShouldClose(m_Window); }
+	bool IsOpen() const { return glfwWindowShouldClose(GlWindow); }
 
-	int GetWidth() const { return m_Width; }
-	int GetHeight() const { return m_Height; }
+	int GetWidth() const { return Width; }
+	int GetHeight() const { return Height; }
 
 private:
 	bool InitializeWindow();
+	friend static void WindowResizeCallback(GLFWwindow* window, GLint width, GLint height);
 };
