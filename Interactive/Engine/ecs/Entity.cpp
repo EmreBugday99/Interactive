@@ -10,11 +10,18 @@ Entity::~Entity() {}
 
 void Entity::Update(float deltaTime)
 {
-	for (Component*& component : Components)
+	size_t componentCount = Components.size();
+	while (componentCount)
 	{
-		component->Update();
-		component->Render();
+		componentCount--;
+
+		Components[componentCount]->Update(deltaTime);
+		Components[componentCount]->Render();
 	}
+}
+
+void Entity::Render()
+{
 }
 
 void Entity::Destroy() {}

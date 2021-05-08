@@ -9,6 +9,6 @@ public:
 	Component();
 	virtual ~Component();
 
-	virtual void Update();
+	virtual void Update(float deltaTime);
 	virtual void Render();
 };

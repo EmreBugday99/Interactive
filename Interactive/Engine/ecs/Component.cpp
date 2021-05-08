@@ -4,6 +4,6 @@ Component::Component() {}
 
 Component::~Component() {}
 
-void Component::Update() {}
+void Component::Update(float deltaTime) {}
 
 void Component::Render() {}

@@ -4,7 +4,6 @@
 #include <GLFW/glfw3.h>
 
 class InteractiveEngine;
-
 class Window
 {
 private:
@@ -16,12 +15,14 @@ private:
 	GLFWwindow* GlWindow;
 
 public:
+	InteractiveEngine* Engine;
+	
 	Window(std::string windowName, int width, int height);
 	~Window();
 
 	void Update();
 	void Clear();
-	bool IsOpen() const { return glfwWindowShouldClose(GlWindow); }
+	bool IsClosed() const { return glfwWindowShouldClose(GlWindow); }
 
 	int GetWidth() const { return Width; }
 	int GetHeight() const { return Height; }

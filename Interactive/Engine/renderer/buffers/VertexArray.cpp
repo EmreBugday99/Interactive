@@ -34,18 +34,19 @@ VertexBuffer* VertexArray::CreateVertexBuffer(GLuint layoutIndex, GLfloat* verti
 	return vertexBuffer;
 }
 
-IndexBuffer* VertexArray::CreateIndexBuffer(GLuint* indices, GLsizeiptr indicesCount)
+IndexBuffer* VertexArray::CreateIndexBuffer(GLuint* indices, GLuint elementCount)
 {
 	// TODO: Throw error when error handling is implemented!
 	// If we already have an Index Buffer, creating a new one will result in memory leak.
 	if (IBuffer != nullptr)
 		return IBuffer;
-
-	Bind();
-
 	IBuffer = new IndexBuffer();
-	IBuffer->SetBufferData(indices, indicesCount);
+	
+	Bind();
+	IBuffer->Bind();
+	IBuffer->SetBufferData(indices, elementCount);
 
+	IBuffer->Unbind();
 	Unbind();
 
 	return IBuffer;
@@ -68,12 +69,13 @@ void VertexArray::Delete()
 
 	for (VertexBuffer* vbo : VertexBuffers)
 	{
-		if (vbo == nullptr) continue;
 		delete(vbo);
+		vbo = nullptr;
 	}
 	VertexBuffers.clear();
 
 	delete(IBuffer);
+	IBuffer = nullptr;
 
 	glDeleteVertexArrays(1, &ArrayId);
 	ArrayId = 0;

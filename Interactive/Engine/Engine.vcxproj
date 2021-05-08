@@ -171,6 +171,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="components\Camera.cpp" />
+    <ClCompile Include="InteractiveEngine.cpp" />
+    <ClCompile Include="renderer\renderers\BaseRenderer.cpp" />
     <ClCompile Include="ecs\Component.cpp" />
     <ClCompile Include="ecs\EntityManager.cpp" />
     <ClCompile Include="ecs\Entity.cpp" />
@@ -182,8 +185,12 @@
     <ClCompile Include="renderer\buffers\VertexBuffer.cpp" />
     <ClCompile Include="renderer\buffers\VertexArray.cpp" />
     <ClCompile Include="renderer\Window.cpp" />
+    <ClCompile Include="components\PrimitiveSprite2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="components\Camera.h" />
+    <ClInclude Include="InteractiveEngine.h" />
+    <ClInclude Include="renderer\renderers\BaseRenderer.h" />
     <ClInclude Include="ecs\Component.h" />
     <ClInclude Include="ecs\EntityManager.h" />
     <ClInclude Include="ecs\Entity.h" />
@@ -194,6 +201,7 @@
     <ClInclude Include="renderer\buffers\VertexBuffer.h" />
     <ClInclude Include="renderer\buffers\VertexArray.h" />
     <ClInclude Include="renderer\Window.h" />
+    <ClInclude Include="components\PrimitiveSprite2D.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.frag">

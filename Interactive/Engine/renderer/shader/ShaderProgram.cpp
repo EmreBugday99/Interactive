@@ -80,32 +80,37 @@ void ShaderProgram::UseProgram()
 	glUseProgram(ProgramId);
 }
 
-void ShaderProgram::SetUniformData(GLchar* uniformName, GLint& value)
+void ShaderProgram::UnbindProgram()
+{
+	glUseProgram(0);
+}
+
+void ShaderProgram::SetUniformData(std::string uniformName, GLint& value)
 {
 	glUniform1i(GetUniformLocation(uniformName), value);
 }
 
-void ShaderProgram::SetUniformData(GLchar* uniformName, GLfloat& value)
+void ShaderProgram::SetUniformData(std::string uniformName, GLfloat& value)
 {
 	glUniform1f(GetUniformLocation(uniformName), value);
 }
 
-void ShaderProgram::SetUniformData(GLchar* uniformName, glm::vec2& value)
+void ShaderProgram::SetUniformData(std::string uniformName, glm::vec2& value)
 {
 	glUniform2f(GetUniformLocation(uniformName), value.x, value.y);
 }
 
-void ShaderProgram::SetUniformData(GLchar* uniformName, glm::vec3& value)
+void ShaderProgram::SetUniformData(std::string uniformName, glm::vec3& value)
 {
 	glUniform3f(GetUniformLocation(uniformName), value.x, value.y, value.z);
 }
 
-void ShaderProgram::SetUniformData(GLchar* uniformName, glm::vec4& value)
+void ShaderProgram::SetUniformData(std::string uniformName, glm::vec4& value)
 {
 	glUniform4f(GetUniformLocation(uniformName), value.x, value.y, value.z, value.w);
 }
 
-void ShaderProgram::SetUniformData(GLchar* uniformName, glm::mat4& value)
+void ShaderProgram::SetUniformData(std::string uniformName, glm::mat4& value)
 {
 	glUniformMatrix4fv(GetUniformLocation(uniformName), 1, GL_FALSE, glm::value_ptr(value));
 }
@@ -115,9 +120,9 @@ void ShaderProgram::DeleteProgram()
 	glDeleteProgram(ProgramId);
 }
 
-GLint ShaderProgram::GetUniformLocation(GLchar* uniformName)
+GLint ShaderProgram::GetUniformLocation(std::string uniformName)
 {
-	const GLint location = glGetUniformLocation(ProgramId, uniformName);
+	const GLint location = glGetUniformLocation(ProgramId, uniformName.c_str());
 
 	// TODO: Integrate this into log handling when implemented
 	if (location == -1)

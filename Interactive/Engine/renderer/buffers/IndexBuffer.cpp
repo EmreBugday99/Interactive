@@ -26,14 +26,10 @@ void IndexBuffer::Unbind()
 
 void IndexBuffer::SetBufferData(GLuint* indices, GLuint elementCount)
 {
-	Bind();
-
 	ElementCount = elementCount;
 	Size = elementCount * sizeof(GLuint);
 
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, Size, indices, GL_STATIC_DRAW);
-
-	Unbind();
 }
 
 void IndexBuffer::Delete()

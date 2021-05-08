@@ -18,7 +18,7 @@ public:
 	~VertexArray();
 
 	VertexBuffer* CreateVertexBuffer(GLuint layoutIndex, GLfloat* vertices, GLuint elementCount, GLuint groupCount);
-	IndexBuffer* CreateIndexBuffer(GLuint* indices, GLsizeiptr indicesCount);
+	IndexBuffer* CreateIndexBuffer(GLuint* indices, GLuint elementCount);
 	void Bind();
 	void Unbind();
 	void Delete();

@@ -13,6 +13,7 @@ EntityManager::~EntityManager()
 Entity* EntityManager::CreateEntity(std::string entityName)
 {
 	Entity* newEntity = new Entity(entityName);
+	newEntity->Engine = Engine;
 	Entities.push_back(newEntity);
 
 	return newEntity;
