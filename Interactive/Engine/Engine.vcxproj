@@ -171,6 +171,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ecs\Component.cpp" />
+    <ClCompile Include="ecs\EntityManager.cpp" />
+    <ClCompile Include="ecs\Entity.cpp" />
     <ClCompile Include="file-io\DiskReader.cpp" />
     <ClCompile Include="external\glad.c" />
     <ClCompile Include="renderer\buffers\IndexBuffer.cpp" />
@@ -181,6 +184,9 @@
     <ClCompile Include="renderer\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ecs\Component.h" />
+    <ClInclude Include="ecs\EntityManager.h" />
+    <ClInclude Include="ecs\Entity.h" />
     <ClInclude Include="file-io\DiskReader.h" />
     <ClInclude Include="renderer\buffers\IndexBuffer.h" />
     <ClInclude Include="renderer\shader\ShaderProgram.h" />
