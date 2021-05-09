@@ -189,15 +189,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
-    <ClInclude Include="CoreHeaders.h" />
+    <ClInclude Include="includes\CoreIncludes.h" />
+    <ClInclude Include="includes\EcsIncludes.h" />
+    <ClInclude Include="includes\InputIncludes.h" />
     <ClInclude Include="input\InputManager.h" />
-    <ClInclude Include="input\KeyActionDefinitions.h" />
-    <ClInclude Include="input\KeyIdentifierDefinitions.h" />
+    <ClInclude Include="input\KeyActions.h" />
+    <ClInclude Include="input\Keys.h" />
     <ClInclude Include="InteractiveEngine.h" />
     <ClInclude Include="ecs\Component.h" />
     <ClInclude Include="ecs\EntityManager.h" />
     <ClInclude Include="ecs\Entity.h" />
     <ClInclude Include="file-io\DiskReader.h" />
+    <ClInclude Include="includes\RendererIncludes.h" />
     <ClInclude Include="renderer\buffers\IndexBuffer.h" />
     <ClInclude Include="renderer\shader\ShaderProgram.h" />
     <ClInclude Include="renderer\shader\ShaderTypes.h" />

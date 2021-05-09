@@ -1,14 +1,7 @@
 #include "PrimitiveSprite2D.h"
 #include <iostream>
 #include "Camera.h"
-#include "../ecs/Entity.h"
-#include "../input/InputManager.h"
-#include "../input/KeyActionDefinitions.h"
-#include "../input/KeyIdentifierDefinitions.h"
-#include "../renderer/buffers/IndexBuffer.h"
-#include "../renderer/buffers/VertexArray.h"
-#include "../renderer/shader/ShaderProgram.h"
-#include "../renderer/shader/ShaderTypes.h"
+#include "../includes/CoreIncludes.h"
 
 PrimitiveSprite2D::PrimitiveSprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
 	: Position(position), Size(size), Color(color)
@@ -49,6 +42,14 @@ void PrimitiveSprite2D::Update(float deltaTime)
 	//Position.y += 0.002f;
 }
 
+void PrimitiveSprite2D::KeyboardCallback(Keys key, KeyActions actions)
+{
+	if (key == Keys::A && actions == KeyActions::PRESS)
+	{
+		std::cout << "A key is pressed!" << std::endl;
+	}
+}
+
 void PrimitiveSprite2D::Render()
 {
 	if (Owner->Engine->MainCamera == nullptr)
@@ -70,12 +71,4 @@ void PrimitiveSprite2D::Render()
 
 	ibo->Unbind();
 	VAO->Unbind();
-}
-
-void PrimitiveSprite2D::KeyboardCallback(int key, int action)
-{
-	if (key == KEY_F && action == RELEASE)
-	{
-		std::cout << "F key is pressed!!!" << std::endl;
-	}
 }

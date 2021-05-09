@@ -1,5 +1,7 @@
 #pragma once
 
+enum class Keys;
+enum class KeyActions;
 class InputManager;
 class InteractiveEngine;
 class Entity;
@@ -16,5 +18,5 @@ public:
 	virtual void BeginPlay();
 	virtual void Update(float deltaTime);
 	virtual void Render();
-	virtual void KeyboardCallback(int key, int action);
+	virtual void KeyboardCallback(Keys key, KeyActions actions);
 };

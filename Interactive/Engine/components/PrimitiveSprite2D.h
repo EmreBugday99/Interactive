@@ -23,8 +23,8 @@ public:
 
 	virtual void BeginPlay() override;
 	virtual void Update(float deltaTime) override;
+	virtual void KeyboardCallback(Keys key, KeyActions actions) override;
 	virtual void Render() override;
-	void KeyboardCallback(int key, int action) override;
 
 	VertexArray* GetVAO() const { return VAO; }
 

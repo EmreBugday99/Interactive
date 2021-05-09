@@ -24,6 +24,6 @@ void InputManager::KeyboardCallback(GLFWwindow* window, int key, int scanCode, i
 
 	for (Component* callbackListener : inputController->KeyboardCallbacksListeners)
 	{
-		callbackListener->KeyboardCallback(key, action);
+		callbackListener->KeyboardCallback(static_cast<Keys>(key), static_cast<KeyActions>(action));
 	}
 }

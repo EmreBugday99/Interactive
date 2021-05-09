@@ -104,13 +104,22 @@
     <ClInclude Include="input\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CoreHeaders.h">
+    <ClInclude Include="input\Keys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="input\KeyIdentifierDefinitions.h">
+    <ClInclude Include="input\KeyActions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="input\KeyActionDefinitions.h">
+    <ClInclude Include="includes\RendererIncludes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\InputIncludes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\CoreIncludes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\EcsIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
