@@ -1,10 +1,14 @@
 #include "PrimitiveSprite2D.h"
+#include <iostream>
 #include "Camera.h"
-#include "../InteractiveEngine.h"
 #include "../ecs/Entity.h"
+#include "../input/InputManager.h"
+#include "../input/KeyActionDefinitions.h"
+#include "../input/KeyIdentifierDefinitions.h"
 #include "../renderer/buffers/IndexBuffer.h"
 #include "../renderer/buffers/VertexArray.h"
 #include "../renderer/shader/ShaderProgram.h"
+#include "../renderer/shader/ShaderTypes.h"
 
 PrimitiveSprite2D::PrimitiveSprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
 	: Position(position), Size(size), Color(color)
@@ -34,30 +38,44 @@ PrimitiveSprite2D::~PrimitiveSprite2D()
 	VAO = nullptr;
 }
 
+void PrimitiveSprite2D::BeginPlay()
+{
+	InputController->BindKeyboardCallback(this);
+}
+
 void PrimitiveSprite2D::Update(float deltaTime)
 {
-	Position.x += 0.002f;
-	Position.y += 0.002f;
+	//Position.x += 0.002f;
+	//Position.y += 0.002f;
 }
+
 void PrimitiveSprite2D::Render()
 {
 	if (Owner->Engine->MainCamera == nullptr)
 		return;
-	
+
 	IndexBuffer* ibo = VAO->IBuffer;
 
 	VAO->Bind();
 	ibo->Bind();
 
 	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), Position);
-	
+
 	Shader->UseProgram();
 	Shader->SetUniformData("model_mx", translationMatrix);
 	Shader->SetUniformData("projection_mx", Owner->Engine->MainCamera->ProjectionMatrix);
 	Shader->SetUniformData("componentColor", Color);
 	glDrawElements(GL_TRIANGLES, ibo->GetElementCount(), GL_UNSIGNED_INT, nullptr);
 	Shader->UnbindProgram();
-	
+
 	ibo->Unbind();
 	VAO->Unbind();
+}
+
+void PrimitiveSprite2D::KeyboardCallback(int key, int action)
+{
+	if (key == KEY_F && action == RELEASE)
+	{
+		std::cout << "F key is pressed!!!" << std::endl;
+	}
 }

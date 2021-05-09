@@ -21,8 +21,10 @@ public:
 	PrimitiveSprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color);
 	virtual ~PrimitiveSprite2D() override;
 
+	virtual void BeginPlay() override;
 	virtual void Update(float deltaTime) override;
 	virtual void Render() override;
+	void KeyboardCallback(int key, int action) override;
 
 	VertexArray* GetVAO() const { return VAO; }
 

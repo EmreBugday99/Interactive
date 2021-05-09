@@ -1,13 +1,10 @@
 #include "Window.h"
 #include <iostream>
+#include "../InteractiveEngine.h"
 
-Window::Window(std::string windowName, int width, int height)
+Window::Window(std::string windowName, int width, int height, InteractiveEngine* engine)
+	: Width(width), Height(height), WindowName(windowName), GlWindow(nullptr), Engine(engine)
 {
-	GlWindow = nullptr;
-	WindowName = windowName;
-	Width = width;
-	Height = height;
-
 	if (InitializeWindow() == false)
 	{
 		std::cerr << "[ERROR] Failed to initialize window!" << std::endl;
@@ -25,9 +22,10 @@ Window::~Window()
 
 void WindowResizeCallback(GLFWwindow* window, GLint width, GLint height)
 {
-	Window* gameWindow = static_cast<Window*>(glfwGetWindowUserPointer(window));
-	gameWindow->Width = width;
-	gameWindow->Height = height;
+	InteractiveEngine* engine = static_cast<InteractiveEngine*>(glfwGetWindowUserPointer(window));
+
+	engine->GameWindow->Width = width;
+	engine->GameWindow->Height = height;
 
 	glViewport(0, 0, width, height);
 }
@@ -46,7 +44,7 @@ bool Window::InitializeWindow()
 		return false;
 
 	glfwMakeContextCurrent(GlWindow);
-	glfwSetWindowUserPointer(GlWindow, this);
+	glfwSetWindowUserPointer(GlWindow, Engine);
 	glfwSetWindowSizeCallback(GlWindow, WindowResizeCallback);
 	gladLoadGL();
 

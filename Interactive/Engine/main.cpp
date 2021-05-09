@@ -9,8 +9,7 @@ int main()
 {
 	std::cout << "Hello World!" << std::endl;
 
-	InteractiveEngine* engine = new InteractiveEngine();
-	engine->Initialize();
+	InteractiveEngine* engine = new InteractiveEngine("Test bla bla bla");
 	
 	Entity* entity1 = engine->ECS->CreateEntity("Test Entity");
 	PrimitiveSprite2D* spriteComp = entity1->AddComponent<PrimitiveSprite2D>(
@@ -21,6 +20,12 @@ int main()
 	Entity* cameraEntity = engine->ECS->CreateEntity("Camera Entity");
 	Camera* cameraComp = cameraEntity->AddComponent<Camera>();
 	engine->MainCamera = cameraComp;
+
+	Entity* entity2 = engine->ECS->CreateEntity("Test Entity");
+	PrimitiveSprite2D* spriteComp2 = entity1->AddComponent<PrimitiveSprite2D>(
+		glm::vec3(0.5f, 0.5f, 0.0f),
+		glm::vec2(0.1f, 0.1f),
+		glm::vec4(1.0f, 0.0f, 0.0f, 1.0f));
 	
 	engine->Start();
 

@@ -6,18 +6,9 @@
 class InteractiveEngine;
 class Window
 {
-private:
-	friend struct GLFWwindow;
-	GLint Width;
-	GLint Height;
-	std::string WindowName;
-	
-	GLFWwindow* GlWindow;
-
 public:
 	InteractiveEngine* Engine;
-	
-	Window(std::string windowName, int width, int height);
+
 	~Window();
 
 	void Update();
@@ -26,8 +17,19 @@ public:
 
 	int GetWidth() const { return Width; }
 	int GetHeight() const { return Height; }
+	GLFWwindow* GetGlfwWindow() { return GlWindow; }
 
 private:
+	friend struct GLFWwindow;
+	friend class InteractiveEngine;
+
+	GLint Width;
+	GLint Height;
+	std::string WindowName;
+	GLFWwindow* GlWindow;
+
+	Window(std::string windowName, int width, int height, InteractiveEngine* engine);
+
 	bool InitializeWindow();
 	friend static void WindowResizeCallback(GLFWwindow* window, GLint width, GLint height);
 };

@@ -121,7 +121,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -157,7 +157,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
@@ -172,8 +172,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="components\Camera.cpp" />
+    <ClCompile Include="input\InputManager.cpp" />
     <ClCompile Include="InteractiveEngine.cpp" />
-    <ClCompile Include="renderer\renderers\BaseRenderer.cpp" />
     <ClCompile Include="ecs\Component.cpp" />
     <ClCompile Include="ecs\EntityManager.cpp" />
     <ClCompile Include="ecs\Entity.cpp" />
@@ -189,8 +189,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
+    <ClInclude Include="CoreHeaders.h" />
+    <ClInclude Include="input\InputManager.h" />
+    <ClInclude Include="input\KeyActionDefinitions.h" />
+    <ClInclude Include="input\KeyIdentifierDefinitions.h" />
     <ClInclude Include="InteractiveEngine.h" />
-    <ClInclude Include="renderer\renderers\BaseRenderer.h" />
     <ClInclude Include="ecs\Component.h" />
     <ClInclude Include="ecs\EntityManager.h" />
     <ClInclude Include="ecs\Entity.h" />

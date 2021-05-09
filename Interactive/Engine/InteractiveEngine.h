@@ -1,25 +1,25 @@
 #pragma once
+#include <string>
 
+class InputManager;
 class Camera;
 class EntityManager;
-class BaseRenderer;
 class Window;
 class InteractiveEngine
 {
 public:
+	std::string GameName;
 	Window* GameWindow;
-	BaseRenderer* Renderer;
 	EntityManager* ECS;
 	Camera* MainCamera;
+	InputManager* InputController;
 
-	InteractiveEngine();
+	InteractiveEngine(std::string gameName);
 	~InteractiveEngine();
 
-	void Initialize();
 	void Start();
 	void Update();
 
 private:
 	void Close();
 };
-

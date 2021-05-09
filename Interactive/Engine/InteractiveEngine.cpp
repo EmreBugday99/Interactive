@@ -1,30 +1,18 @@
 #include "InteractiveEngine.h"
 #include "ecs/Entity.h"
 #include "ecs/EntityManager.h"
+#include "input/InputManager.h"
 #include "renderer/Window.h"
-#include "renderer/renderers/BaseRenderer.h"
 
-InteractiveEngine::InteractiveEngine()
+InteractiveEngine::InteractiveEngine(std::string gameName)
+	: GameName(gameName), MainCamera(nullptr)
 {
-	GameWindow = nullptr;
-	Renderer = nullptr;
-	ECS = nullptr;
-	MainCamera = nullptr;
+	GameWindow = new Window(gameName, 800, 800, this);
+	ECS = new EntityManager(this);
+	InputController = new InputManager(this);
 }
 
 InteractiveEngine::~InteractiveEngine() {}
-
-void InteractiveEngine::Initialize()
-{
-	GameWindow = new Window("Test Engine", 800, 800);
-	GameWindow->Engine = this;
-
-	ECS = new EntityManager();
-	ECS->Engine = this;
-
-	Renderer = new BaseRenderer();
-	Renderer->Engine = this;
-}
 
 void InteractiveEngine::Start()
 {
@@ -44,7 +32,6 @@ void InteractiveEngine::Update()
 
 			ECS->Entities[entityCount]->Update(0.1f);
 		}
-		Renderer->Render();
 
 		GameWindow->Update();
 	}
@@ -59,9 +46,6 @@ void InteractiveEngine::Close()
 
 	delete(ECS);
 	ECS = nullptr;
-
-	delete(Renderer);
-	Renderer = nullptr;
 
 	glfwTerminate();
 }

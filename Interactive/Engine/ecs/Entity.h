@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 #include <vector>
+#include "../InteractiveEngine.h"
 
-class InteractiveEngine;
 class Component;
 class Entity
 {
@@ -24,7 +24,10 @@ public:
 		T* newComponent = new T(std::forward<TArgs>(args)...);
 
 		newComponent->Owner = this;
+		newComponent->Engine = Engine;
+		newComponent->InputController = Engine->InputController;
 		Components.push_back(newComponent);
+		newComponent->BeginPlay();
 
 		return newComponent;
 	}

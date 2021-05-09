@@ -51,13 +51,13 @@
     <ClCompile Include="components\PrimitiveSprite2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="renderer\renderers\BaseRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InteractiveEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="components\Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="input\InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,13 +95,22 @@
     <ClInclude Include="components\PrimitiveSprite2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderer\renderers\BaseRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InteractiveEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="components\Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="input\InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreHeaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="input\KeyIdentifierDefinitions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="input\KeyActionDefinitions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
