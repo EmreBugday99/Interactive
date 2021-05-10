@@ -27,7 +27,7 @@ VertexBuffer* VertexArray::CreateVertexBuffer(GLuint layoutIndex, GLfloat* verti
 	vertexBuffer->SetBufferData(vertices, elementCount, groupCount);
 	glEnableVertexAttribArray(layoutIndex);
 	glVertexAttribPointer(layoutIndex, groupCount, GL_FLOAT, GL_FALSE, 0, 0);
-	
+
 	vertexBuffer->Unbind();
 	Unbind();
 
@@ -41,7 +41,7 @@ IndexBuffer* VertexArray::CreateIndexBuffer(GLuint* indices, GLuint elementCount
 	if (IBuffer != nullptr)
 		return IBuffer;
 	IBuffer = new IndexBuffer();
-	
+
 	Bind();
 	IBuffer->Bind();
 	IBuffer->SetBufferData(indices, elementCount);

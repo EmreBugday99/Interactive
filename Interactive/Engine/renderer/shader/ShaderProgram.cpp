@@ -126,7 +126,7 @@ GLint ShaderProgram::GetUniformLocation(std::string uniformName)
 
 	// TODO: Integrate this into log handling when implemented
 	if (location == -1)
-		std::cerr << "[ERROR] Failed to get Uniform Location!" << std::endl;
+		std::cerr << "[ERROR] Failed to get Uniform Location for: " << uniformName << std::endl;
 
 	return location;
 }

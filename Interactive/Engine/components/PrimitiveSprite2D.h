@@ -6,6 +6,7 @@
 #include <glm/mat4x4.hpp>
 #include "../ecs/Component.h"
 
+class Texture;
 class ShaderProgram;
 class IndexBuffer;
 class VertexBuffer;
@@ -18,9 +19,14 @@ public:
 	glm::vec4 Color;
 	ShaderProgram* Shader;
 
+	Texture* TestTexture;
+
 	PrimitiveSprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color);
+	PrimitiveSprite2D();
 	virtual ~PrimitiveSprite2D() override;
 
+	void CreateSprite2D();
+	
 	virtual void BeginPlay() override;
 	virtual void Update(float deltaTime) override;
 	virtual void KeyboardCallback(Keys key, KeyActions actions) override;

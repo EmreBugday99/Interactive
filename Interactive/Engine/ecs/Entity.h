@@ -1,9 +1,6 @@
 #pragma once
-#include <string>
-#include <vector>
-#include "../InteractiveEngine.h"
+#include "../includes/CoreIncludes.h"
 
-class Component;
 class Entity
 {
 public:
@@ -15,8 +12,8 @@ public:
 	~Entity();
 
 	void Update(float deltaTime);
-	void Render();
 	void Destroy();
+	Component* GetComponent(Component* component);
 
 	template <typename T, typename... TArgs>
 	T* AddComponent(TArgs... args)
@@ -25,9 +22,8 @@ public:
 
 		newComponent->Owner = this;
 		newComponent->Engine = Engine;
-		newComponent->InputController = Engine->InputController;
+		newComponent->InputController = Engine->InputSystem;
 		Components.push_back(newComponent);
-		newComponent->BeginPlay();
 
 		return newComponent;
 	}

@@ -4,25 +4,21 @@
 #include "../includes/CoreIncludes.h"
 
 PrimitiveSprite2D::PrimitiveSprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
-	: Position(position), Size(size), Color(color)
+	: Position(position), Size(size), Color(color), Shader(nullptr), VAO(nullptr)
 {
-	GLfloat vertices[] =
-	{
-		0,				0,				0,
-		0,				size.y,			0,
-		size.x,			size.y,			0,
-		size.x,			0,				0
-	};
-	GLuint indices[] = { 0, 1, 2, 2, 3, 0 };
+	CreateSprite2D();
+}
 
-	VAO = new VertexArray();
-	VAO->CreateVertexBuffer(0, vertices, 3 * 4, 3);
-	VAO->CreateIndexBuffer(indices, 6);
+PrimitiveSprite2D::PrimitiveSprite2D()
+{
+	Shader = nullptr;
+	VAO = nullptr;
 
-	Shader = new ShaderProgram();
-	Shader->AttachShader(ShaderTypes::VertexShader, "shader.vert");
-	Shader->AttachShader(ShaderTypes::FragmentShader, "shader.frag");
-	Shader->LinkProgram();
+	Position = glm::vec3(0.5f, 0.8f, 0.0f);
+	Size = glm::vec2(0.1f, 0.1f);
+	Color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+
+	CreateSprite2D();
 }
 
 PrimitiveSprite2D::~PrimitiveSprite2D()
@@ -31,9 +27,39 @@ PrimitiveSprite2D::~PrimitiveSprite2D()
 	VAO = nullptr;
 }
 
+void PrimitiveSprite2D::CreateSprite2D()
+{
+	GLfloat vertices[] =
+	{
+		0,				0,				0,
+		0,				Size.y,			0,
+		Size.x,			Size.y,			0,
+		Size.x,			0,				0
+	};
+	GLuint indices[] = { 0, 1, 2, 2, 3, 0 };
+	GLfloat textureCoords[] = 
+	{
+		0.0f, 0.0f,
+		0.0f, 1.0f,
+		1.0f, 1.0f,
+		1.0f, 0.0f
+	};
+
+	VAO = new VertexArray();
+	VAO->CreateVertexBuffer(0, vertices, 3 * 4, 3);
+	VAO->CreateIndexBuffer(indices, 6);
+	VAO->CreateVertexBuffer(1, textureCoords, 2 * 4, 2);
+
+	Shader = new ShaderProgram();
+	Shader->AttachShader(ShaderTypes::VertexShader, "shader.vert");
+	Shader->AttachShader(ShaderTypes::FragmentShader, "shader.frag");
+	Shader->LinkProgram();
+}
+
 void PrimitiveSprite2D::BeginPlay()
 {
 	InputController->BindKeyboardCallback(this);
+	TestTexture = Engine->TextureSystem->CreateTexture("testTexture2", "test.jpg");
 }
 
 void PrimitiveSprite2D::Update(float deltaTime)
@@ -57,6 +83,7 @@ void PrimitiveSprite2D::Render()
 
 	IndexBuffer* ibo = VAO->IBuffer;
 
+	Engine->TextureSystem->Textures["testTexture2"]->Bind();
 	VAO->Bind();
 	ibo->Bind();
 
@@ -65,7 +92,9 @@ void PrimitiveSprite2D::Render()
 	Shader->UseProgram();
 	Shader->SetUniformData("model_mx", translationMatrix);
 	Shader->SetUniformData("projection_mx", Owner->Engine->MainCamera->ProjectionMatrix);
-	Shader->SetUniformData("componentColor", Color);
+	//Shader->SetUniformData("componentColor", Color);
+	GLint a = 0;
+	Shader->SetUniformData("texture0", a);
 	glDrawElements(GL_TRIANGLES, ibo->GetElementCount(), GL_UNSIGNED_INT, nullptr);
 	Shader->UnbindProgram();
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 
+class TextureManager;
 class InputManager;
 class Camera;
 class EntityManager;
@@ -12,7 +13,8 @@ public:
 	Window* GameWindow;
 	EntityManager* ECS;
 	Camera* MainCamera;
-	InputManager* InputController;
+	InputManager* InputSystem;
+	TextureManager* TextureSystem;
 
 	InteractiveEngine(std::string gameName);
 	~InteractiveEngine();

@@ -14,7 +14,6 @@ public:
 
 	Entity* CreateEntity(std::string entityName);
 	Entity* GetEntityByName(std::string entityName);
-	void DestroyAllEntities();
 
 private:
 	friend class InteractiveEngine;

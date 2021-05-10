@@ -1,15 +1,12 @@
-#include "InteractiveEngine.h"
-#include "ecs/Entity.h"
-#include "ecs/EntityManager.h"
-#include "input/InputManager.h"
-#include "renderer/Window.h"
+#include "includes/CoreIncludes.h"
 
 InteractiveEngine::InteractiveEngine(std::string gameName)
 	: GameName(gameName), MainCamera(nullptr)
 {
 	GameWindow = new Window(gameName, 800, 800, this);
 	ECS = new EntityManager(this);
-	InputController = new InputManager(this);
+	InputSystem = new InputManager(this);
+	TextureSystem = new TextureManager(this);
 }
 
 InteractiveEngine::~InteractiveEngine() {}

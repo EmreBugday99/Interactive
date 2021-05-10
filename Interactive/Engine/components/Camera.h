@@ -1,8 +1,6 @@
 #pragma once
 
-#include <glm/glm.hpp>
-#include <glm/ext.hpp>
-#include "../ecs/Component.h"
+#include "../includes/CoreIncludes.h"
 
 class Camera : public Component
 {
@@ -15,4 +13,5 @@ public:
 	void Update(float deltaTime) override;
 	void Render() override;
 
+	void SetProjection(glm::vec4 projection);
 };

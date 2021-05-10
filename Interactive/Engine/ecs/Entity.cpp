@@ -1,5 +1,4 @@
 #include "Entity.h"
-#include "Component.h"
 
 Entity::Entity(std::string entityName)
 {
@@ -15,13 +14,19 @@ void Entity::Update(float deltaTime)
 	{
 		componentCount--;
 
+		if (Components[componentCount]->BeginPlayExecuted == false)
+		{
+			Components[componentCount]->BeginPlay();
+		}
+
 		Components[componentCount]->Update(deltaTime);
 		Components[componentCount]->Render();
 	}
 }
 
-void Entity::Render()
-{
-}
-
 void Entity::Destroy() {}
+
+Component* Entity::GetComponent(Component* component)
+{
+	return nullptr;
+}

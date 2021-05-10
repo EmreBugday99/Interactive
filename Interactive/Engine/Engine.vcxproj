@@ -125,6 +125,8 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -161,6 +163,8 @@
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <FloatingPointModel>Fast</FloatingPointModel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -186,12 +190,17 @@
     <ClCompile Include="renderer\buffers\VertexArray.cpp" />
     <ClCompile Include="renderer\Window.cpp" />
     <ClCompile Include="components\PrimitiveSprite2D.cpp" />
+    <ClCompile Include="TestComponent.cpp" />
+    <ClCompile Include="renderer\texture\Texture.cpp" />
+    <ClCompile Include="renderer\texture\TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
+    <ClInclude Include="includes\Components.h" />
     <ClInclude Include="includes\CoreIncludes.h" />
     <ClInclude Include="includes\EcsIncludes.h" />
     <ClInclude Include="includes\InputIncludes.h" />
+    <ClInclude Include="includes\TextureIncludes.h" />
     <ClInclude Include="input\InputManager.h" />
     <ClInclude Include="input\KeyActions.h" />
     <ClInclude Include="input\Keys.h" />
@@ -208,6 +217,9 @@
     <ClInclude Include="renderer\buffers\VertexArray.h" />
     <ClInclude Include="renderer\Window.h" />
     <ClInclude Include="components\PrimitiveSprite2D.h" />
+    <ClInclude Include="TestComponent.h" />
+    <ClInclude Include="renderer\texture\Texture.h" />
+    <ClInclude Include="renderer\texture\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shader.frag">

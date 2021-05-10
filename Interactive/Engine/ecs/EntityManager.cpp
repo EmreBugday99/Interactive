@@ -1,11 +1,10 @@
 #include "EntityManager.h"
 #include "Entity.h"
 
-EntityManager::EntityManager(InteractiveEngine* engine) : Engine(engine){}
+EntityManager::EntityManager(InteractiveEngine* engine) : Engine(engine) {}
 
 EntityManager::~EntityManager()
 {
-	DestroyAllEntities();
 }
 
 Entity* EntityManager::CreateEntity(std::string entityName)
@@ -26,8 +25,4 @@ Entity* EntityManager::GetEntityByName(std::string entityName)
 	}
 
 	return nullptr;
-}
-
-void EntityManager::DestroyAllEntities()
-{
 }

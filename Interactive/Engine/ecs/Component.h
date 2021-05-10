@@ -19,4 +19,8 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void KeyboardCallback(Keys key, KeyActions actions);
+
+private:
+	friend class Entity;
+	bool BeginPlayExecuted;
 };
