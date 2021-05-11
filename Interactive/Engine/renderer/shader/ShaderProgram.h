@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <string>
 #include <vector>
 #include <glad/glad.h>
@@ -13,6 +14,7 @@ public:
 
 private:
 	std::vector<GLuint> Shaders;
+	std::map<std::string, GLint> ShaderUniformCache;
 
 public:
 	ShaderProgram();

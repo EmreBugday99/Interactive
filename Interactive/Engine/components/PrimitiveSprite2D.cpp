@@ -82,14 +82,12 @@ void PrimitiveSprite2D::Render()
 
 	if (AttachedTexture != nullptr)
 	{
-		std::cout << "Rendering with texture VAO id: " << GetVAO()->ArrayId << std::endl;
 		Engine->TextureSystem->Textures["testTexture2"]->Bind();
 		GLint activeTextureId = 0;
 		Shader->SetUniformData("activeTextureId", activeTextureId);
 	}
 	else
 	{
-		std::cout << "Rendering without texture VAO id: " << GetVAO()->ArrayId << std::endl;
 		Shader->SetUniformData("componentColor", Color);
 	}
 	glDrawElements(GL_TRIANGLES, ibo->GetElementCount(), GL_UNSIGNED_INT, nullptr);
