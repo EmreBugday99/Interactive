@@ -127,7 +127,20 @@ void ShaderProgram::DeleteProgram()
 
 GLint ShaderProgram::GetUniformLocation(std::string uniformName)
 {
-	const GLint location = glGetUniformLocation(ProgramId, uniformName.c_str());
+	GLint location = -1;
+
+	auto foundIterator = ShaderUniformCache.find(uniformName);
+	if (foundIterator == ShaderUniformCache.end())
+	{
+		std::cout << "Uniform not in cache! \n";
+		location = glGetUniformLocation(ProgramId, uniformName.c_str());
+		ShaderUniformCache[uniformName] = location;
+	}
+	else
+	{
+		std::cout << "Uniform in cache \n";
+		location = ShaderUniformCache[uniformName];
+	}
 
 	// TODO: Integrate this into log handling when implemented
 	if (location == -1)
