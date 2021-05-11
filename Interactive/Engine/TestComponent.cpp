@@ -1,7 +1,4 @@
 #include "TestComponent.h"
-#include <iostream>
-
-#include "components/Camera.h"
 #include "includes/CoreIncludes.h"
 
 TestComponent::TestComponent()
@@ -16,22 +13,15 @@ TestComponent::~TestComponent()
 void TestComponent::BeginPlay()
 {
 	PrimitiveSprite2D::BeginPlay();
-
 	InputController->BindKeyboardCallback(this);
+
+	Texture* newTexture = Engine->TextureSystem->CreateTexture("testTexture2", "test.jpg");
+	AttachTexture(newTexture);
 }
 
 void TestComponent::Update(float deltaTime)
 {
 	PrimitiveSprite2D::Update(deltaTime);
-
-	//Engine->MainCamera->ProjectionMatrix = glm::ortho(Position.x / 2, Position.x * 2, Position.y / 2, Position.y * 2);
-
-	//if (Position.x >= OtherComponent->Position.x && Position.y >= OtherComponent->Position.y &&
-	//	Position.x < (OtherComponent->Position.x + OtherComponent->Size.x) &&
-	//	Position.y < (OtherComponent->Position.y + OtherComponent->Size.y))
-	//{
-	//	std::cout << "Collision!" << std::endl;
-	//}
 }
 
 void TestComponent::Render()
@@ -39,32 +29,14 @@ void TestComponent::Render()
 	PrimitiveSprite2D::Render();
 }
 
-void TestComponent::KeyboardCallback(Keys key, KeyActions actions)
+void TestComponent::KeyboardCallback()
 {
-	PrimitiveSprite2D::KeyboardCallback(key, actions);
-
-	if (key == Keys::W)
+	if (InputController->GetKeyState(Keys::W) == KeyActions::REPEAT)
 	{
-		Position.y += 0.0001f;
+		Position.y += 0.01f;
 	}
-	if (key == Keys::S)
+	if (InputController->GetKeyState(Keys::S) == KeyActions::REPEAT)
 	{
-		Position.y -= 0.0001f;
+		Position.y -= 0.01f;
 	}
-	if (key == Keys::A)
-	{
-		Position.x -= 0.0001f;
-	}
-	if (key == Keys::D)
-	{
-		Position.x += 0.0001f;
-	}
-}
-
-bool TestComponent::IsColliding()
-{
-	return Position.x < (OtherComponent->Position.x + OtherComponent->Size.x)
-		&& (Position.x + Size.x) > OtherComponent->Position.x
-		&& Position.y < (OtherComponent->Position.y + OtherComponent->Size.y)
-		&& (Position.y + Size.y) > OtherComponent->Position.y;
 }

@@ -4,7 +4,7 @@
 
 ShaderProgram::ShaderProgram()
 {
-	ProgramId = glCreateProgram();
+	CreateShader();
 }
 
 ShaderProgram::~ShaderProgram()
@@ -59,6 +59,11 @@ void ShaderProgram::AttachShader(ShaderTypes shaderType, std::string shaderPath)
 
 	glAttachShader(ProgramId, shader);
 	Shaders.emplace_back(shader);
+}
+
+void ShaderProgram::CreateShader()
+{
+	ProgramId = glCreateProgram();
 }
 
 void ShaderProgram::LinkProgram()

@@ -2,6 +2,9 @@
 #include <map>
 #include <vector>
 
+#include "KeyActions.h"
+
+enum class Keys;
 class Component;
 class InteractiveEngine;
 class InputManager
@@ -12,9 +15,13 @@ public:
 	void BindKeyboardCallback(Component* callbackListener);
 	//TODO: UnbindKeyboardCallback
 
+	KeyActions GetKeyState(Keys key);
+
 private:
 	friend struct GLFWwindow;
 	friend class InteractiveEngine;
+
+	KeyActions KeyBuffer[400] = { KeyActions::NotPressed };
 
 	std::vector<Component*> KeyboardCallbacksListeners;
 

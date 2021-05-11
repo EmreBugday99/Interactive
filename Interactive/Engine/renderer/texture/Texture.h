@@ -10,9 +10,10 @@ public:
 	GLint Width;
 	GLint Height;
 	GLint BitDepth;
-
+	GLint ActiveTextureId;
+	
 	void Bind();
-	void Unbind();
+	static void Unbind();
 
 private:
 	friend class TextureManager;

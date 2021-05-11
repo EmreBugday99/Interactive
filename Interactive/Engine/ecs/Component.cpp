@@ -20,6 +20,6 @@ void Component::Update(float deltaTime)
 void Component::Render()
 {
 }
-void Component::KeyboardCallback(Keys key, KeyActions action)
+void Component::KeyboardCallback()
 {
 }

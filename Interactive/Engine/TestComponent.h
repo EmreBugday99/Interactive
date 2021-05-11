@@ -12,7 +12,5 @@ public:
 	void BeginPlay() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void KeyboardCallback(Keys key, KeyActions actions) override;
-
-	bool IsColliding();
+	void KeyboardCallback() override;
 };

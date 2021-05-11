@@ -19,6 +19,7 @@ public:
 	~ShaderProgram();
 
 	void AttachShader(ShaderTypes shaderType, std::string shaderPath);
+	void CreateShader();
 	void LinkProgram();
 	void UseProgram();
 	void UnbindProgram();

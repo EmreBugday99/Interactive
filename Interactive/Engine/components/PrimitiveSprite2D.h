@@ -19,21 +19,23 @@ public:
 	glm::vec4 Color;
 	ShaderProgram* Shader;
 
-	Texture* TestTexture;
-
 	PrimitiveSprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color);
 	PrimitiveSprite2D();
 	virtual ~PrimitiveSprite2D() override;
 
 	void CreateSprite2D();
-	
+
 	virtual void BeginPlay() override;
 	virtual void Update(float deltaTime) override;
-	virtual void KeyboardCallback(Keys key, KeyActions actions) override;
+	virtual void KeyboardCallback() override;
 	virtual void Render() override;
+	void AttachTexture(Texture* textureToAttach);
 
 	VertexArray* GetVAO() const { return VAO; }
 
 protected:
 	VertexArray* VAO;
+
+private:
+	Texture* AttachedTexture;
 };

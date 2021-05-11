@@ -2,7 +2,8 @@
 
 enum class KeyActions
 {
-	RELEASE			=		0,
-	PRESS			=		1,
-	REPEAT			=		2
+	NotPressed		=		-1,
+	RELEASE			=		 0,
+	PRESS			=		 1,
+	REPEAT			=		 2
 };

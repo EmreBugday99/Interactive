@@ -4,9 +4,8 @@
 #include "../includes/CoreIncludes.h"
 
 PrimitiveSprite2D::PrimitiveSprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
-	: Position(position), Size(size), Color(color), Shader(nullptr), VAO(nullptr)
+	: Position(position), Size(size), Color(color), Shader(nullptr), VAO(nullptr), AttachedTexture(nullptr)
 {
-	CreateSprite2D();
 }
 
 PrimitiveSprite2D::PrimitiveSprite2D()
@@ -17,8 +16,6 @@ PrimitiveSprite2D::PrimitiveSprite2D()
 	Position = glm::vec3(0.5f, 0.8f, 0.0f);
 	Size = glm::vec2(0.1f, 0.1f);
 	Color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
-
-	CreateSprite2D();
 }
 
 PrimitiveSprite2D::~PrimitiveSprite2D()
@@ -37,29 +34,24 @@ void PrimitiveSprite2D::CreateSprite2D()
 		Size.x,			0,				0
 	};
 	GLuint indices[] = { 0, 1, 2, 2, 3, 0 };
-	GLfloat textureCoords[] = 
-	{
-		0.0f, 0.0f,
-		0.0f, 1.0f,
-		1.0f, 1.0f,
-		1.0f, 0.0f
-	};
 
 	VAO = new VertexArray();
 	VAO->CreateVertexBuffer(0, vertices, 3 * 4, 3);
 	VAO->CreateIndexBuffer(indices, 6);
-	VAO->CreateVertexBuffer(1, textureCoords, 2 * 4, 2);
-
-	Shader = new ShaderProgram();
-	Shader->AttachShader(ShaderTypes::VertexShader, "shader.vert");
-	Shader->AttachShader(ShaderTypes::FragmentShader, "shader.frag");
-	Shader->LinkProgram();
 }
 
 void PrimitiveSprite2D::BeginPlay()
 {
+	Component::BeginPlay();
+
+	CreateSprite2D();
 	InputController->BindKeyboardCallback(this);
-	TestTexture = Engine->TextureSystem->CreateTexture("testTexture2", "test.jpg");
+
+	Shader = new ShaderProgram();
+	Shader->AttachShader(ShaderTypes::VertexShader, "shaders/shader.vert");
+	Shader->AttachShader(ShaderTypes::FragmentShader, "shaders/basicShader.frag");
+
+	Shader->LinkProgram();
 }
 
 void PrimitiveSprite2D::Update(float deltaTime)
@@ -68,12 +60,8 @@ void PrimitiveSprite2D::Update(float deltaTime)
 	//Position.y += 0.002f;
 }
 
-void PrimitiveSprite2D::KeyboardCallback(Keys key, KeyActions actions)
+void PrimitiveSprite2D::KeyboardCallback()
 {
-	if (key == Keys::A && actions == KeyActions::PRESS)
-	{
-		std::cout << "A key is pressed!" << std::endl;
-	}
 }
 
 void PrimitiveSprite2D::Render()
@@ -83,7 +71,6 @@ void PrimitiveSprite2D::Render()
 
 	IndexBuffer* ibo = VAO->IBuffer;
 
-	Engine->TextureSystem->Textures["testTexture2"]->Bind();
 	VAO->Bind();
 	ibo->Bind();
 
@@ -92,12 +79,43 @@ void PrimitiveSprite2D::Render()
 	Shader->UseProgram();
 	Shader->SetUniformData("model_mx", translationMatrix);
 	Shader->SetUniformData("projection_mx", Owner->Engine->MainCamera->ProjectionMatrix);
-	//Shader->SetUniformData("componentColor", Color);
-	GLint a = 0;
-	Shader->SetUniformData("texture0", a);
+
+	if (AttachedTexture != nullptr)
+	{
+		std::cout << "Rendering with texture VAO id: " << GetVAO()->ArrayId << std::endl;
+		Engine->TextureSystem->Textures["testTexture2"]->Bind();
+		GLint activeTextureId = 0;
+		Shader->SetUniformData("activeTextureId", activeTextureId);
+	}
+	else
+	{
+		std::cout << "Rendering without texture VAO id: " << GetVAO()->ArrayId << std::endl;
+		Shader->SetUniformData("componentColor", Color);
+	}
 	glDrawElements(GL_TRIANGLES, ibo->GetElementCount(), GL_UNSIGNED_INT, nullptr);
 	Shader->UnbindProgram();
 
+	Texture::Unbind();
 	ibo->Unbind();
 	VAO->Unbind();
+}
+
+void PrimitiveSprite2D::AttachTexture(Texture* textureToAttach)
+{
+	GLfloat textureCoords[] =
+	{
+		0.0f, 0.0f,
+		0.0f, 1.0f,
+		1.0f, 1.0f,
+		1.0f, 0.0f
+	};
+
+	VAO->CreateVertexBuffer(1, textureCoords, 2 * 4, 2);
+	
+	Shader->DeleteProgram();
+	Shader->CreateShader();
+	AttachedTexture = textureToAttach;
+	Shader->AttachShader(ShaderTypes::VertexShader, "shaders/shader.vert");
+	Shader->AttachShader(ShaderTypes::FragmentShader, "shaders/textureShader.frag");
+	Shader->LinkProgram();
 }

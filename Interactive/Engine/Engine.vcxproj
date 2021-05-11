@@ -222,10 +222,11 @@
     <ClInclude Include="renderer\texture\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.frag">
+    <None Include="shaders\basicShader.frag" />
+    <None Include="shaders\textureShader.frag">
       <DeploymentContent>true</DeploymentContent>
     </None>
-    <None Include="shader.vert">
+    <None Include="shaders\shader.vert">
       <DeploymentContent>true</DeploymentContent>
     </None>
   </ItemGroup>

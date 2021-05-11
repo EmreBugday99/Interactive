@@ -148,7 +148,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shader.vert" />
-    <None Include="shader.frag" />
+    <None Include="shaders\shader.vert" />
+    <None Include="shaders\textureShader.frag" />
+    <None Include="shaders\basicShader.frag" />
   </ItemGroup>
 </Project>

@@ -4,8 +4,10 @@
 #include <iostream>
 
 Texture::Texture(std::string path)
-	: Path(path), TextureId(0), Width(0), Height(0), BitDepth(0)
+	: Path(path), TextureId(0), Width(0), Height(0), BitDepth(0), ActiveTextureId(0)
 {
+	std::cout << "Constructing new texture" << std::endl;
+	
 	GLubyte* pixelBytes = stbi_load(path.c_str(), &Width, &Height, &BitDepth, STBI_rgb_alpha);
 	glGenTextures(1, &TextureId);
 	glActiveTexture(GL_TEXTURE0);
@@ -35,7 +37,6 @@ void Texture::LoadTexture()
 
 void Texture::Bind()
 {
-	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, TextureId);
 }
 
@@ -46,5 +47,5 @@ void Texture::Unbind()
 
 void Texture::DeleteTexture()
 {
-	//glDeleteTextures(1, &TextureId);
+	glDeleteTextures(1, &TextureId);
 }
