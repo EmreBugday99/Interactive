@@ -1,3 +1,3 @@
 # Interactive
  
-Yet another game engine
+Yet another game/multi-media framework
