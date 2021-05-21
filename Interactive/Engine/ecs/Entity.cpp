@@ -1,40 +1,83 @@
 #include "Entity.h"
 
-Entity::Entity(std::string entityName)
+#include <iostream>
+
+Entity::Entity(std::string entityName, Interactive* engine)
+	: EntityName(entityName)
 {
-	EntityName = entityName;
+	SetEnginePtr(engine);
 }
 
 Entity::~Entity() {}
 
 void Entity::Update(float deltaTime)
 {
-	size_t componentIndex = Components.size();
+	JoinComponentsIntoGameLoop();
+
+	size_t componentIndex = ComponentsInGameLoop.size();
 	while (componentIndex)
 	{
 		componentIndex--;
 
-		if (Components[componentIndex]->BeginPlayExecuted == false)
-			Components[componentIndex]->BeginPlay();
+		if (ComponentsInGameLoop[componentIndex]->BeginPlayExecuted == false)
+			ComponentsInGameLoop[componentIndex]->BeginPlay();
 
-		Components[componentIndex]->Update(deltaTime);
-		Components[componentIndex]->Render();
+		ComponentsInGameLoop[componentIndex]->Update(deltaTime);
+		ComponentsInGameLoop[componentIndex]->Render();
 	}
+
+	RemoveComponentsFromGameLoop();
 }
 
-void Entity::DestroyEntity()
+void Entity::JoinComponentsIntoGameLoop()
 {
-	MarkedForDestruction = true;
+	size_t componentIndex = ComponentsWaitingToJoin.size();
+	while (componentIndex)
+	{
+		componentIndex--;
 
-	//size_t entityIndex = Engine->ECS->Entities.size();
-	//while (entityIndex)
-	//{
-	//	entityIndex--;
+		Component* componentToJoin = ComponentsWaitingToJoin[componentIndex];
+		ComponentsInGameLoop.push_back(componentToJoin);
+	}
 
-	//	if (this == Engine->ECS->Entities[entityIndex])
-	//	{
-	//		Engine->ECS->Entities.erase(Engine->ECS->Entities.begin() - entityIndex);
-	//		break;
-	//	}
-	//}
+	ComponentsWaitingToJoin.clear();
+}
+
+void Entity::RemoveComponentsFromGameLoop()
+{
+	size_t componentIndex = ComponentsWaitingToLeave.size();
+	while (componentIndex)
+	{
+		componentIndex--;
+
+		Component* componentToLeave = ComponentsWaitingToLeave[componentIndex];
+
+		size_t secondComponentIndex = ComponentsInGameLoop.size();
+		while (secondComponentIndex)
+		{
+			secondComponentIndex--;
+
+			Component* componentToCompareAgainst = ComponentsInGameLoop[secondComponentIndex];
+
+			if (componentToLeave == componentToCompareAgainst)
+				ComponentsInGameLoop.erase(ComponentsInGameLoop.begin() + secondComponentIndex);
+		}
+	}
+
+	ComponentsWaitingToLeave.clear();
+}
+
+void Entity::OnMarkedForDestruction()
+{
+	InteractiveObject::OnMarkedForDestruction();
+
+	std::cout << "I have been violently murdered! Please call 911! \n";
+	
+	GetEnginePtr()->ECS->EntitiesWaitingToLeave.push_back(this);
+
+	for (Component* component : ComponentsInGameLoop)
+	{
+		component->MarkForDestruction();
+		ComponentsWaitingToLeave.push_back(component);
+	}
 }

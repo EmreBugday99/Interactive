@@ -6,3 +6,4 @@
 #include "../includes/EcsIncludes.h"
 #include "../includes/TextureIncludes.h"
 #include "../includes/Components.h"
+#include "../InteractiveObject.h"

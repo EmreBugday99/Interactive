@@ -66,7 +66,7 @@ void PrimitiveSprite2D::KeyboardCallback()
 
 void PrimitiveSprite2D::Render()
 {
-	if (Owner->Engine->MainCamera == nullptr)
+	if (Owner->GetEnginePtr()->MainCamera == nullptr)
 		return;
 
 	IndexBuffer* ibo = VAO->IBuffer;
@@ -78,11 +78,11 @@ void PrimitiveSprite2D::Render()
 
 	Shader->UseProgram();
 	Shader->SetUniformData("model_mx", translationMatrix);
-	Shader->SetUniformData("projection_mx", Owner->Engine->MainCamera->ProjectionMatrix);
+	Shader->SetUniformData("projection_mx", Owner->GetEnginePtr()->MainCamera->ProjectionMatrix);
 
 	if (AttachedTexture != nullptr)
 	{
-		Engine->TextureSystem->Textures["testTexture2"]->Bind();
+		GetEnginePtr()->TextureSystem->Textures["testTexture2"]->Bind();
 		GLint activeTextureId = 0;
 		Shader->SetUniformData("activeTextureId", activeTextureId);
 	}
@@ -109,7 +109,7 @@ void PrimitiveSprite2D::AttachTexture(Texture* textureToAttach)
 	};
 
 	VAO->CreateVertexBuffer(1, textureCoords, 2 * 4, 2);
-	
+
 	Shader->DeleteProgram();
 	Shader->CreateShader();
 	AttachedTexture = textureToAttach;

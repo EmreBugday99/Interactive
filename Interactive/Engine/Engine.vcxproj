@@ -183,6 +183,7 @@
     <ClCompile Include="ecs\Entity.cpp" />
     <ClCompile Include="file-io\DiskReader.cpp" />
     <ClCompile Include="external\glad.c" />
+    <ClCompile Include="InteractiveObject.cpp" />
     <ClCompile Include="renderer\buffers\IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="renderer\shader\ShaderProgram.cpp" />
@@ -210,6 +211,7 @@
     <ClInclude Include="ecs\Entity.h" />
     <ClInclude Include="file-io\DiskReader.h" />
     <ClInclude Include="includes\RendererIncludes.h" />
+    <ClInclude Include="InteractiveObject.h" />
     <ClInclude Include="renderer\buffers\IndexBuffer.h" />
     <ClInclude Include="renderer\shader\ShaderProgram.h" />
     <ClInclude Include="renderer\shader\ShaderTypes.h" />

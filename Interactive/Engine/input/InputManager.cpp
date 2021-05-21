@@ -14,6 +14,18 @@ void InputManager::BindKeyboardCallback(Component* callbackListener)
 	KeyboardCallbacksListeners.push_back(callbackListener);
 }
 
+void InputManager::UnbindKeyboardCallback(Component* component)
+{
+	size_t componentIndex = KeyboardCallbacksListeners.size();
+	while (componentIndex)
+	{
+		componentIndex--;
+
+		if (component == KeyboardCallbacksListeners[componentIndex])
+			KeyboardCallbacksListeners.erase(KeyboardCallbacksListeners.begin() + componentIndex);
+	}
+}
+
 KeyActions InputManager::GetKeyState(Keys key)
 {
 	return KeyBuffer[static_cast<int>(key)];

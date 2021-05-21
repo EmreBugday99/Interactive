@@ -1,8 +1,17 @@
 #include "includes/CoreIncludes.h"
 
+Interactive* Interactive::EngineInstance(nullptr);
+
 Interactive::Interactive(std::string gameName)
 	: GameName(gameName), MainCamera(nullptr)
 {
+	if (EngineInstance != nullptr)
+	{
+		delete(this);
+		return;
+	}
+
+	EngineInstance = this;
 	GameWindow = new Window(gameName, 800, 800, this);
 	ECS = new EntityManager(this);
 	InputSystem = new InputManager(this);
@@ -22,17 +31,20 @@ void Interactive::Update()
 	{
 		GameWindow->Clear();
 
-		size_t entityIndex = ECS->Entities.size();
+		ECS->JoinEntitiesIntoGameLoop();
+
+		size_t entityIndex = ECS->EntitiesInGameLoop.size();
 		while (entityIndex)
 		{
 			entityIndex--;
-			Entity* currentEntity = ECS->Entities[entityIndex];
+			Entity* currentEntity = ECS->EntitiesInGameLoop[entityIndex];
 
-			if (currentEntity->IsMarkedForDestruction() == false)
-				currentEntity->Update(0.1f);
+			currentEntity->Update(0.1f);
 		}
 
 		GameWindow->Update();
+
+		ECS->RemoveEntitiesFromGameLoop();
 	}
 
 	Close();

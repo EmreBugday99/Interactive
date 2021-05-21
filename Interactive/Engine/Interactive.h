@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+class Entity;
+class InteractiveObject;
 class TextureManager;
 class InputManager;
 class Camera;
@@ -15,6 +17,8 @@ public:
 	Camera* MainCamera;
 	InputManager* InputSystem;
 	TextureManager* TextureSystem;
+
+	static Interactive* EngineInstance;
 
 	Interactive(std::string gameName);
 	~Interactive();

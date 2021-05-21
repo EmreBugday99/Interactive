@@ -13,7 +13,7 @@ public:
 	Interactive* Engine;
 
 	void BindKeyboardCallback(Component* callbackListener);
-	//TODO: UnbindKeyboardCallback
+	void UnbindKeyboardCallback(Component* component);
 
 	KeyActions GetKeyState(Keys key);
 

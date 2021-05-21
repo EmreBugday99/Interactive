@@ -1,4 +1,7 @@
 #include "TestComponent.h"
+
+#include <iostream>
+
 #include "includes/CoreIncludes.h"
 
 TestComponent::TestComponent()
@@ -16,7 +19,7 @@ void TestComponent::BeginPlay()
 
 	InputController->BindKeyboardCallback(this);
 
-	Texture* newTexture = Engine->TextureSystem->CreateTexture("testTexture2", "test.jpg");
+	Texture* newTexture = GetEnginePtr()->TextureSystem->CreateTexture("testTexture2", "test.jpg");
 	AttachTexture(newTexture);
 }
 
@@ -37,6 +40,7 @@ void TestComponent::KeyboardCallback()
 	if (InputController->GetKeyState(Keys::W) == KeyActions::REPEAT)
 	{
 		Position.y += 0.01f;
+		std::cout << "W pressed! \n";
 	}
 	if (InputController->GetKeyState(Keys::S) == KeyActions::REPEAT)
 	{
@@ -44,6 +48,13 @@ void TestComponent::KeyboardCallback()
 	}
 	if (InputController->GetKeyState(Keys::F) == KeyActions::PRESS)
 	{
-		Owner->DestroyEntity();
+		Owner->MarkForDestruction();
 	}
+}
+
+void TestComponent::OnMarkedForDestruction()
+{
+	Component::OnMarkedForDestruction();
+	
+	InputController->UnbindKeyboardCallback(this);
 }
