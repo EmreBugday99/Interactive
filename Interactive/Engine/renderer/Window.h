@@ -3,11 +3,11 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-class InteractiveEngine;
+class Interactive;
 class Window
 {
 public:
-	InteractiveEngine* Engine;
+	Interactive* Engine;
 
 	~Window();
 
@@ -21,14 +21,14 @@ public:
 
 private:
 	friend struct GLFWwindow;
-	friend class InteractiveEngine;
+	friend class Interactive;
 
 	GLint Width;
 	GLint Height;
 	std::string WindowName;
 	GLFWwindow* GlWindow;
 
-	Window(std::string windowName, int width, int height, InteractiveEngine* engine);
+	Window(std::string windowName, int width, int height, Interactive* engine);
 
 	bool InitializeWindow();
 	friend static void WindowResizeCallback(GLFWwindow* window, GLint width, GLint height);

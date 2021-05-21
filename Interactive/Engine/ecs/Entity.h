@@ -3,17 +3,21 @@
 
 class Entity
 {
+private:
+	friend class EntityManager;
+	Entity(std::string entityName);
+
+	bool MarkedForDestruction;
+
 public:
-	InteractiveEngine* Engine;
+	Interactive* Engine;
 	std::string EntityName;
 	std::vector<Component*> Components;
 
-	Entity(std::string entityName);
 	~Entity();
 
 	void Update(float deltaTime);
-	void Destroy();
-	Component* GetComponent(Component* component);
+	void DestroyEntity();
 
 	template <typename T, typename... TArgs>
 	T* AddComponent(TArgs... args)
@@ -27,4 +31,6 @@ public:
 
 		return newComponent;
 	}
+
+	bool IsMarkedForDestruction() const { return MarkedForDestruction; }
 };

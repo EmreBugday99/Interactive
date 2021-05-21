@@ -6,7 +6,7 @@ class InputManager;
 class Camera;
 class EntityManager;
 class Window;
-class InteractiveEngine
+class Interactive
 {
 public:
 	std::string GameName;
@@ -16,8 +16,8 @@ public:
 	InputManager* InputSystem;
 	TextureManager* TextureSystem;
 
-	InteractiveEngine(std::string gameName);
-	~InteractiveEngine();
+	Interactive(std::string gameName);
+	~Interactive();
 
 	void Start();
 	void Update();

@@ -3,12 +3,9 @@
 #include "components/PrimitiveSprite2D.h"
 #include "includes/CoreIncludes.h"
 
-
 int main()
 {
-	std::cout << "Hello World!" << std::endl;
-
-	InteractiveEngine* engine = new InteractiveEngine("Test Game Window");
+	Interactive* engine = new Interactive("Test Game Window");
 
 	Entity* entity1 = engine->ECS->CreateEntity("Test Entity");
 	PrimitiveSprite2D* spriteComp = entity1->AddComponent<PrimitiveSprite2D>(
@@ -20,7 +17,7 @@ int main()
 	TestComponent* testComponent = entity2->AddComponent<TestComponent>();
 
 	testComponent->Position = glm::vec3(0.5f, 0.8f, 0.0f);
-	testComponent->Size = glm::vec2(2.0f, 2.0f);
+	testComponent->Size = glm::vec2(1.0f, 1.0f);
 	testComponent->Color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
 	testComponent->OtherComponent = spriteComp;
 

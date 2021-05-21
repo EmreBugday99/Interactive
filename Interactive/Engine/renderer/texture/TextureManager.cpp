@@ -4,7 +4,7 @@
 
 #include "Texture.h"
 
-TextureManager::TextureManager(InteractiveEngine* engine)
+TextureManager::TextureManager(Interactive* engine)
 	: Engine(engine)
 {
 	glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &MaxTextureCap);

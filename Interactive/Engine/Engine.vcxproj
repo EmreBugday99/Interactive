@@ -177,7 +177,7 @@
   <ItemGroup>
     <ClCompile Include="components\Camera.cpp" />
     <ClCompile Include="input\InputManager.cpp" />
-    <ClCompile Include="InteractiveEngine.cpp" />
+    <ClCompile Include="Interactive.cpp" />
     <ClCompile Include="ecs\Component.cpp" />
     <ClCompile Include="ecs\EntityManager.cpp" />
     <ClCompile Include="ecs\Entity.cpp" />
@@ -204,7 +204,7 @@
     <ClInclude Include="input\InputManager.h" />
     <ClInclude Include="input\KeyActions.h" />
     <ClInclude Include="input\Keys.h" />
-    <ClInclude Include="InteractiveEngine.h" />
+    <ClInclude Include="Interactive.h" />
     <ClInclude Include="ecs\Component.h" />
     <ClInclude Include="ecs\EntityManager.h" />
     <ClInclude Include="ecs\Entity.h" />

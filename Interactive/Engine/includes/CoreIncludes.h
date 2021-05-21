@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../InteractiveEngine.h"
+#include "../Interactive.h"
 #include "../includes/RendererIncludes.h"
 #include "../includes/InputIncludes.h"
 #include "../includes/EcsIncludes.h"

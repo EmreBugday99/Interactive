@@ -2,12 +2,12 @@
 #include <string>
 #include <vector>
 
-class InteractiveEngine;
+class Interactive;
 class Entity;
 class EntityManager
 {
 public:
-	InteractiveEngine* Engine;
+	Interactive* Engine;
 	std::vector<Entity*> Entities;
 
 	~EntityManager();
@@ -16,6 +16,6 @@ public:
 	Entity* GetEntityByName(std::string entityName);
 
 private:
-	friend class InteractiveEngine;
-	EntityManager(InteractiveEngine* engine);
+	friend class Interactive;
+	EntityManager(Interactive* engine);
 };

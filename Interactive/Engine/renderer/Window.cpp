@@ -1,8 +1,8 @@
 #include "Window.h"
 #include <iostream>
-#include "../InteractiveEngine.h"
+#include "../Interactive.h"
 
-Window::Window(std::string windowName, int width, int height, InteractiveEngine* engine)
+Window::Window(std::string windowName, int width, int height, Interactive* engine)
 	: Width(width), Height(height), WindowName(windowName), GlWindow(nullptr), Engine(engine)
 {
 	if (InitializeWindow() == false)
@@ -22,7 +22,7 @@ Window::~Window()
 
 void WindowResizeCallback(GLFWwindow* window, GLint width, GLint height)
 {
-	InteractiveEngine* engine = static_cast<InteractiveEngine*>(glfwGetWindowUserPointer(window));
+	Interactive* engine = static_cast<Interactive*>(glfwGetWindowUserPointer(window));
 
 	engine->GameWindow->Width = width;
 	engine->GameWindow->Height = height;

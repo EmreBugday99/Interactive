@@ -1,9 +1,9 @@
 #include "InputManager.h"
-#include "../InteractiveEngine.h"
+#include "../Interactive.h"
 #include "../ecs/Component.h"
 #include "../renderer/Window.h"
 
-InputManager::InputManager(InteractiveEngine* engine) : Engine(engine)
+InputManager::InputManager(Interactive* engine) : Engine(engine)
 {
 	glfwSetWindowUserPointer(Engine->GameWindow->GetGlfwWindow(), Engine);
 	glfwSetKeyCallback(Engine->GameWindow->GetGlfwWindow(), KeyboardCallback);
@@ -21,7 +21,7 @@ KeyActions InputManager::GetKeyState(Keys key)
 
 void InputManager::KeyboardCallback(GLFWwindow* window, int key, int scanCode, int action, int mods)
 {
-	InteractiveEngine* engine = static_cast<InteractiveEngine*>(glfwGetWindowUserPointer(window));
+	Interactive* engine = static_cast<Interactive*>(glfwGetWindowUserPointer(window));
 	InputManager* inputController = engine->InputSystem;
 	inputController->KeyBuffer[key] = static_cast<KeyActions>(action);
 
