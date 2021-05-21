@@ -1,7 +1,7 @@
 #include "EntityManager.h"
 #include "Entity.h"
 
-EntityManager::EntityManager(InteractiveEngine* engine) : Engine(engine) {}
+EntityManager::EntityManager(Interactive* engine) : Engine(engine) {}
 
 EntityManager::~EntityManager()
 {

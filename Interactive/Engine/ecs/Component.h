@@ -3,13 +3,13 @@
 enum class Keys;
 enum class KeyActions;
 class InputManager;
-class InteractiveEngine;
+class Interactive;
 class Entity;
 class Component
 {
 public:
 	Entity* Owner;
-	InteractiveEngine* Engine;
+	Interactive* Engine;
 	InputManager* InputController;
 
 	Component();
@@ -19,8 +19,12 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void KeyboardCallback();
+	void DestroyComponent();
+
+	bool IsMarkedForDestruction() const { return MarkedForDestruction; }
 
 private:
 	friend class Entity;
 	bool BeginPlayExecuted;
+	bool MarkedForDestruction;
 };

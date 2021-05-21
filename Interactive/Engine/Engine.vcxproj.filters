@@ -51,7 +51,7 @@
     <ClCompile Include="components\PrimitiveSprite2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InteractiveEngine.cpp">
+    <ClCompile Include="Interactive.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="components\Camera.cpp">
@@ -104,7 +104,7 @@
     <ClInclude Include="components\PrimitiveSprite2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InteractiveEngine.h">
+    <ClInclude Include="Interactive.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="components\Camera.h">

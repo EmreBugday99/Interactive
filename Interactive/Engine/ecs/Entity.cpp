@@ -9,24 +9,32 @@ Entity::~Entity() {}
 
 void Entity::Update(float deltaTime)
 {
-	size_t componentCount = Components.size();
-	while (componentCount)
+	size_t componentIndex = Components.size();
+	while (componentIndex)
 	{
-		componentCount--;
+		componentIndex--;
 
-		if (Components[componentCount]->BeginPlayExecuted == false)
-		{
-			Components[componentCount]->BeginPlay();
-		}
+		if (Components[componentIndex]->BeginPlayExecuted == false)
+			Components[componentIndex]->BeginPlay();
 
-		Components[componentCount]->Update(deltaTime);
-		Components[componentCount]->Render();
+		Components[componentIndex]->Update(deltaTime);
+		Components[componentIndex]->Render();
 	}
 }
 
-void Entity::Destroy() {}
-
-Component* Entity::GetComponent(Component* component)
+void Entity::DestroyEntity()
 {
-	return nullptr;
+	MarkedForDestruction = true;
+
+	//size_t entityIndex = Engine->ECS->Entities.size();
+	//while (entityIndex)
+	//{
+	//	entityIndex--;
+
+	//	if (this == Engine->ECS->Entities[entityIndex])
+	//	{
+	//		Engine->ECS->Entities.erase(Engine->ECS->Entities.begin() - entityIndex);
+	//		break;
+	//	}
+	//}
 }

@@ -1,6 +1,6 @@
 #include "includes/CoreIncludes.h"
 
-InteractiveEngine::InteractiveEngine(std::string gameName)
+Interactive::Interactive(std::string gameName)
 	: GameName(gameName), MainCamera(nullptr)
 {
 	GameWindow = new Window(gameName, 800, 800, this);
@@ -9,25 +9,27 @@ InteractiveEngine::InteractiveEngine(std::string gameName)
 	TextureSystem = new TextureManager(this);
 }
 
-InteractiveEngine::~InteractiveEngine() {}
+Interactive::~Interactive() {}
 
-void InteractiveEngine::Start()
+void Interactive::Start()
 {
 	Update();
 }
 
-void InteractiveEngine::Update()
+void Interactive::Update()
 {
 	while (GameWindow->IsClosed() == false)
 	{
 		GameWindow->Clear();
 
-		size_t entityCount = ECS->Entities.size();
-		while (entityCount)
+		size_t entityIndex = ECS->Entities.size();
+		while (entityIndex)
 		{
-			entityCount--;
+			entityIndex--;
+			Entity* currentEntity = ECS->Entities[entityIndex];
 
-			ECS->Entities[entityCount]->Update(0.1f);
+			if (currentEntity->IsMarkedForDestruction() == false)
+				currentEntity->Update(0.1f);
 		}
 
 		GameWindow->Update();
@@ -36,7 +38,7 @@ void InteractiveEngine::Update()
 	Close();
 }
 
-void InteractiveEngine::Close()
+void Interactive::Close()
 {
 	delete(GameWindow);
 	GameWindow = nullptr;

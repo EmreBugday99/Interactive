@@ -3,17 +3,17 @@
 #include <string>
 #include <glad/glad.h>
 
-class InteractiveEngine;
+class Interactive;
 class Texture;
 class TextureManager
 {
 public:
 	std::map<std::string, Texture*> Textures;
-	InteractiveEngine* Engine;
+	Interactive* Engine;
 
 	GLint MaxTextureCap;
 
-	TextureManager(InteractiveEngine* engine);
+	TextureManager(Interactive* engine);
 	~TextureManager();
 	
 	Texture* CreateTexture(std::string textureName, std::string texturePath);

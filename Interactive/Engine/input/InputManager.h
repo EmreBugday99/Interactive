@@ -6,11 +6,11 @@
 
 enum class Keys;
 class Component;
-class InteractiveEngine;
+class Interactive;
 class InputManager
 {
 public:
-	InteractiveEngine* Engine;
+	Interactive* Engine;
 
 	void BindKeyboardCallback(Component* callbackListener);
 	//TODO: UnbindKeyboardCallback
@@ -19,13 +19,13 @@ public:
 
 private:
 	friend struct GLFWwindow;
-	friend class InteractiveEngine;
+	friend class Interactive;
 
 	KeyActions KeyBuffer[400] = { KeyActions::NotPressed };
 
 	std::vector<Component*> KeyboardCallbacksListeners;
 
-	InputManager(InteractiveEngine* engine);
+	InputManager(Interactive* engine);
 	
 	static void KeyboardCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
 };
