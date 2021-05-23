@@ -20,8 +20,6 @@ PrimitiveSprite2D::PrimitiveSprite2D()
 
 PrimitiveSprite2D::~PrimitiveSprite2D()
 {
-	delete(VAO);
-	VAO = nullptr;
 }
 
 void PrimitiveSprite2D::CreateSprite2D()
@@ -45,7 +43,6 @@ void PrimitiveSprite2D::BeginPlay()
 	Component::BeginPlay();
 
 	CreateSprite2D();
-	InputController->BindKeyboardCallback(this);
 
 	Shader = new ShaderProgram();
 	Shader->AttachShader(ShaderTypes::VertexShader, "shaders/shader.vert");
@@ -116,4 +113,15 @@ void PrimitiveSprite2D::AttachTexture(Texture* textureToAttach)
 	Shader->AttachShader(ShaderTypes::VertexShader, "shaders/shader.vert");
 	Shader->AttachShader(ShaderTypes::FragmentShader, "shaders/textureShader.frag");
 	Shader->LinkProgram();
+}
+
+void PrimitiveSprite2D::OnMarkedForDestruction()
+{
+	Component::OnMarkedForDestruction();
+
+	Shader->DeleteProgram();
+	delete(Shader);
+	Shader = nullptr;
+	delete(VAO);
+	VAO = nullptr;
 }

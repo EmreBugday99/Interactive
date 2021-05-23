@@ -1,7 +1,5 @@
 #include "TestComponent.h"
-
 #include <iostream>
-
 #include "includes/CoreIncludes.h"
 
 TestComponent::TestComponent()
@@ -40,7 +38,6 @@ void TestComponent::KeyboardCallback()
 	if (InputController->GetKeyState(Keys::W) == KeyActions::REPEAT)
 	{
 		Position.y += 0.01f;
-		std::cout << "W pressed! \n";
 	}
 	if (InputController->GetKeyState(Keys::S) == KeyActions::REPEAT)
 	{
@@ -50,11 +47,32 @@ void TestComponent::KeyboardCallback()
 	{
 		Owner->MarkForDestruction();
 	}
+	if (InputController->GetKeyState(Keys::ENTER) == KeyActions::PRESS)
+	{
+		Entity* newEntity = GetEnginePtr()->ECManager->CreateEntity("Test Entity For GC");
+		newEntity->AddComponent<PrimitiveSprite2D>();
+		testEntities.push_back(newEntity);
+		std::cout << "CREATED ENTITY\n";
+	}
+	if (InputController->GetKeyState(Keys::J) == KeyActions::PRESS)
+	{
+		for (Entity* entity : testEntities)
+		{
+			entity->MarkForDestruction();
+		}
+		testEntities.clear();
+		Owner->MarkForDestruction();
+	}
+
+	if (InputController->GetKeyState(Keys::Z) == KeyActions::PRESS)
+	{
+		OtherComponent->MarkForDestruction();
+	}
 }
 
 void TestComponent::OnMarkedForDestruction()
 {
 	Component::OnMarkedForDestruction();
-	
+
 	InputController->UnbindKeyboardCallback(this);
 }

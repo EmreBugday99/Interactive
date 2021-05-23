@@ -176,11 +176,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="components\Camera.cpp" />
+    <ClCompile Include="GarbageCollector.cpp" />
     <ClCompile Include="input\InputManager.cpp" />
     <ClCompile Include="Interactive.cpp" />
-    <ClCompile Include="ecs\Component.cpp" />
-    <ClCompile Include="ecs\EntityManager.cpp" />
-    <ClCompile Include="ecs\Entity.cpp" />
+    <ClCompile Include="entity-component\Component.cpp" />
+    <ClCompile Include="entity-component\EntityManager.cpp" />
+    <ClCompile Include="entity-component\Entity.cpp" />
     <ClCompile Include="file-io\DiskReader.cpp" />
     <ClCompile Include="external\glad.c" />
     <ClCompile Include="InteractiveObject.cpp" />
@@ -197,18 +198,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
+    <ClInclude Include="GarbageCollector.h" />
     <ClInclude Include="includes\Components.h" />
     <ClInclude Include="includes\CoreIncludes.h" />
-    <ClInclude Include="includes\EcsIncludes.h" />
+    <ClInclude Include="includes\EcIncludes.h" />
     <ClInclude Include="includes\InputIncludes.h" />
     <ClInclude Include="includes\TextureIncludes.h" />
     <ClInclude Include="input\InputManager.h" />
     <ClInclude Include="input\KeyActions.h" />
     <ClInclude Include="input\Keys.h" />
     <ClInclude Include="Interactive.h" />
-    <ClInclude Include="ecs\Component.h" />
-    <ClInclude Include="ecs\EntityManager.h" />
-    <ClInclude Include="ecs\Entity.h" />
+    <ClInclude Include="entity-component\Component.h" />
+    <ClInclude Include="entity-component\EntityManager.h" />
+    <ClInclude Include="entity-component\Entity.h" />
     <ClInclude Include="file-io\DiskReader.h" />
     <ClInclude Include="includes\RendererIncludes.h" />
     <ClInclude Include="InteractiveObject.h" />

@@ -19,6 +19,7 @@ public:
 	void RemoveEntitiesFromGameLoop();
 
 private:
+	friend class GarbageCollector;
 	friend class Interactive;
 	friend class Entity;
 

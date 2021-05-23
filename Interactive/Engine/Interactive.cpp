@@ -13,9 +13,10 @@ Interactive::Interactive(std::string gameName)
 
 	EngineInstance = this;
 	GameWindow = new Window(gameName, 800, 800, this);
-	ECS = new EntityManager(this);
+	ECManager = new EntityManager(this);
 	InputSystem = new InputManager(this);
 	TextureSystem = new TextureManager(this);
+	GC = new GarbageCollector(this);
 }
 
 Interactive::~Interactive() {}
@@ -31,20 +32,23 @@ void Interactive::Update()
 	{
 		GameWindow->Clear();
 
-		ECS->JoinEntitiesIntoGameLoop();
+		if (GC->GetGCQueueSize() >= GC->ForceEnterThreshold)
+			GC->CollectGarbage();
 
-		size_t entityIndex = ECS->EntitiesInGameLoop.size();
+		ECManager->JoinEntitiesIntoGameLoop();
+
+		size_t entityIndex = ECManager->EntitiesInGameLoop.size();
 		while (entityIndex)
 		{
 			entityIndex--;
-			Entity* currentEntity = ECS->EntitiesInGameLoop[entityIndex];
+			Entity* currentEntity = ECManager->EntitiesInGameLoop[entityIndex];
 
 			currentEntity->Update(0.1f);
 		}
 
 		GameWindow->Update();
 
-		ECS->RemoveEntitiesFromGameLoop();
+		ECManager->RemoveEntitiesFromGameLoop();
 	}
 
 	Close();
@@ -55,8 +59,8 @@ void Interactive::Close()
 	delete(GameWindow);
 	GameWindow = nullptr;
 
-	delete(ECS);
-	ECS = nullptr;
+	delete(ECManager);
+	ECManager = nullptr;
 
 	glfwTerminate();
 }

@@ -44,7 +44,7 @@ void EntityManager::RemoveEntitiesFromGameLoop()
 	{
 		entityIndex--;
 		Entity* entityToLeave = EntitiesWaitingToLeave[entityIndex];
-
+		
 		size_t secondEntityIndex = EntitiesInGameLoop.size();
 		while (secondEntityIndex)
 		{

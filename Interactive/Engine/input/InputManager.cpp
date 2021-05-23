@@ -1,7 +1,8 @@
 #include "InputManager.h"
-#include "../Interactive.h"
-#include "../ecs/Component.h"
-#include "../renderer/Window.h"
+
+#include <iostream>
+
+#include "../includes/CoreIncludes.h"
 
 InputManager::InputManager(Interactive* engine) : Engine(engine)
 {
@@ -36,7 +37,7 @@ void InputManager::KeyboardCallback(GLFWwindow* window, int key, int scanCode, i
 	Interactive* engine = static_cast<Interactive*>(glfwGetWindowUserPointer(window));
 	InputManager* inputController = engine->InputSystem;
 	inputController->KeyBuffer[key] = static_cast<KeyActions>(action);
-
+	
 	if (inputController->KeyboardCallbacksListeners.empty())
 		return;
 

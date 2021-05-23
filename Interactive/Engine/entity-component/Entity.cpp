@@ -8,7 +8,10 @@ Entity::Entity(std::string entityName, Interactive* engine)
 	SetEnginePtr(engine);
 }
 
-Entity::~Entity() {}
+Entity::~Entity()
+{
+	std::cout << "Deleted Entity" << std::endl;
+}
 
 void Entity::Update(float deltaTime)
 {
@@ -18,9 +21,6 @@ void Entity::Update(float deltaTime)
 	while (componentIndex)
 	{
 		componentIndex--;
-
-		if (ComponentsInGameLoop[componentIndex]->BeginPlayExecuted == false)
-			ComponentsInGameLoop[componentIndex]->BeginPlay();
 
 		ComponentsInGameLoop[componentIndex]->Update(deltaTime);
 		ComponentsInGameLoop[componentIndex]->Render();
@@ -37,6 +37,8 @@ void Entity::JoinComponentsIntoGameLoop()
 		componentIndex--;
 
 		Component* componentToJoin = ComponentsWaitingToJoin[componentIndex];
+
+		componentToJoin->BeginPlay();
 		ComponentsInGameLoop.push_back(componentToJoin);
 	}
 
@@ -71,13 +73,12 @@ void Entity::OnMarkedForDestruction()
 {
 	InteractiveObject::OnMarkedForDestruction();
 
-	std::cout << "I have been violently murdered! Please call 911! \n";
-	
-	GetEnginePtr()->ECS->EntitiesWaitingToLeave.push_back(this);
+	std::cout << "Entity marked for destruction \n";
+
+	GetEnginePtr()->ECManager->EntitiesWaitingToLeave.push_back(this);
 
 	for (Component* component : ComponentsInGameLoop)
 	{
 		component->MarkForDestruction();
-		ComponentsWaitingToLeave.push_back(component);
 	}
 }

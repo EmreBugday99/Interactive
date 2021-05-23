@@ -8,15 +8,17 @@ class InputManager;
 class Camera;
 class EntityManager;
 class Window;
+class GarbageCollector;
 class Interactive
 {
 public:
 	std::string GameName;
 	Window* GameWindow;
-	EntityManager* ECS;
+	EntityManager* ECManager;
 	Camera* MainCamera;
 	InputManager* InputSystem;
 	TextureManager* TextureSystem;
+	GarbageCollector* GC;
 
 	static Interactive* EngineInstance;
 
