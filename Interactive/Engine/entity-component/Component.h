@@ -1,30 +1,29 @@
 #pragma once
+#include "../InteractiveObject.h"
 
 enum class Keys;
 enum class KeyActions;
 class InputManager;
 class Interactive;
 class Entity;
-class Component
+class Component : public InteractiveObject
 {
 public:
 	Entity* Owner;
-	Interactive* Engine;
 	InputManager* InputController;
 
 	Component();
-	virtual ~Component();
+	~Component() override;
 
 	virtual void BeginPlay();
 	virtual void Update(float deltaTime);
 	virtual void Render();
 	virtual void KeyboardCallback();
-	void DestroyComponent();
 
-	bool IsMarkedForDestruction() const { return MarkedForDestruction; }
+protected:
+	void OnMarkedForDestruction() override;
 
 private:
 	friend class Entity;
 	bool BeginPlayExecuted;
-	bool MarkedForDestruction;
 };

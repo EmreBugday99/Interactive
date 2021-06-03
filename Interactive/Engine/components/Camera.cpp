@@ -13,3 +13,11 @@ void Camera::SetProjection(glm::vec4 projection)
 {
 	ProjectionMatrix = glm::ortho(projection.x, projection.y, projection.z, projection.w);
 }
+
+void Camera::OnMarkedForDestruction()
+{
+	Component::OnMarkedForDestruction();
+
+	if (GetEnginePtr()->MainCamera == this)
+		GetEnginePtr()->MainCamera = nullptr;
+}

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "../includes/CoreIncludes.h"
 
 class Camera : public Component
@@ -14,4 +13,7 @@ public:
 	void Render() override;
 
 	void SetProjection(glm::vec4 projection);
+
+protected:
+	void OnMarkedForDestruction() override;
 };
