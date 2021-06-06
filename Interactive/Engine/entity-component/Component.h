@@ -25,5 +25,6 @@ protected:
 
 private:
 	friend class Entity;
+
 	bool BeginPlayExecuted;
 };

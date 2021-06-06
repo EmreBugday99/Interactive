@@ -1,5 +1,5 @@
 #include "TestComponent.h"
-#include <iostream>
+#include "TestComponent2.h"
 #include "includes/CoreIncludes.h"
 
 TestComponent::TestComponent()
@@ -35,38 +35,24 @@ void TestComponent::KeyboardCallback()
 {
 	PrimitiveSprite2D::KeyboardCallback();
 
-	if (InputController->GetKeyState(Keys::W) == KeyActions::REPEAT)
+	if (InputController->GetKeyState(Keys::W) == KeyActions::PRESS)
 	{
-		Position.y += 0.01f;
-	}
-	if (InputController->GetKeyState(Keys::S) == KeyActions::REPEAT)
-	{
-		Position.y -= 0.01f;
-	}
-	if (InputController->GetKeyState(Keys::F) == KeyActions::PRESS)
-	{
-		Owner->MarkForDestruction();
-	}
-	if (InputController->GetKeyState(Keys::ENTER) == KeyActions::PRESS)
-	{
-		Entity* newEntity = GetEnginePtr()->ECManager->CreateEntity("Test Entity For GC");
-		newEntity->AddComponent<PrimitiveSprite2D>();
-		testEntities.push_back(newEntity);
-		std::cout << "CREATED ENTITY\n";
-	}
-	if (InputController->GetKeyState(Keys::J) == KeyActions::PRESS)
-	{
-		for (Entity* entity : testEntities)
-		{
-			entity->MarkForDestruction();
-		}
-		testEntities.clear();
-		Owner->MarkForDestruction();
+		Position.y += 0.1f;
+
+		Component* asd = Owner->GetComponent<TestComponent2>();
+		if (asd == nullptr) return;
+
+		TestComponent2* comp2 = dynamic_cast<TestComponent2*>(asd);
+		if (comp2 != nullptr)
+			comp2->SayHello();
 	}
 
-	if (InputController->GetKeyState(Keys::Z) == KeyActions::PRESS)
+	if (InputController->GetKeyState(Keys::F) == KeyActions::PRESS)
 	{
-		OtherComponent->MarkForDestruction();
+		Component* asd = Owner->GetComponent<TestComponent2>();
+		if (asd == nullptr) return;
+
+		asd->MarkForDestruction();
 	}
 }
 

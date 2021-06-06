@@ -14,6 +14,8 @@ public:
 
 	void SetProjection(glm::vec4 projection);
 
+	void BeginPlay() override;
+
 protected:
 	void OnMarkedForDestruction() override;
 };

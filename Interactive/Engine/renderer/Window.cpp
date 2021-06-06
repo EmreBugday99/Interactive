@@ -1,6 +1,7 @@
 #include "Window.h"
 #include <iostream>
 #include "../Interactive.h"
+#include "../components/Camera.h"
 
 Window::Window(std::string windowName, int width, int height, Interactive* engine)
 	: Width(width), Height(height), WindowName(windowName), GlWindow(nullptr), Engine(engine)
@@ -28,6 +29,8 @@ void WindowResizeCallback(GLFWwindow* window, GLint width, GLint height)
 	engine->GameWindow->Height = height;
 
 	glViewport(0, 0, width, height);
+	
+	engine->MainCamera->SetProjection(glm::vec4(0.0f, width, 0.0f, height));
 }
 
 bool Window::InitializeWindow()

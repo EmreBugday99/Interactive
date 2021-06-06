@@ -36,8 +36,9 @@ void InputManager::KeyboardCallback(GLFWwindow* window, int key, int scanCode, i
 {
 	Interactive* engine = static_cast<Interactive*>(glfwGetWindowUserPointer(window));
 	InputManager* inputController = engine->InputSystem;
+
 	inputController->KeyBuffer[key] = static_cast<KeyActions>(action);
-	
+
 	if (inputController->KeyboardCallbacksListeners.empty())
 		return;
 

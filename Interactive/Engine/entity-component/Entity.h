@@ -41,6 +41,32 @@ public:
 		return newComponent;
 	}
 
+	template <typename T>
+	Component* GetComponent() const
+	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (&typeid(*component) == &typeid(T))
+				return component;
+		}
+
+		return nullptr;
+	}
+
+	template <typename T>
+	std::vector<Component*> GetComponents()
+	{
+		std::vector<Component*> componentsToReturn;
+
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (&typeid(*component) == &typeid(T))
+				componentsToReturn.push_back(component);
+		}
+
+		return componentsToReturn;
+	}
+
 protected:
 	void JoinComponentsIntoGameLoop();
 	void RemoveComponentsFromGameLoop();

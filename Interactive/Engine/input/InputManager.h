@@ -21,7 +21,7 @@ private:
 	friend struct GLFWwindow;
 	friend class Interactive;
 
-	KeyActions KeyBuffer[400] = { KeyActions::NotPressed };
+	KeyActions KeyBuffer[400] = { KeyActions::None };
 
 	std::vector<Component*> KeyboardCallbacksListeners;
 

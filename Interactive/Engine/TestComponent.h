@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-
 #include "components/PrimitiveSprite2D.h"
 
 class Camera;

@@ -16,7 +16,7 @@ void InteractiveObject::MarkForDestruction()
 		return;
 	WaitingForDestruction = true;
 	OnMarkedForDestruction();
-	
+
 	GetEnginePtr()->GC->InsertObject(this);
 }
 

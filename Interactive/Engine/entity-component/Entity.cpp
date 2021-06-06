@@ -1,7 +1,5 @@
 #include "Entity.h"
 
-#include <iostream>
-
 Entity::Entity(std::string entityName, Interactive* engine)
 	: EntityName(entityName)
 {
@@ -10,7 +8,6 @@ Entity::Entity(std::string entityName, Interactive* engine)
 
 Entity::~Entity()
 {
-	std::cout << "Deleted Entity" << std::endl;
 }
 
 void Entity::Update(float deltaTime)
@@ -72,8 +69,6 @@ void Entity::RemoveComponentsFromGameLoop()
 void Entity::OnMarkedForDestruction()
 {
 	InteractiveObject::OnMarkedForDestruction();
-
-	std::cout << "Entity marked for destruction \n";
 
 	GetEnginePtr()->ECManager->EntitiesWaitingToLeave.push_back(this);
 

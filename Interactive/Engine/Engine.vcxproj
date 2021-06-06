@@ -195,6 +195,7 @@
     <ClCompile Include="TestComponent.cpp" />
     <ClCompile Include="renderer\texture\Texture.cpp" />
     <ClCompile Include="renderer\texture\TextureManager.cpp" />
+    <ClCompile Include="TestComponent2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
@@ -224,6 +225,7 @@
     <ClInclude Include="TestComponent.h" />
     <ClInclude Include="renderer\texture\Texture.h" />
     <ClInclude Include="renderer\texture\TextureManager.h" />
+    <ClInclude Include="TestComponent2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basicShader.frag" />
