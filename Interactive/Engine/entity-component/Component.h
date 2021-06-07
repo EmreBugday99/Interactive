@@ -1,11 +1,11 @@
 #pragma once
 #include "../InteractiveObject.h"
 
+class Entity;
 enum class Keys;
 enum class KeyActions;
 class InputManager;
 class Interactive;
-class Entity;
 class Component : public InteractiveObject
 {
 public:

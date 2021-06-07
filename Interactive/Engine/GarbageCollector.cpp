@@ -4,11 +4,9 @@
 
 #include "includes/CoreIncludes.h"
 
-GarbageCollector::GarbageCollector(Interactive* engine)
-	: Engine(engine), ForceEnterThreshold(10) {}
+GarbageCollector::GarbageCollector(Interactive* engine) : Engine(engine), ForceEnterThreshold(10) {}
 
-GarbageCollector::~GarbageCollector()
-{}
+GarbageCollector::~GarbageCollector() {}
 
 void GarbageCollector::InsertObject(InteractiveObject* object)
 {
@@ -22,7 +20,7 @@ void GarbageCollector::CollectGarbage()
 	while (objectIndex)
 	{
 		objectIndex--;
-		
+
 		delete(ObjectsToGarbageCollect[objectIndex]);
 	}
 

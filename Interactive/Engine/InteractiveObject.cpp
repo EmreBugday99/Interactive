@@ -8,6 +8,7 @@ InteractiveObject::InteractiveObject()
 
 InteractiveObject::~InteractiveObject()
 {
+	std::cout << "Uh" << std::endl;
 }
 
 void InteractiveObject::MarkForDestruction()

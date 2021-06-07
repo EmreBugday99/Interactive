@@ -4,6 +4,8 @@
 class TestComponent2 : public Component
 {
 public:
+	TestComponent2();
+	
 	void BeginPlay() override;
 
 	void Update(float deltaTime) override;

@@ -1,6 +1,10 @@
 #include "TestComponent2.h"
-
 #include <iostream>
+
+TestComponent2::TestComponent2()
+{
+	std::cout << "I am alive!" << std::endl;
+}
 
 void TestComponent2::BeginPlay()
 {
@@ -20,6 +24,8 @@ void TestComponent2::Render()
 void TestComponent2::KeyboardCallback()
 {
 	Component::KeyboardCallback();
+
+	std::cout << "2 callback" << std::endl;
 }
 
 void TestComponent2::SayHello()

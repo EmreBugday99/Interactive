@@ -16,18 +16,15 @@ int main()
 
 	Entity* entity2 = engine->ECManager->CreateEntity("Test Entity2");
 	TestComponent* testComponent = entity2->AddComponent<TestComponent>();
-	TestComponent2* testComponent2 = entity2->AddComponent<TestComponent2>();
 
 	testComponent->Position = glm::vec3(0.5f, 0.8f, 0.0f);
 	testComponent->Size = glm::vec2(100.0f, 100.0f);
 	testComponent->Color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
-	testComponent->OtherComponent = spriteComp;
 
 	Entity* cameraEntity = engine->ECManager->CreateEntity("Camera Entity");
 	Camera* cameraComp = cameraEntity->AddComponent<Camera>();
 	engine->MainCamera = cameraComp;
 
-	testComponent->testCamera = cameraComp;
 	engine->Start();
 
 	delete(engine);

@@ -36,8 +36,5 @@ private:
 	/// </summary>
 	std::vector<Entity*> EntitiesWaitingToLeave;
 
-	size_t EntityCount;
-	size_t MaxEntityCount;
-
 	EntityManager(Interactive* engine);
 };

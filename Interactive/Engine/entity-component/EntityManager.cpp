@@ -1,7 +1,7 @@
 #include "EntityManager.h"
 #include "Entity.h"
 
-EntityManager::EntityManager(Interactive* engine) : Engine(engine), EntityCount(0), MaxEntityCount(0) {}
+EntityManager::EntityManager(Interactive* engine) : Engine(engine) {}
 EntityManager::~EntityManager() {}
 
 Entity* EntityManager::CreateEntity(std::string entityName)
@@ -32,9 +32,9 @@ void EntityManager::JoinEntitiesIntoGameLoop()
 		Entity* entityToJoin = EntitiesWaitingToJoin[entityIndex];
 
 		EntitiesInGameLoop.push_back(entityToJoin);
+		
+		EntitiesWaitingToJoin.erase(EntitiesWaitingToJoin.begin() + entityIndex);
 	}
-
-	EntitiesWaitingToJoin.clear();
 }
 
 void EntityManager::RemoveEntitiesFromGameLoop()
@@ -44,7 +44,7 @@ void EntityManager::RemoveEntitiesFromGameLoop()
 	{
 		entityIndex--;
 		Entity* entityToLeave = EntitiesWaitingToLeave[entityIndex];
-		
+
 		size_t secondEntityIndex = EntitiesInGameLoop.size();
 		while (secondEntityIndex)
 		{
@@ -52,9 +52,10 @@ void EntityManager::RemoveEntitiesFromGameLoop()
 			Entity* entityToCompareAgainst = EntitiesInGameLoop[secondEntityIndex];
 
 			if (entityToLeave == entityToCompareAgainst)
+			{
 				EntitiesInGameLoop.erase(EntitiesInGameLoop.begin() + secondEntityIndex);
+			}
 		}
+		EntitiesWaitingToLeave.erase(EntitiesWaitingToLeave.begin() + entityIndex);
 	}
-
-	EntitiesWaitingToLeave.clear();
 }

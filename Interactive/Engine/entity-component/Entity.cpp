@@ -12,7 +12,8 @@ Entity::~Entity()
 
 void Entity::Update(float deltaTime)
 {
-	JoinComponentsIntoGameLoop();
+	if (ComponentsWaitingToJoin.empty() == false)
+		JoinComponentsIntoGameLoop();
 
 	size_t componentIndex = ComponentsInGameLoop.size();
 	while (componentIndex)
@@ -23,7 +24,8 @@ void Entity::Update(float deltaTime)
 		ComponentsInGameLoop[componentIndex]->Render();
 	}
 
-	RemoveComponentsFromGameLoop();
+	if (ComponentsWaitingToLeave.empty() == false)
+		RemoveComponentsFromGameLoop();
 }
 
 void Entity::JoinComponentsIntoGameLoop()
@@ -37,13 +39,19 @@ void Entity::JoinComponentsIntoGameLoop()
 
 		componentToJoin->BeginPlay();
 		ComponentsInGameLoop.push_back(componentToJoin);
+
+		ComponentsWaitingToJoin.erase(ComponentsWaitingToJoin.begin() + componentIndex);
 	}
 
-	ComponentsWaitingToJoin.clear();
+	// TODO: Do I really need to shrink at this point? This is an costly operation.
+	// TODO: Need a smarter way to optimize memory usage.
+	ComponentsWaitingToJoin.shrink_to_fit();
 }
 
 void Entity::RemoveComponentsFromGameLoop()
 {
+
+	// A graciously f*cked up O(n2) algorithm. Just... pretend it's not here.
 	size_t componentIndex = ComponentsWaitingToLeave.size();
 	while (componentIndex)
 	{
@@ -59,11 +67,17 @@ void Entity::RemoveComponentsFromGameLoop()
 			Component* componentToCompareAgainst = ComponentsInGameLoop[secondComponentIndex];
 
 			if (componentToLeave == componentToCompareAgainst)
+			{
 				ComponentsInGameLoop.erase(ComponentsInGameLoop.begin() + secondComponentIndex);
+				ComponentsWaitingToLeave.erase(ComponentsWaitingToLeave.begin() + componentIndex);
+			}
 		}
 	}
 
-	ComponentsWaitingToLeave.clear();
+	// TODO: Do I really need to shrink at this point? This is an costly operation.
+	// TODO: Need a smarter way to optimize memory usage.
+	ComponentsInGameLoop.shrink_to_fit();
+	ComponentsWaitingToLeave.shrink_to_fit();
 }
 
 void Entity::OnMarkedForDestruction()
@@ -72,6 +86,8 @@ void Entity::OnMarkedForDestruction()
 
 	GetEnginePtr()->ECManager->EntitiesWaitingToLeave.push_back(this);
 
+	// Since entity is responsible for managing all of it's components...
+	// ... it's going to mark it's own components to get destroyed.
 	for (Component* component : ComponentsInGameLoop)
 	{
 		component->MarkForDestruction();
