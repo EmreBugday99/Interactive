@@ -23,7 +23,7 @@ Texture* TextureManager::CreateTexture(std::string textureName, std::string text
 		return nullptr;
 	}
 	
-	Texture* newTexture = new Texture(texturePath);
+	Texture* newTexture = new Texture(texturePath, textureName);
 	Textures[textureName] = newTexture;
 
 	return newTexture;

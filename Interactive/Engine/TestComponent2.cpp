@@ -8,22 +8,34 @@ TestComponent2::TestComponent2()
 
 void TestComponent2::BeginPlay()
 {
-	Component::BeginPlay();
+	PrimitiveSprite2D::BeginPlay();
+
+	Texture* newTexture = GetEnginePtr()->TextureSystem->CreateTexture("smileyTexture", "smiley.jpg");
+	AttachTexture(newTexture);
 }
 
 void TestComponent2::Update(float deltaTime)
 {
-	Component::Update(deltaTime);
+	PrimitiveSprite2D::Update(deltaTime);
+	
+	if (Size.y <= 100.0f)
+	{
+		Size.y -= 1.0f;
+	}
+	if(Size.y <= 50.0f)
+	{
+		Size.y += 50.0f;
+	}
 }
 
 void TestComponent2::Render()
 {
-	Component::Render();
+	PrimitiveSprite2D::Render();
 }
 
 void TestComponent2::KeyboardCallback()
 {
-	Component::KeyboardCallback();
+	PrimitiveSprite2D::KeyboardCallback();
 
 	std::cout << "2 callback" << std::endl;
 }
@@ -35,5 +47,5 @@ void TestComponent2::SayHello()
 
 void TestComponent2::OnMarkedForDestruction()
 {
-	Component::OnMarkedForDestruction();
+	PrimitiveSprite2D::OnMarkedForDestruction();
 }

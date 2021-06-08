@@ -25,6 +25,12 @@ int main()
 	Camera* cameraComp = cameraEntity->AddComponent<Camera>();
 	engine->MainCamera = cameraComp;
 
+	Entity* smileyEntity = engine->ECManager->CreateEntity("Smiley Entity");
+	TestComponent2* testComp2 = smileyEntity->AddComponent<TestComponent2>();
+	testComp2->Position = glm::vec3(0.5f, 0.1f, 0.0f);
+	testComp2->Size = glm::vec2(100.0f, 100.0f);
+	testComp2->Color = glm::vec4(1.0f, 0.0f, 0.0f, 1.0f);
+
 	engine->Start();
 
 	delete(engine);

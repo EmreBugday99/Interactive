@@ -11,14 +11,18 @@ public:
 	GLint Height;
 	GLint BitDepth;
 	GLint ActiveTextureId;
-	
+
 	void Bind();
 	static void Unbind();
+
+	std::string GetTextureName() const { return TextureName; }
 
 private:
 	friend class TextureManager;
 
-	Texture(std::string path);
+	std::string TextureName;
+
+	Texture(std::string path, std::string textureName);
 	~Texture();
 
 	void LoadTexture();

@@ -32,9 +32,13 @@ public:
 protected:
 	VertexArray* VAO;
 
-
 	void OnMarkedForDestruction() override;
 
 private:
 	Texture* AttachedTexture;
+
+	/// <summary>
+	/// Resets the VBO layout according to the component's size.
+	/// </summary>
+	void UpdateRenderSize();
 };

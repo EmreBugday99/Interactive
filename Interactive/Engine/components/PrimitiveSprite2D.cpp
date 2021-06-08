@@ -14,7 +14,7 @@ PrimitiveSprite2D::PrimitiveSprite2D()
 	VAO = nullptr;
 
 	Position = glm::vec3(0.5f, 0.8f, 0.0f);
-	Size = glm::vec2(0.1f, 0.1f);
+	Size = glm::vec2(50.0f, 50.0f);
 	Color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
 }
 
@@ -53,16 +53,18 @@ void PrimitiveSprite2D::BeginPlay()
 
 void PrimitiveSprite2D::Update(float deltaTime)
 {
-	//Position.x += 0.002f;
-	//Position.y += 0.002f;
+	Component::Update(deltaTime);
 }
 
 void PrimitiveSprite2D::KeyboardCallback()
 {
+	Component::KeyboardCallback();
 }
 
 void PrimitiveSprite2D::Render()
 {
+	Component::Render();
+
 	if (Owner->GetEnginePtr()->MainCamera == nullptr)
 		return;
 
@@ -70,6 +72,10 @@ void PrimitiveSprite2D::Render()
 
 	VAO->Bind();
 	ibo->Bind();
+
+	//TODO: Remove it from here when Transform component is implemented.
+	//TODO: SetSize(glm::vec3 newSize) function of the Transform component should call this function.
+	UpdateRenderSize();
 
 	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), Position);
 
@@ -79,9 +85,9 @@ void PrimitiveSprite2D::Render()
 
 	if (AttachedTexture != nullptr)
 	{
-		GetEnginePtr()->TextureSystem->Textures["testTexture2"]->Bind();
+		AttachedTexture->Bind();
 		GLint activeTextureId = 0;
-		Shader->SetUniformData("activeTextureId", activeTextureId);
+		Shader->SetUniformData("activeTextureId", AttachedTexture->ActiveTextureId);
 	}
 	else
 	{
@@ -113,6 +119,20 @@ void PrimitiveSprite2D::AttachTexture(Texture* textureToAttach)
 	Shader->AttachShader(ShaderTypes::VertexShader, "shaders/shader.vert");
 	Shader->AttachShader(ShaderTypes::FragmentShader, "shaders/textureShader.frag");
 	Shader->LinkProgram();
+}
+
+void PrimitiveSprite2D::UpdateRenderSize()
+{
+	GLfloat vertices[] =
+	{
+		0,				0,				0,
+		0,				Size.y,			0,
+		Size.x,			Size.y,			0,
+		Size.x,			0,				0
+	};
+	VAO->VertexBuffers[0]->Bind();
+	VAO->VertexBuffers[0]->SetBufferData(vertices, 3 * 4, 3);
+	VAO->VertexBuffers[0]->Unbind();
 }
 
 void PrimitiveSprite2D::OnMarkedForDestruction()

@@ -3,9 +3,11 @@
 #include <stb/stb_image.h>
 #include <iostream>
 
-Texture::Texture(std::string path)
-	: Path(path), TextureId(0), Width(0), Height(0), BitDepth(0), ActiveTextureId(0)
+Texture::Texture(std::string path, std::string textureName)
+	: Path(path), TextureId(0), Width(0), Height(0), BitDepth(0), ActiveTextureId(0), TextureName(textureName)
 {
+	stbi_set_flip_vertically_on_load(true);
+	
 	std::cout << "Constructing new texture" << std::endl;
 	
 	GLubyte* pixelBytes = stbi_load(path.c_str(), &Width, &Height, &BitDepth, STBI_rgb_alpha);

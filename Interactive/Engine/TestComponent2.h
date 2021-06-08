@@ -1,7 +1,7 @@
 #pragma once
-#include "entity-component/Component.h"
+#include "components/PrimitiveSprite2D.h"
 
-class TestComponent2 : public Component
+class TestComponent2 : public PrimitiveSprite2D
 {
 public:
 	TestComponent2();
