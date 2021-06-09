@@ -191,11 +191,12 @@
     <ClCompile Include="renderer\buffers\VertexBuffer.cpp" />
     <ClCompile Include="renderer\buffers\VertexArray.cpp" />
     <ClCompile Include="renderer\Window.cpp" />
-    <ClCompile Include="components\PrimitiveSprite2D.cpp" />
+    <ClCompile Include="components\Sprite2D.cpp" />
     <ClCompile Include="TestComponent.cpp" />
     <ClCompile Include="renderer\texture\Texture.cpp" />
     <ClCompile Include="renderer\texture\TextureManager.cpp" />
     <ClCompile Include="TestComponent2.cpp" />
+    <ClCompile Include="components\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
@@ -221,11 +222,12 @@
     <ClInclude Include="renderer\buffers\VertexBuffer.h" />
     <ClInclude Include="renderer\buffers\VertexArray.h" />
     <ClInclude Include="renderer\Window.h" />
-    <ClInclude Include="components\PrimitiveSprite2D.h" />
+    <ClInclude Include="components\Sprite2D.h" />
     <ClInclude Include="TestComponent.h" />
     <ClInclude Include="renderer\texture\Texture.h" />
     <ClInclude Include="renderer\texture\TextureManager.h" />
     <ClInclude Include="TestComponent2.h" />
+    <ClInclude Include="components\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basicShader.frag" />

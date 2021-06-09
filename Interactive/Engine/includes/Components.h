@@ -1,4 +1,4 @@
 #pragma once
 
 #include "../components/Camera.h"
-#include "../components/PrimitiveSprite2D.h"
+#include "../components/Sprite2D.h"
