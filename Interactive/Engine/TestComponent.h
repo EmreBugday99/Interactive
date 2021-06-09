@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
-#include "components/PrimitiveSprite2D.h"
+#include "components/Sprite2D.h"
 
 class Camera;
 
-class TestComponent : public PrimitiveSprite2D
+class TestComponent : public Sprite2D
 {
 public:
 	TestComponent();

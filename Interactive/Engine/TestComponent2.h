@@ -1,7 +1,7 @@
 #pragma once
-#include "components/PrimitiveSprite2D.h"
+#include "components/Sprite2D.h"
 
-class TestComponent2 : public PrimitiveSprite2D
+class TestComponent2 : public Sprite2D
 {
 public:
 	TestComponent2();

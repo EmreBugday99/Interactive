@@ -48,7 +48,7 @@
     <ClCompile Include="entity-component\Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="components\PrimitiveSprite2D.cpp">
+    <ClCompile Include="components\Sprite2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Interactive.cpp">
@@ -76,6 +76,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TestComponent2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="components\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,7 +113,7 @@
     <ClInclude Include="entity-component\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="components\PrimitiveSprite2D.h">
+    <ClInclude Include="components\Sprite2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Interactive.h">
@@ -162,6 +165,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TestComponent2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="components\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

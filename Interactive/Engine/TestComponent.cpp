@@ -7,7 +7,7 @@ TestComponent::~TestComponent() {}
 
 void TestComponent::BeginPlay()
 {
-	PrimitiveSprite2D::BeginPlay();
+	Sprite2D::BeginPlay();
 
 	InputController->BindKeyboardCallback(this);
 
@@ -17,27 +17,17 @@ void TestComponent::BeginPlay()
 
 void TestComponent::Update(float deltaTime)
 {
-	PrimitiveSprite2D::Update(deltaTime);
+	Sprite2D::Update(deltaTime);
 }
 
 void TestComponent::Render()
 {
-	PrimitiveSprite2D::Render();
+	Sprite2D::Render();
 }
 
 void TestComponent::KeyboardCallback()
 {
-	PrimitiveSprite2D::KeyboardCallback();
-
-	if (InputController->GetKeyState(Keys::W) == KeyActions::PRESS)
-	{
-		Position.y += 0.1f;
-	}
-
-	if (InputController->GetKeyState(Keys::S) == KeyActions::PRESS)
-	{
-		Position.y -= 0.1f;
-	}
+	Sprite2D::KeyboardCallback();
 }
 
 void TestComponent::OnMarkedForDestruction()
