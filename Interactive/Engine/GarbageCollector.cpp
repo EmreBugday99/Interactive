@@ -1,7 +1,4 @@
 #include "GarbageCollector.h"
-
-#include <iostream>
-
 #include "includes/CoreIncludes.h"
 
 GarbageCollector::GarbageCollector(Interactive* engine) : Engine(engine), ForceEnterThreshold(10) {}

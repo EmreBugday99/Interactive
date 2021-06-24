@@ -20,8 +20,6 @@ public:
 	TextureManager* TextureSystem;
 	GarbageCollector* GC;
 
-	static Interactive* EngineInstance;
-
 	Interactive(std::string gameName);
 	~Interactive();
 

@@ -2,14 +2,11 @@
 #include "Sprite2D.h"
 
 Transform::Transform()
-{
-	Size = glm::vec2(10.0f, 10.0f);
-	Position = glm::vec3(0.0f, 0.0f, 0.0f);
-}
+	: Size(glm::vec2(10.0f, 10.0f)), Position(glm::vec3(0.0f, 0.0f, 0.0f)) {}
 
-void Transform::BeginPlay()
+void Transform::Initialize()
 {
-	Component::BeginPlay();
+	Component::Initialize();
 }
 
 void Transform::Update(float deltaTime)
@@ -26,8 +23,12 @@ void Transform::SetSize(glm::vec2 newSize)
 {
 	Size = newSize;
 
-	Component* spriteComponent = Owner->GetComponentOfType<Sprite2D>();
+	auto spriteComponent = Owner->GetComponentOfType<Sprite2D>();
+	if (spriteComponent == nullptr)
+	{
+		std::cout << "Couldn't find Sprite2D component" << std::endl;
+		return;
+	}
 
-	if (spriteComponent != nullptr)
-		dynamic_cast<Sprite2D*>(spriteComponent)->UpdateSprite();
+	spriteComponent->UpdateSprite();
 }

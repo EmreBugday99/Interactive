@@ -7,6 +7,9 @@ VertexArray::VertexArray()
 	ArrayId = 0;
 	IBuffer = nullptr;
 
+	// 1st for coord layout, 2nd for texture layout
+	VertexBuffers = std::vector<VertexBuffer*>();
+	
 	glGenVertexArrays(1, &ArrayId);
 }
 

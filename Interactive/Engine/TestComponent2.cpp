@@ -6,9 +6,9 @@ TestComponent2::TestComponent2()
 	std::cout << "I am alive!" << std::endl;
 }
 
-void TestComponent2::BeginPlay()
+void TestComponent2::Initialize()
 {
-	Sprite2D::BeginPlay();
+	Sprite2D::Initialize();
 
 	Texture* newTexture = GetEnginePtr()->TextureSystem->CreateTexture("smileyTexture", "smiley.jpg");
 	AttachTexture(newTexture);

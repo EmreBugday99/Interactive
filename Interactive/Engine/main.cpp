@@ -11,6 +11,7 @@ int main()
 	engine->MainCamera = cameraComp;
 
 	Entity* testEntity = engine->ECManager->CreateEntity("Test Entity");
+	testEntity->AddComponent<Sprite2D>();
 	testEntity->AddComponent<TestComponent>();
 
 	engine->Start();

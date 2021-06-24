@@ -1,17 +1,8 @@
 #include "includes/CoreIncludes.h"
 
-Interactive* Interactive::EngineInstance(nullptr);
-
 Interactive::Interactive(std::string gameName)
 	: GameName(gameName), MainCamera(nullptr)
 {
-	if (EngineInstance != nullptr)
-	{
-		delete(this);
-		return;
-	}
-
-	EngineInstance = this;
 	GameWindow = new Window(gameName, 800, 800, this);
 	ECManager = new EntityManager(this);
 	InputSystem = new InputManager(this);
@@ -43,6 +34,7 @@ void Interactive::Update()
 			entityIndex--;
 			Entity* currentEntity = ECManager->EntitiesInGameLoop[entityIndex];
 
+			// TODO: Put real delta time here instead of 0.1f
 			currentEntity->Update(0.1f);
 		}
 

@@ -5,12 +5,11 @@
 #include "../includes/CoreIncludes.h"
 
 Sprite2D::Sprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
-	: Color(color), Shader(nullptr), AttachedTransform(nullptr), VAO(nullptr), AttachedTexture(nullptr) {}
+	: Color(color), Shader(nullptr), VAO(nullptr), AttachedTexture(nullptr) {}
 
 Sprite2D::Sprite2D()
 {
 	AttachedTexture = nullptr;
-	AttachedTransform = nullptr;
 	Shader = nullptr;
 	VAO = nullptr;
 
@@ -19,15 +18,9 @@ Sprite2D::Sprite2D()
 
 Sprite2D::~Sprite2D() {}
 
-void Sprite2D::BeginPlay()
+void Sprite2D::Initialize()
 {
-	Component::BeginPlay();
-
-	// Requiring component
-	if (Owner->HasComponent<Transform>() == false)
-		AttachedTransform = Owner->AddComponent<Transform>();
-	else
-		AttachedTransform = dynamic_cast<Transform*>(Owner->GetComponentOfType<Transform>());
+	Component::Initialize();
 
 	CreateSprite2D();
 
@@ -45,13 +38,14 @@ void Sprite2D::CreateSprite2D()
 	GLfloat vertices[] =
 	{
 		0,									0,									0,
-		0,									AttachedTransform->GetSize().y,		0,
-		AttachedTransform->GetSize().x,		AttachedTransform->GetSize().y,		0,
-		AttachedTransform->GetSize().x,		0,									0
+		0,									GetTransform()->GetSize().y,		0,
+		GetTransform()->GetSize().x,		GetTransform()->GetSize().y,		0,
+		GetTransform()->GetSize().x,		0,									0
 	};
 	GLuint indices[] = { 0, 1, 2, 2, 3, 0 };
 
-	VAO = new VertexArray();
+	if (VAO == nullptr)
+		VAO = new VertexArray();
 	VAO->CreateVertexBuffer(0, vertices, 3 * 4, 3);
 	VAO->CreateIndexBuffer(indices, 6);
 }
@@ -61,9 +55,9 @@ void Sprite2D::UpdateSprite()
 	GLfloat vertices[] =
 	{
 		0,									0,									0,
-		0,									AttachedTransform->GetSize().y,		0,
-		AttachedTransform->GetSize().x,		AttachedTransform->GetSize().y,		0,
-		AttachedTransform->GetSize().x,		0,									0
+		0,									GetTransform()->GetSize().y,		0,
+		GetTransform()->GetSize().x,		GetTransform()->GetSize().y,		0,
+		GetTransform()->GetSize().x,		0,									0
 	};
 	VAO->VertexBuffers[0]->Bind();
 	VAO->VertexBuffers[0]->SetBufferData(vertices, 3 * 4, 3);
@@ -82,7 +76,7 @@ void Sprite2D::Render()
 	VAO->Bind();
 	ibo->Bind();
 
-	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), AttachedTransform->Position);
+	glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), GetTransform()->Position);
 
 	Shader->UseProgram();
 	Shader->SetUniformData("model_mx", translationMatrix);

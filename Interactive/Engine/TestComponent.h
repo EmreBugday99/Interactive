@@ -1,16 +1,14 @@
 #pragma once
-#include <vector>
-#include "components/Sprite2D.h"
+#include "entity-component/Component.h"
 
-class Camera;
-
-class TestComponent : public Sprite2D
+class TestComponent : public Component
 {
 public:
 	TestComponent();
-	virtual ~TestComponent() override;
+	~TestComponent() override;
 
-	void BeginPlay() override;
+	void Initialize() override;
+	void BeginPlay(float deltaTime) override;
 	void Update(float deltaTime) override;
 	void Render() override;
 	void KeyboardCallback() override;

@@ -4,11 +4,10 @@ Entity::Entity(std::string entityName, Interactive* engine)
 	: EntityName(entityName)
 {
 	SetEnginePtr(engine);
+	AddComponent<Transform>();
 }
 
-Entity::~Entity()
-{
-}
+Entity::~Entity() {}
 
 void Entity::Update(float deltaTime)
 {
@@ -20,6 +19,11 @@ void Entity::Update(float deltaTime)
 	{
 		componentIndex--;
 
+		if(ComponentsInGameLoop[componentIndex]->FirstUpdateExecuted == false)
+		{
+			ComponentsInGameLoop[componentIndex]->FirstUpdateExecuted = true;
+			ComponentsInGameLoop[componentIndex]->BeginPlay(deltaTime);
+		}
 		ComponentsInGameLoop[componentIndex]->Update(deltaTime);
 		ComponentsInGameLoop[componentIndex]->Render();
 	}
@@ -37,7 +41,7 @@ void Entity::JoinComponentsIntoGameLoop()
 
 		Component* componentToJoin = ComponentsWaitingToJoin[componentIndex];
 
-		componentToJoin->BeginPlay();
+		componentToJoin->Initialize();
 		ComponentsInGameLoop.push_back(componentToJoin);
 
 		ComponentsWaitingToJoin.erase(ComponentsWaitingToJoin.begin() + componentIndex);
@@ -50,7 +54,6 @@ void Entity::JoinComponentsIntoGameLoop()
 
 void Entity::RemoveComponentsFromGameLoop()
 {
-
 	// A graciously f*cked up O(n2) algorithm. Just... pretend it's not here.
 	size_t componentIndex = ComponentsWaitingToLeave.size();
 	while (componentIndex)

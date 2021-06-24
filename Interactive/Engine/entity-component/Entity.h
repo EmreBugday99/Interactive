@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-
 #include "../InteractiveObject.h"
 #include "../includes/CoreIncludes.h"
 
@@ -68,12 +67,18 @@ public:
 	/// <typeparam name="T">Type of the component.</typeparam>
 	/// <returns>Returns the component pointer if found one. Returns nullptr if not found.</returns>
 	template <typename T>
-	Component* GetComponentOfType() const
+	T* GetComponentOfType() const
 	{
 		for (Component* component : ComponentsInGameLoop)
 		{
 			if (&typeid(*component) == &typeid(T))
-				return component;
+				return dynamic_cast<T*>(component);
+		}
+
+		for (Component* component : ComponentsWaitingToJoin)
+		{
+			if (&typeid(*component) == &typeid(T))
+				return dynamic_cast<T*>(component);
 		}
 
 		return nullptr;

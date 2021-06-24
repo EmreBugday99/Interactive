@@ -12,9 +12,9 @@ void Camera::SetProjection(glm::vec4 projection)
 	ProjectionMatrix = glm::ortho(projection.x, projection.y, projection.z, projection.w);
 }
 
-void Camera::BeginPlay()
+void Camera::Initialize()
 {
-	Component::BeginPlay();
+	Component::Initialize();
 
 	Window* gameWindow = GetEnginePtr()->GameWindow;
 

@@ -6,7 +6,7 @@ class TestComponent2 : public Sprite2D
 public:
 	TestComponent2();
 	
-	void BeginPlay() override;
+	void Initialize() override;
 
 	void Update(float deltaTime) override;
 

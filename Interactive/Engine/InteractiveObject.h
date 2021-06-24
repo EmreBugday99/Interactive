@@ -15,8 +15,8 @@ public:
 	void MarkForDestruction();
 
 	Interactive* GetEnginePtr() const { return Engine; }
-	void SetEnginePtr(Interactive* engine) { Engine = engine; }
 
 protected:
 	virtual void OnMarkedForDestruction();
+	void SetEnginePtr(Interactive* engine) { Engine = engine; }
 };

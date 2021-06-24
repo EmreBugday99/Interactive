@@ -14,7 +14,7 @@ public:
 
 	Transform();
 
-	void BeginPlay() override;
+	void Initialize() override;
 	void Update(float deltaTime) override;
 
 	glm::vec2 GetSize() const { return Size; }
