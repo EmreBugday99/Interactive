@@ -120,6 +120,10 @@ void Sprite2D::AttachTexture(Texture* textureToAttach)
 	Shader->LinkProgram();
 }
 
+void Sprite2D::BeginPlay()
+{
+}
+
 void Sprite2D::OnMarkedForDestruction()
 {
 	Component::OnMarkedForDestruction();

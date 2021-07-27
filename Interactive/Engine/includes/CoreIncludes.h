@@ -8,6 +8,7 @@
 #include "../includes/Components.h"
 #include "../InteractiveObject.h"
 #include "../GarbageCollector.h"
+#include "../FactorySystem.h"
 #include "../external/imgui/imgui.h"
 #include "../external/imgui/imgui_impl_glfw.h"
 #include "../external/imgui/imgui_impl_opengl3.h"

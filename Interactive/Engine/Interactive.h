@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include <string>
 
 class Entity;
@@ -9,6 +10,7 @@ class Camera;
 class EntityManager;
 class Window;
 class GarbageCollector;
+class FactorySystem;
 class Interactive
 {
 public:
@@ -19,6 +21,9 @@ public:
 	InputManager* InputSystem;
 	TextureManager* TextureSystem;
 	GarbageCollector* GC;
+	FactorySystem* Factory;
+
+	static std::map<std::string, InteractiveObject*> GlobalObjectPointers;
 
 	Interactive(std::string gameName);
 	~Interactive();

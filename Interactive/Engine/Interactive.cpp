@@ -1,5 +1,7 @@
 #include "includes/CoreIncludes.h"
 
+std::map<std::string, InteractiveObject*> Interactive::GlobalObjectPointers;
+
 Interactive::Interactive(std::string gameName)
 	: GameName(gameName), MainCamera(nullptr)
 {
@@ -8,11 +10,14 @@ Interactive::Interactive(std::string gameName)
 	InputSystem = new InputManager(this);
 	TextureSystem = new TextureManager(this);
 	GC = new GarbageCollector(this);
+	Factory = new FactorySystem(this);
 
 	ImGui::CreateContext();
 	ImGui_ImplGlfw_InitForOpenGL(GameWindow->GlWindow, true);
 	ImGui_ImplOpenGL3_Init("#version 150");
 	ImGui::StyleColorsDark();
+
+	GlobalObjectPointers.emplace("null", nullptr);
 }
 
 Interactive::~Interactive() {}
@@ -76,6 +81,9 @@ void Interactive::Close()
 
 	delete(GC);
 	GC = nullptr;
+
+	delete(Factory);
+	Factory = nullptr;
 
 	glfwTerminate();
 }
