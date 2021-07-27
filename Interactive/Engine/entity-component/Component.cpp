@@ -12,7 +12,7 @@ void Component::Initialize()
 	BeginPlayExecuted = true;
 }
 
-void Component::BeginPlay(float deltaTime) {}
+void Component::BeginPlay() {}
 void Component::Update(float deltaTime) {}
 void Component::Render() {}
 void Component::KeyboardCallback() {}

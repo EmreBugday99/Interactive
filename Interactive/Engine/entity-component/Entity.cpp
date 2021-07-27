@@ -22,7 +22,7 @@ void Entity::Update(float deltaTime)
 		if(ComponentsInGameLoop[componentIndex]->FirstUpdateExecuted == false)
 		{
 			ComponentsInGameLoop[componentIndex]->FirstUpdateExecuted = true;
-			ComponentsInGameLoop[componentIndex]->BeginPlay(deltaTime);
+			ComponentsInGameLoop[componentIndex]->BeginPlay();
 		}
 		ComponentsInGameLoop[componentIndex]->Update(deltaTime);
 		ComponentsInGameLoop[componentIndex]->Render();

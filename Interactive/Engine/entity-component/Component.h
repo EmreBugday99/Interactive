@@ -27,7 +27,7 @@ public:
 	/// <summary>
 	/// Called when this component enters it's first update loop
 	/// </summary>
-	virtual void BeginPlay(float deltaTime);
+	virtual void BeginPlay();
 	/// <summary>
 	/// Called each frame
 	/// </summary>

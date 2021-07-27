@@ -8,7 +8,7 @@ public:
 	~TestComponent() override;
 
 	void Initialize() override;
-	void BeginPlay(float deltaTime) override;
+	void BeginPlay() override;
 	void Update(float deltaTime) override;
 	void Render() override;
 	void KeyboardCallback() override;

@@ -1,5 +1,6 @@
 #include <iostream>
 #include "TestComponent.h"
+#include "TestComponent2.h"
 #include "includes/CoreIncludes.h"
 
 int main()
@@ -13,6 +14,9 @@ int main()
 	Entity* testEntity = engine->ECManager->CreateEntity("Test Entity");
 	testEntity->AddComponent<Sprite2D>();
 	testEntity->AddComponent<TestComponent>();
+
+	Entity* testEntity2 = engine->ECManager->CreateEntity("Test Entity 2");
+	testEntity2->AddComponent<TestComponent2>();
 
 	engine->Start();
 

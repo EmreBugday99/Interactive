@@ -176,6 +176,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="components\Camera.cpp" />
+    <ClCompile Include="external\imgui\imgui.cpp" />
+    <ClCompile Include="external\imgui\imgui_demo.cpp" />
+    <ClCompile Include="external\imgui\imgui_draw.cpp" />
+    <ClCompile Include="external\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="external\imgui\imgui_tables.cpp" />
+    <ClCompile Include="external\imgui\imgui_widgets.cpp" />
     <ClCompile Include="GarbageCollector.cpp" />
     <ClCompile Include="input\InputManager.cpp" />
     <ClCompile Include="Interactive.cpp" />
@@ -195,11 +202,19 @@
     <ClCompile Include="TestComponent.cpp" />
     <ClCompile Include="renderer\texture\Texture.cpp" />
     <ClCompile Include="renderer\texture\TextureManager.cpp" />
-    <ClCompile Include="TestComponent2.cpp" />
     <ClCompile Include="components\Transform.cpp" />
+    <ClCompile Include="TestComponent2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
+    <ClInclude Include="external\imgui\imconfig.h" />
+    <ClInclude Include="external\imgui\imgui.h" />
+    <ClInclude Include="external\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="external\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="external\imgui\imgui_internal.h" />
+    <ClInclude Include="external\imgui\imstb_rectpack.h" />
+    <ClInclude Include="external\imgui\imstb_textedit.h" />
+    <ClInclude Include="external\imgui\imstb_truetype.h" />
     <ClInclude Include="GarbageCollector.h" />
     <ClInclude Include="includes\Components.h" />
     <ClInclude Include="includes\CoreIncludes.h" />
@@ -226,8 +241,8 @@
     <ClInclude Include="TestComponent.h" />
     <ClInclude Include="renderer\texture\Texture.h" />
     <ClInclude Include="renderer\texture\TextureManager.h" />
-    <ClInclude Include="TestComponent2.h" />
     <ClInclude Include="components\Transform.h" />
+    <ClInclude Include="TestComponent2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\basicShader.frag" />
