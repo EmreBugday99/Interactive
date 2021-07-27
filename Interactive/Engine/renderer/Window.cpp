@@ -4,7 +4,7 @@
 #include "../components/Camera.h"
 
 Window::Window(std::string windowName, int width, int height, Interactive* engine)
-	: Width(width), Height(height), WindowName(windowName), GlWindow(nullptr), Engine(engine)
+	: Engine(engine), Width(width), Height(height), WindowName(windowName), GlWindow(nullptr)
 {
 	if (InitializeWindow() == false)
 	{
