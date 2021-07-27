@@ -15,9 +15,6 @@ int main()
 	testEntity->AddComponent<Sprite2D>();
 	testEntity->AddComponent<TestComponent>();
 
-	Entity* testEntity2 = engine->ECManager->CreateEntity("Test Entity 2");
-	testEntity2->AddComponent<TestComponent2>();
-
 	engine->Start();
 
 	delete(engine);

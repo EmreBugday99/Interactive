@@ -15,4 +15,7 @@ public:
 
 protected:
 	void OnMarkedForDestruction() override;
+
+private:
+	static Component* FactoryConstructor();
 };

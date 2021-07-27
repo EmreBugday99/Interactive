@@ -11,7 +11,7 @@ class VertexArray;
 class Sprite2D : public Component
 {
 public:
-	glm::vec4 Color;
+	glm::vec4 Color{};
 	ShaderProgram* Shader;
 
 	Sprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color);
@@ -26,6 +26,9 @@ public:
 
 	VertexArray* GetVAO() const { return VAO; }
 
+
+	void BeginPlay() override;
+
 protected:
 	VertexArray* VAO;
 
@@ -33,7 +36,7 @@ protected:
 
 private:
 	friend class Transform;
-	
+
 	Texture* AttachedTexture;
 
 	void CreateSprite2D();
