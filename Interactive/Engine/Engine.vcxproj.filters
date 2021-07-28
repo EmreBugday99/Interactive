@@ -102,7 +102,7 @@
     <ClCompile Include="TestComponent2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FactorySystem.cpp">
+    <ClCompile Include="script-system\ComponentFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="external\lua\src\lapi.c">
@@ -199,6 +199,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="external\lua\src\lzio.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="components\LuaComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="script-system\ScriptEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="asset-system\AssetDatabase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="asset-system\AssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -314,7 +326,7 @@
     <ClInclude Include="TestComponent2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FactorySystem.h">
+    <ClInclude Include="script-system\ComponentFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="external\lua\src\lapi.h">
@@ -401,10 +413,25 @@
     <ClInclude Include="external\lua\src\lzio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="components\LuaComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="script-system\ScriptEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="asset-system\AssetDatabase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="asset-system\AssetManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="shaders\shader.vert" />
     <None Include="shaders\textureShader.frag" />
     <None Include="shaders\basicShader.frag" />
+    <None Include="assets\entities\test.entity" />
+    <None Include="assets\entities\test2.entity" />
+    <None Include="assets\scripts\testComponent.lua" />
   </ItemGroup>
 </Project>

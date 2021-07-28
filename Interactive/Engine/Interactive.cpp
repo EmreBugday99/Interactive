@@ -10,7 +10,9 @@ Interactive::Interactive(std::string gameName)
 	InputSystem = new InputManager(this);
 	TextureSystem = new TextureManager(this);
 	GC = new GarbageCollector(this);
-	Factory = new FactorySystem(this);
+	Factory = new ComponentFactory(this);
+	AssetSystem = new AssetManager(this);
+	AssetSystem->InitializeDatabase();
 
 	ImGui::CreateContext();
 	ImGui_ImplGlfw_InitForOpenGL(GameWindow->GlWindow, true);

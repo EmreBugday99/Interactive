@@ -4,8 +4,8 @@
 Camera::Camera() : ProjectionMatrix(glm::ortho(0.0f, 0.0f, 0.0f, 0.0f)) {}
 Camera::~Camera() {}
 
-void Camera::Update(float deltaTime) {}
-void Camera::Render() {}
+void Camera::Update(float deltaTime) { Component::Update(deltaTime); }
+void Camera::Render() { Component::Render(); }
 
 void Camera::SetProjection(glm::vec4 projection)
 {

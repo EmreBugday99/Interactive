@@ -11,18 +11,6 @@ void TestComponent::Initialize()
 	Component::Initialize();
 
 	InputController->BindKeyboardCallback(this);
-
-	FactorySystem* factory = GetEnginePtr()->Factory;
-
-	// If not already registered, register the factory constructor to the map
-	if (factory->ConstructorMap.find("SpriteDefault") == factory->ConstructorMap.end())
-	{
-		factory->ConstructorMap["SpriteDefault"] = &FactoryConstructor;
-		std::cout << "Cosntructing" << std::endl;
-	}
-
-	// TODO: Change this after LUA implementation
-	Interactive::GlobalObjectPointers["TestEntity"] = Owner;
 }
 
 void TestComponent::BeginPlay()
@@ -61,11 +49,6 @@ void TestComponent::KeyboardCallback()
 	if (InputController->GetKeyState(Keys::F) == KeyActions::PRESS)
 	{
 		GetTransform()->SetSize(glm::vec2(100.0f, 100.0f));
-	}
-
-	if(InputController->GetKeyState(Keys::F1) == KeyActions::PRESS)
-	{
-		GetEnginePtr()->Factory->ConstructorMap["SpriteDefault"]();
 	}
 }
 

@@ -1,0 +1,2 @@
+entityId = "Entity 1"
+components = {"assets/scripts/testComponent.lua"}
