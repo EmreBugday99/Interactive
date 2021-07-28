@@ -8,5 +8,4 @@ Interactive is still on very early development. There are a lot of missing/not-o
 #### Entity-Component
 #### Garbage Collection
 #### Rendering
-#### Runtime Reflection/Type System
 #### Disk Reading
