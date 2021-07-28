@@ -1,12 +1,13 @@
 #pragma once
-#include "../external/lua/src/lua.hpp"
 #include "../includes/CoreIncludes.h"
 
+struct lua_State;
 class LuaComponent : public Component
 {
 private:
 	lua_State* ScriptState;
 	std::string ScriptPath;
+	bool EnabledLuaKeyboardCallback;
 
 public:
 	LuaComponent(std::string scriptPath);
@@ -24,4 +25,8 @@ protected:
 
 private:
 	static Component* FactoryConstructor(std::map<std::string, void*>& dataMap);
+	
+	static LuaComponent* GetClassPointerFromLuaStack(lua_State* state);
+	void PrepareLuaStack();
+	static int EnableKeyboardCallback(lua_State* state);
 };

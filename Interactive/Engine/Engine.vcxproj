@@ -316,7 +316,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\entities\test.entity" />
-    <None Include="assets\entities\test2.entity" />
     <None Include="assets\scripts\testComponent.lua" />
     <None Include="shaders\basicShader.frag" />
     <None Include="shaders\textureShader.frag">

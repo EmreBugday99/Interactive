@@ -431,7 +431,6 @@
     <None Include="shaders\textureShader.frag" />
     <None Include="shaders\basicShader.frag" />
     <None Include="assets\entities\test.entity" />
-    <None Include="assets\entities\test2.entity" />
     <None Include="assets\scripts\testComponent.lua" />
   </ItemGroup>
 </Project>
