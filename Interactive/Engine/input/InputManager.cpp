@@ -1,7 +1,4 @@
 #include "InputManager.h"
-
-#include <iostream>
-
 #include "../includes/CoreIncludes.h"
 
 InputManager::InputManager(Interactive* engine) : Engine(engine)
@@ -10,26 +7,36 @@ InputManager::InputManager(Interactive* engine) : Engine(engine)
 	glfwSetKeyCallback(Engine->GameWindow->GetGlfwWindow(), KeyboardCallback);
 }
 
-void InputManager::BindKeyboardCallback(Component* callbackListener)
-{
-	KeyboardCallbacksListeners.push_back(callbackListener);
-}
-
-void InputManager::UnbindKeyboardCallback(Component* component)
-{
-	size_t componentIndex = KeyboardCallbacksListeners.size();
-	while (componentIndex)
-	{
-		componentIndex--;
-
-		if (component == KeyboardCallbacksListeners[componentIndex])
-			KeyboardCallbacksListeners.erase(KeyboardCallbacksListeners.begin() + componentIndex);
-	}
-}
-
 KeyActions InputManager::GetKeyState(Keys key)
 {
 	return KeyBuffer[static_cast<int>(key)];
+}
+
+bool InputManager::IsKeyPressed(Keys key)
+{
+	return KeyBuffer[static_cast<int>(key)] == KeyActions::PRESS;
+}
+
+bool InputManager::IsKeyHold(Keys key)
+{
+	if (KeyBuffer[static_cast<int>(key)] == KeyActions::PRESS || KeyBuffer[static_cast<int>(key)] == KeyActions::REPEAT)
+		return true;
+
+	return false;
+}
+
+bool InputManager::IsKeyReleased(Keys key)
+{
+	return KeyBuffer[static_cast<int>(key)] == KeyActions::RELEASE;
+}
+
+void InputManager::ClearKeyStates()
+{
+	for (auto pair : KeysActionsWaitingToBeCleaned)
+	{
+		if (pair.second == KeyActions::PRESS || pair.second == KeyActions::RELEASE)
+			KeyBuffer[pair.first] = KeyActions::None;
+	}
 }
 
 void InputManager::KeyboardCallback(GLFWwindow* window, int key, int scanCode, int action, int mods)
@@ -38,12 +45,5 @@ void InputManager::KeyboardCallback(GLFWwindow* window, int key, int scanCode, i
 	InputManager* inputController = engine->InputSystem;
 
 	inputController->KeyBuffer[key] = static_cast<KeyActions>(action);
-
-	if (inputController->KeyboardCallbacksListeners.empty())
-		return;
-
-	for (Component* callbackListener : inputController->KeyboardCallbacksListeners)
-	{
-		callbackListener->KeyboardCallback();
-	}
+	inputController->KeysActionsWaitingToBeCleaned[key] = static_cast<KeyActions>(action);
 }

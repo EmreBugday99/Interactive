@@ -9,8 +9,6 @@ TestComponent::~TestComponent() {}
 void TestComponent::Initialize()
 {
 	Component::Initialize();
-
-	InputController->BindKeyboardCallback(this);
 }
 
 void TestComponent::BeginPlay()
@@ -23,6 +21,11 @@ void TestComponent::BeginPlay()
 void TestComponent::Update(float deltaTime)
 {
 	Component::Update(deltaTime);
+
+	if (InputController->IsKeyHold(Keys::W))
+	{
+		GetTransform()->Position.y += 0.01f;
+	}
 }
 
 void TestComponent::Render()
@@ -37,26 +40,9 @@ void TestComponent::Render()
 	ImGui::End();
 }
 
-void TestComponent::KeyboardCallback()
-{
-	Component::KeyboardCallback();
-
-	if (InputController->GetKeyState(Keys::W) == KeyActions::REPEAT || InputController->GetKeyState(Keys::W) == KeyActions::PRESS)
-	{
-		GetTransform()->Position.y += 0.01f;
-	}
-
-	if (InputController->GetKeyState(Keys::F) == KeyActions::PRESS)
-	{
-		GetTransform()->SetSize(glm::vec2(100.0f, 100.0f));
-	}
-}
-
 void TestComponent::OnMarkedForDestruction()
 {
 	Component::OnMarkedForDestruction();
-
-	InputController->UnbindKeyboardCallback(this);
 }
 
 Component* TestComponent::FactoryConstructor()

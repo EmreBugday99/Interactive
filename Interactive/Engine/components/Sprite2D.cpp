@@ -31,7 +31,6 @@ void Sprite2D::Initialize()
 	Shader->LinkProgram();
 }
 void Sprite2D::Update(float deltaTime) { Component::Update(deltaTime); }
-void Sprite2D::KeyboardCallback() { Component::KeyboardCallback(); }
 
 void Sprite2D::CreateSprite2D()
 {

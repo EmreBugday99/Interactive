@@ -53,6 +53,8 @@ void Interactive::Update()
 			currentEntity->Update(0.1f);
 		}
 
+		InputSystem->ClearKeyStates();
+		
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		GameWindow->Update();

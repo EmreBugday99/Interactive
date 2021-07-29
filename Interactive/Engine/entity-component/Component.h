@@ -36,10 +36,6 @@ public:
 	/// Called each frame, for rendering
 	/// </summary>
 	virtual void Render();
-	/// <summary>
-	/// Called (if registered) each time a key is pressed
-	/// </summary>
-	virtual void KeyboardCallback();
 
 	Transform* GetTransform();
 

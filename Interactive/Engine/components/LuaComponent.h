@@ -7,7 +7,9 @@ class LuaComponent : public Component
 private:
 	lua_State* ScriptState;
 	std::string ScriptPath;
-	bool EnabledLuaKeyboardCallback;
+
+public:
+	static std::map<lua_State*, LuaComponent*> LuaComponents;
 
 public:
 	LuaComponent(std::string scriptPath);
@@ -16,7 +18,6 @@ public:
 	void BeginPlay() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void KeyboardCallback() override;
 
 	lua_State* GetScriptState() const { return ScriptState; }
 
@@ -25,8 +26,7 @@ protected:
 
 private:
 	static Component* FactoryConstructor(std::map<std::string, void*>& dataMap);
-	
-	static LuaComponent* GetClassPointerFromLuaStack(lua_State* state);
+
 	void PrepareLuaStack();
-	static int EnableKeyboardCallback(lua_State* state);
+	static int IsKeyPressed(lua_State* state);
 };

@@ -1,11 +1,17 @@
 #include "LuaComponent.h"
 #include "../external/lua/src/lua.hpp"
 #include "../external/lua/src/lstate.h"
+#include "../script-system/LuaKeyMap.h"
+
+std::map<lua_State*, LuaComponent*> LuaComponent::LuaComponents;
 
 LuaComponent::LuaComponent(std::string scriptPath)
-	: ScriptState(nullptr), ScriptPath(scriptPath), EnabledLuaKeyboardCallback(false)
+	: ScriptState(nullptr), ScriptPath(scriptPath)
 {
 	ScriptState = luaL_newstate();
+
+	LuaComponents[ScriptState] = this;
+
 	luaL_openlibs(ScriptState);
 }
 
@@ -49,13 +55,14 @@ void LuaComponent::Update(float deltaTime)
 	lua_pushnumber(ScriptState, deltaTime);
 	lua_pcall(ScriptState, args, returns, 0);
 }
+
 void LuaComponent::Render() { Component::Render(); }
-void LuaComponent::KeyboardCallback() { Component::KeyboardCallback(); }
 
 void LuaComponent::OnMarkedForDestruction()
 {
 	Component::OnMarkedForDestruction();
 
+	LuaComponents.erase(ScriptState);
 	lua_close(ScriptState);
 }
 
@@ -74,28 +81,18 @@ Component* LuaComponent::FactoryConstructor(std::map<std::string, void*>& dataMa
 	return nullptr;
 }
 
-LuaComponent* LuaComponent::GetClassPointerFromLuaStack(struct lua_State* state)
-{
-	lua_getglobal(state, "ClassPointer");
-	int* bb = reinterpret_cast<int*>(static_cast<int>(lua_tonumber(state, -1)));
-	LuaComponent* classPtr = reinterpret_cast<LuaComponent*>(bb);
-
-	return classPtr;
-}
-
 void LuaComponent::PrepareLuaStack()
 {
-	lua_pushnumber(ScriptState, reinterpret_cast<int>(this));
-	lua_setglobal(ScriptState, "ClassPointer");
-	
-	lua_pushcfunction(ScriptState, &EnableKeyboardCallback);
-	lua_setglobal(ScriptState, "EnableKeyboardCallback");
+	lua_pushcfunction(ScriptState, &IsKeyPressed);
+	lua_setglobal(ScriptState, "IsKeyPressed");
 }
 
-int LuaComponent::EnableKeyboardCallback(lua_State* state)
+int LuaComponent::IsKeyPressed(lua_State* state)
 {
-	LuaComponent* component = GetClassPointerFromLuaStack(state);
-	component->EnabledLuaKeyboardCallback = true;
-	
-	return 0;
+	const Keys checkedKey = LuaKeyMap::Keys[lua_tostring(state, -1)];
+	const bool keyPressed = LuaComponents[state]->InputController->IsKeyPressed(checkedKey);
+
+	lua_pushboolean(state, keyPressed);
+
+	return 1;
 }

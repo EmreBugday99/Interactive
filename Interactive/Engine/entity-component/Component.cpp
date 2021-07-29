@@ -15,7 +15,6 @@ void Component::Initialize()
 void Component::BeginPlay() {}
 void Component::Update(float deltaTime) {}
 void Component::Render() {}
-void Component::KeyboardCallback() {}
 
 Transform* Component::GetTransform()
 {

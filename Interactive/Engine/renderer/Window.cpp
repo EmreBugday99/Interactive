@@ -50,7 +50,7 @@ bool Window::InitializeWindow()
 	glfwSetWindowUserPointer(GlWindow, Engine);
 	glfwSetWindowSizeCallback(GlWindow, WindowResizeCallback);
 	gladLoadGL();
-
+	
 	return true;
 }
 

@@ -11,7 +11,6 @@ public:
 	void BeginPlay() override;
 	void Update(float deltaTime) override;
 	void Render() override;
-	void KeyboardCallback() override;
 
 protected:
 	void OnMarkedForDestruction() override;

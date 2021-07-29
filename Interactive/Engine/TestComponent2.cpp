@@ -27,10 +27,6 @@ void TestComponent2::Render()
 	ImGui::End();
 }
 
-void TestComponent2::KeyboardCallback()
-{
-}
-
 void TestComponent2::OnMarkedForDestruction()
 {
 }

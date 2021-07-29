@@ -307,6 +307,7 @@
     <ClInclude Include="renderer\buffers\VertexArray.h" />
     <ClInclude Include="renderer\Window.h" />
     <ClInclude Include="components\Sprite2D.h" />
+    <ClInclude Include="script-system\LuaKeyMap.h" />
     <ClInclude Include="script-system\ScriptEngine.h" />
     <ClInclude Include="TestComponent.h" />
     <ClInclude Include="renderer\texture\Texture.h" />

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "TestComponent.h"
-#include "asset-system/AssetManager.h"
 #include "includes/CoreIncludes.h"
 
 int main()
