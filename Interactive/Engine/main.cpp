@@ -10,9 +10,9 @@ int main()
 	Camera* cameraComp = cameraEntity->AddComponent<Camera>();
 	engine->MainCamera = cameraComp;
 
-	Entity* testEntity = engine->ECManager->CreateEntity("Test Entity");
-	testEntity->AddComponent<Sprite2D>();
-	testEntity->AddComponent<TestComponent>();
+	//Entity* testEntity = engine->ECManager->CreateEntity("Test Entity");
+	//testEntity->AddComponent<Sprite2D>();
+	//testEntity->AddComponent<TestComponent>();
 
 	engine->Start();
 

@@ -6,6 +6,7 @@ class LuaKeyMap
 {
 public:
 	inline static std::map<std::string, Keys> Keys = {
-		{"W", Keys::W}
+		{"W", Keys::W},
+		{"F", Keys::F}
 	};
 };
