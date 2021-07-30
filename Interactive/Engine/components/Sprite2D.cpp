@@ -3,6 +3,7 @@
 #include "Camera.h"
 #include "Transform.h"
 #include "../includes/CoreIncludes.h"
+#include "../reflection-system/ReflectionSystem.hpp"
 
 Sprite2D::Sprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
 	: Color(color), Shader(nullptr), VAO(nullptr), AttachedTexture(nullptr) {}
@@ -14,6 +15,8 @@ Sprite2D::Sprite2D()
 	VAO = nullptr;
 
 	Color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
+
+	ReflectionSystem::UpdateClassReflection<Sprite2D>(Reflection, "Sprite2D");
 }
 
 Sprite2D::~Sprite2D() {}
@@ -31,7 +34,6 @@ void Sprite2D::Initialize()
 	Shader->LinkProgram();
 }
 void Sprite2D::Update(float deltaTime) { Component::Update(deltaTime); }
-void Sprite2D::KeyboardCallback() { Component::KeyboardCallback(); }
 
 void Sprite2D::CreateSprite2D()
 {

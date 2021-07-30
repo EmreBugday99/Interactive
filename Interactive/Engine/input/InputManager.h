@@ -1,7 +1,6 @@
 #pragma once
-#include <map>
 #include <vector>
-
+#include <map>
 #include "KeyActions.h"
 
 enum class Keys;
@@ -16,14 +15,19 @@ public:
 	void UnbindKeyboardCallback(Component* component);
 
 	KeyActions GetKeyState(Keys key);
+	bool IsKeyPressed(Keys key);
+	bool IsKeyHold(Keys key);
+	bool IsKeyReleased(Keys key);
+
+	void ClearKeyStates();
 
 private:
 	friend struct GLFWwindow;
 	friend class Interactive;
 
 	KeyActions KeyBuffer[400] = { KeyActions::None };
-
-	std::vector<Component*> KeyboardCallbacksListeners;
+	
+	std::map<int, KeyActions> KeysActionsWaitingToBeCleaned;
 
 	InputManager(Interactive* engine);
 	

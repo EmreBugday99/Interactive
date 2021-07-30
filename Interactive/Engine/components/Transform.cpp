@@ -1,8 +1,12 @@
 #include "Transform.h"
 #include "Sprite2D.h"
+#include "../reflection-system/ReflectionSystem.hpp"
 
 Transform::Transform()
-	: Size(glm::vec2(10.0f, 10.0f)), Position(glm::vec3(0.0f, 0.0f, 0.0f)) {}
+	: Size(glm::vec2(10.0f, 10.0f)), Position(glm::vec3(0.0f, 0.0f, 0.0f))
+{
+	ReflectionSystem::UpdateClassReflection<Transform>(Reflection, "Transform");
+}
 
 void Transform::Initialize()
 {
@@ -22,8 +26,8 @@ void Transform::SetPosition(glm::vec3 newPosition)
 void Transform::SetSize(glm::vec2 newSize)
 {
 	Size = newSize;
-
-	auto spriteComponent = Owner->GetComponentOfType<Sprite2D>();
+	
+	Sprite2D* spriteComponent = static_cast<Sprite2D*>(Owner->GetComponent("Sprite2D"));
 	if (spriteComponent == nullptr)
 	{
 		std::cout << "Couldn't find Sprite2D component" << std::endl;

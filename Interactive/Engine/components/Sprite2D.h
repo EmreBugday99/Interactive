@@ -20,7 +20,6 @@ public:
 
 	void Initialize() override;
 	void Update(float deltaTime) override;
-	void KeyboardCallback() override;
 	void Render() override;
 	void AttachTexture(Texture* textureToAttach);
 

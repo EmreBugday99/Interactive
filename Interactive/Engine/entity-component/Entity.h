@@ -24,15 +24,15 @@ public:
 	/// <summary>
 	/// Components that are waiting to be initialized and enter the game loop.
 	/// </summary>
-	std::vector<Component*> ComponentsWaitingToJoin;
+	std::vector<Component*> ComponentsWaitingToJoin = {};
 	/// <summary>
 	/// Components that are currently in the game loop.
 	/// </summary>
-	std::vector<Component*> ComponentsInGameLoop;
+	std::vector<Component*> ComponentsInGameLoop = {};
 	/// <summary>
 	/// Components that are waiting to leave the game loop and get destroyed/garbage collected.
 	/// </summary>
-	std::vector<Component*> ComponentsWaitingToLeave;
+	std::vector<Component*> ComponentsWaitingToLeave = {};
 
 	~Entity() override;
 
@@ -61,88 +61,119 @@ public:
 		return newComponent;
 	}
 
-	/// <summary>
-	/// Returns the first found component of that type.
-	/// </summary>
-	/// <typeparam name="T">Type of the component.</typeparam>
-	/// <returns>Returns the component pointer if found one. Returns nullptr if not found.</returns>
-	template <typename T>
-	T* GetComponentOfType() const
+	bool HasComponent(const char* typeName)
 	{
 		for (Component* component : ComponentsInGameLoop)
 		{
-			if (&typeid(*component) == &typeid(T))
-				return dynamic_cast<T*>(component);
+			if (*component->Reflection.GetTypeName() == *typeName)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool HasComponent(size_t typeHash)
+	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (component->Reflection.GetTypeHash() == typeHash)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool HasComponentComplex(const char* typeName)
+	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (*component->Reflection.GetTypeName() == *typeName)
+			{
+				return true;
+			}
 		}
 
 		for (Component* component : ComponentsWaitingToJoin)
 		{
-			if (&typeid(*component) == &typeid(T))
-				return dynamic_cast<T*>(component);
+			if (*component->Reflection.GetTypeName() == *typeName)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool HasComponentComplex(size_t typeHash)
+	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (component->Reflection.GetTypeHash() == typeHash)
+			{
+				return true;
+			}
+		}
+
+		for (Component* component : ComponentsWaitingToJoin)
+		{
+			if (component->Reflection.GetTypeHash() == typeHash)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	Component* GetComponent(const char* typeName)
+	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (*component->Reflection.GetTypeName() == *typeName)
+			{
+				return component;
+			}
 		}
 
 		return nullptr;
 	}
 
-	/// <summary>
-	/// Returns all the components of the specified type that this entity has.
-	/// </summary>
-	/// <typeparam name="T">Type of the component.</typeparam>
-	/// <returns>Returns a vector of components. Returns an empty vector if not found any.</returns>
-	template <typename T>
-	std::vector<T*> GetComponentsOfType()
+	Component* GetComponent(size_t typeHash)
 	{
-		std::vector<T*> componentsToReturn;
-
 		for (Component* component : ComponentsInGameLoop)
 		{
-			if (&typeid(*component) == &typeid(T))
-				componentsToReturn.push_back(static_cast<T*>(component));
+			if (component->Reflection.GetTypeHash() == typeHash)
+			{
+				return component;
+			}
 		}
 
-		return componentsToReturn;
+		return nullptr;
 	}
 
-	/// <summary>
-	/// Only checks the components currently inside the game,
-	/// excluding the ones that are waiting to enter.
-	/// </summary>
-	/// <typeparam name="T">Type of the component to check</typeparam>
-	/// <returns>If the entity has such component</returns>
-	template <typename T>
-	bool HasComponentSimple()
+	Component* GetComponentComplex(const char* typeName)
 	{
-		for (Component* component : ComponentsInGameLoop)
-		{
-			if (&typeid(*component) == &typeid(T))
-				return true;
-		}
+			for (Component* component : ComponentsInGameLoop)
+			{
+				if (*component->Reflection.GetTypeName() == *typeName)
+				{
+					return component;
+				}
+			}
 
-		return false;
-	}
+			for (Component* component : ComponentsWaitingToJoin)
+			{
+				if (*component->Reflection.GetTypeName() == *typeName)
+				{
+					return component;
+				}
+			}
 
-	/// <summary>
-	/// Checks both the components currently in the game
-	/// and the ones that are waiting to enter.
-	/// </summary>
-	/// <typeparam name="T">Type of the component to check</typeparam>
-	/// <returns>If the entity has such component</returns>
-	template <typename T>
-	bool HasComponent()
-	{
-		for (Component* component : ComponentsWaitingToJoin)
-		{
-			if (&typeid(*component) == &typeid(T))
-				return true;
-		}
-
-		for (Component* component : ComponentsInGameLoop)
-		{
-			if (&typeid(*component) == &typeid(T))
-				return true;
-		}
-
-		return false;
+		return nullptr;
 	}
 
 protected:

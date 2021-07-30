@@ -1,6 +1,5 @@
-#include <iostream>
-#include "TestComponent.h"
-#include "external/lua/src/lua.hpp"
+#include <fstream>
+
 #include "includes/CoreIncludes.h"
 
 int main()
@@ -11,18 +10,8 @@ int main()
 	Camera* cameraComp = cameraEntity->AddComponent<Camera>();
 	engine->MainCamera = cameraComp;
 
-	Entity* testEntity = engine->ECManager->CreateEntity("Test Entity");
-	testEntity->AddComponent<Sprite2D>();
-	testEntity->AddComponent<TestComponent>();
-
-	lua_State* state = luaL_newstate();
-	luaL_dostring(state, "num = 125");
-	
-	lua_getglobal(state, "num");
-	int x = lua_tonumber(state, -1);
-	std::cout << "Lua num: " << x << std::endl;
-	
-	lua_close(state);
+	//std::vector<std::string> comps = { "assets/scripts/testComponent.lua", "assets/scripts/testComponent.lua" };
+	//engine->AssetSystem->CreateEntityAsset("assetTestEntity", glm::vec3(0.0f, 0.0f, 0.0f), comps);
 
 	engine->Start();
 

@@ -1,7 +1,7 @@
 #include "GarbageCollector.h"
 #include "includes/CoreIncludes.h"
 
-GarbageCollector::GarbageCollector(Interactive* engine) : Engine(engine), ForceEnterThreshold(10) {}
+GarbageCollector::GarbageCollector(Interactive* engine) : Engine(engine), ForceEnterThreshold(1) {}
 
 GarbageCollector::~GarbageCollector() {}
 

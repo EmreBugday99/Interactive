@@ -1,9 +1,13 @@
 #include "Component.h"
 #include "../includes/CoreIncludes.h"
+#include "../reflection-system/ReflectionSystem.hpp"
 
 Component::Component()
 	: AttachedTransform(nullptr), FirstUpdateExecuted(false), Owner(nullptr), InputController(nullptr),
-	BeginPlayExecuted(false) {}
+	BeginPlayExecuted(false)
+{
+	ReflectionSystem::UpdateClassReflection<Component>(Reflection, "Component");
+}
 
 Component::~Component() {}
 
@@ -15,14 +19,13 @@ void Component::Initialize()
 void Component::BeginPlay() {}
 void Component::Update(float deltaTime) {}
 void Component::Render() {}
-void Component::KeyboardCallback() {}
 
 Transform* Component::GetTransform()
 {
 	if (AttachedTransform != nullptr)
 		return AttachedTransform;
 
-	AttachedTransform = Owner->GetComponentOfType<Transform>();
+	AttachedTransform = static_cast<Transform*>(Owner->GetComponent("Transform"));
 	return AttachedTransform;
 }
 
