@@ -1,9 +1,13 @@
 #include "Component.h"
 #include "../includes/CoreIncludes.h"
+#include "../reflection-system/ReflectionSystem.hpp"
 
 Component::Component()
 	: AttachedTransform(nullptr), FirstUpdateExecuted(false), Owner(nullptr), InputController(nullptr),
-	BeginPlayExecuted(false) {}
+	BeginPlayExecuted(false)
+{
+	ReflectionSystem::UpdateClassReflection<Component>(Reflection, "Component");
+}
 
 Component::~Component() {}
 
@@ -21,7 +25,7 @@ Transform* Component::GetTransform()
 	if (AttachedTransform != nullptr)
 		return AttachedTransform;
 
-	AttachedTransform = Owner->GetComponentOfType<Transform>();
+	AttachedTransform = static_cast<Transform*>(Owner->GetComponent("Transform"));
 	return AttachedTransform;
 }
 

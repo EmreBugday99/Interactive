@@ -1,7 +1,12 @@
 #include "Camera.h"
 
+#include "../reflection-system/ReflectionSystem.hpp"
+
 // Placeholder, ProjectionMatrix will be resetted at Beginplay.
-Camera::Camera() : ProjectionMatrix(glm::ortho(0.0f, 0.0f, 0.0f, 0.0f)) {}
+Camera::Camera() : ProjectionMatrix(glm::ortho(0.0f, 0.0f, 0.0f, 0.0f))
+{
+	ReflectionSystem::UpdateClassReflection<Camera>(Reflection, "Camera");
+}
 Camera::~Camera() {}
 
 void Camera::Update(float deltaTime) { Component::Update(deltaTime); }

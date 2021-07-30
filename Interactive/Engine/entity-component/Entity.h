@@ -61,88 +61,119 @@ public:
 		return newComponent;
 	}
 
-	/// <summary>
-	/// Returns the first found component of that type.
-	/// </summary>
-	/// <typeparam name="T">Type of the component.</typeparam>
-	/// <returns>Returns the component pointer if found one. Returns nullptr if not found.</returns>
-	template <typename T>
-	T* GetComponentOfType() const
+	bool HasComponent(const char* typeName)
 	{
 		for (Component* component : ComponentsInGameLoop)
 		{
-			if (&typeid(*component) == &typeid(T))
-				return dynamic_cast<T*>(component);
+			if(*component->Reflection.GetTypeName() == *typeName)
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	bool HasComponent(size_t typeHash)
+	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (component->Reflection.GetTypeHash() == typeHash)
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	bool HasComponentComplex(const char* typeName)
+	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (*component->Reflection.GetTypeName() == *typeName)
+			{
+				return true;
+			}
 		}
 
 		for (Component* component : ComponentsWaitingToJoin)
 		{
-			if (&typeid(*component) == &typeid(T))
-				return dynamic_cast<T*>(component);
+			if (*component->Reflection.GetTypeName() == *typeName)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	bool HasComponentComplex(size_t typeHash)
+	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (component->Reflection.GetTypeHash() == typeHash)
+			{
+				return true;
+			}
+		}
+
+		for (Component* component : ComponentsWaitingToJoin)
+		{
+			if (component->Reflection.GetTypeHash() == typeHash)
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	Component* GetComponent(const char* typeName)
+	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (*component->Reflection.GetTypeName() == *typeName)
+			{
+				return component;
+			}
 		}
 
 		return nullptr;
 	}
 
-	/// <summary>
-	/// Returns all the components of the specified type that this entity has.
-	/// </summary>
-	/// <typeparam name="T">Type of the component.</typeparam>
-	/// <returns>Returns a vector of components. Returns an empty vector if not found any.</returns>
-	template <typename T>
-	std::vector<T*> GetComponentsOfType()
-	{
-		std::vector<T*> componentsToReturn;
-
-		for (Component* component : ComponentsInGameLoop)
-		{
-			if (&typeid(*component) == &typeid(T))
-				componentsToReturn.push_back(static_cast<T*>(component));
-		}
-
-		return componentsToReturn;
-	}
-
-	/// <summary>
-	/// Only checks the components currently inside the game,
-	/// excluding the ones that are waiting to enter.
-	/// </summary>
-	/// <typeparam name="T">Type of the component to check</typeparam>
-	/// <returns>If the entity has such component</returns>
-	template <typename T>
-	bool HasComponentSimple()
+	Component* GetComponent(size_t typeHash)
 	{
 		for (Component* component : ComponentsInGameLoop)
 		{
-			if (&typeid(*component) == &typeid(T))
-				return true;
+			if (component->Reflection.GetTypeHash() == typeHash)
+			{
+				return component;
+			}
 		}
 
-		return false;
+		return nullptr;
 	}
 
-	/// <summary>
-	/// Checks both the components currently in the game
-	/// and the ones that are waiting to enter.
-	/// </summary>
-	/// <typeparam name="T">Type of the component to check</typeparam>
-	/// <returns>If the entity has such component</returns>
-	template <typename T>
-	bool HasComponent()
+	Component* GetComponentComplex(const char* typeName)
 	{
+		for (Component* component : ComponentsInGameLoop)
+		{
+			if (*component->Reflection.GetTypeName() == *typeName)
+			{
+				return component;
+			}
+		}
+
 		for (Component* component : ComponentsWaitingToJoin)
 		{
-			if (&typeid(*component) == &typeid(T))
-				return true;
+			if (*component->Reflection.GetTypeName() == *typeName)
+			{
+				return component;
+			}
 		}
 
-		for (Component* component : ComponentsInGameLoop)
-		{
-			if (&typeid(*component) == &typeid(T))
-				return true;
-		}
-
-		return false;
+		return nullptr;
 	}
 
 protected:

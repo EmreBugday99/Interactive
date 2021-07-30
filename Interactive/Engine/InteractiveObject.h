@@ -1,4 +1,5 @@
 #pragma once
+#include "reflection-system/ClassReflection.hpp"
 
 class Interactive;
 class InteractiveObject
@@ -8,6 +9,8 @@ private:
 	Interactive* Engine;
 
 public:
+	ClassReflection Reflection;
+	
 	InteractiveObject();
 	virtual ~InteractiveObject();
 

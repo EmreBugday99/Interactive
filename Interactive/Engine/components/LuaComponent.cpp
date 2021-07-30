@@ -1,7 +1,9 @@
-#include "LuaComponent.h"
+﻿#include "LuaComponent.h"
 #include "../external/lua/src/lua.hpp"
 #include "../external/lua/src/lstate.h"
+#include "../reflection-system/ReflectionSystem.hpp"
 #include "../script-system/LuaKeyMap.h"
+#include "../utils/Utils.hpp"
 
 std::map<lua_State*, LuaComponent*> LuaComponent::LuaComponents;
 
@@ -9,10 +11,10 @@ LuaComponent::LuaComponent(std::string scriptPath)
 	: ScriptState(nullptr), ScriptPath(scriptPath)
 {
 	ScriptState = luaL_newstate();
-
 	LuaComponents[ScriptState] = this;
-
 	luaL_openlibs(ScriptState);
+
+	ReflectionSystem::UpdateClassReflection<LuaComponent>(Reflection, "LuaComponent");
 }
 
 LuaComponent::~LuaComponent()
@@ -90,9 +92,12 @@ void LuaComponent::PrepareLuaStack()
 {
 	lua_pushcfunction(ScriptState, &CreateEntity);
 	lua_setglobal(ScriptState, "CreateEntity");
-	
+
 	lua_pushcfunction(ScriptState, &GetEntity);
 	lua_setglobal(ScriptState, "GetEntity");
+
+	lua_pushcfunction(ScriptState, &HasComponent);
+	lua_setglobal(ScriptState, "HasComponent");
 
 	lua_pushcfunction(ScriptState, &Destroy);
 	lua_setglobal(ScriptState, "Destroy");
@@ -102,19 +107,23 @@ void LuaComponent::PrepareLuaStack()
 
 	lua_pushcfunction(ScriptState, &IsKeyPressed);
 	lua_setglobal(ScriptState, "IsKeyPressed");
+
+	lua_pushcfunction(ScriptState, &GetTypeHash);
+	lua_setglobal(ScriptState, "GetTypeHash");
 }
 
-int LuaComponent::CreateEntity(struct lua_State* state)
+int LuaComponent::CreateEntity(lua_State* state)
 {
 	LuaComponent* component = LuaComponents[state];
+
 	Entity* entity = component->GetEnginePtr()->ECManager->CreateEntity(lua_tostring(state, -1));
 
 	lua_pushlightuserdata(state, entity);
-	
+
 	return 1;
 }
 
-int LuaComponent::GetEntity(struct lua_State* state)
+int LuaComponent::GetEntity(lua_State* state)
 {
 	LuaComponent* component = LuaComponents[state];
 
@@ -124,17 +133,35 @@ int LuaComponent::GetEntity(struct lua_State* state)
 	return 1;
 }
 
+int LuaComponent::HasComponent(lua_State* state)
+{
+	const char* typeName = lua_tostring(state, -1);
+	Entity* entity = static_cast<Entity*>(lua_touserdata(state, -2));
+
+	bool componentExists = entity->HasComponent(typeName);
+	lua_pushboolean(state, componentExists);
+
+	return 1;
+}
+
+int LuaComponent::GetComponent(lua_State* state)
+{
+	const char* typeName = lua_tostring(state, -1);
+	Entity* entity = static_cast<Entity*>(lua_touserdata(state, -2));
+
+	Component* component = entity->GetComponent(typeName);
+	lua_pushlightuserdata(state, component);
+
+	return 1;
+}
+
 int LuaComponent::Destroy(lua_State* state)
 {
-	if (lua_isnil(state, -1))
-		return 0;
-
 	InteractiveObject* object = static_cast<InteractiveObject*>(lua_touserdata(state, -1));
 	object->MarkForDestruction();
 
 	return 0;
 }
-
 
 int LuaComponent::CreateSprite(lua_State* state)
 {
@@ -153,5 +180,19 @@ int LuaComponent::IsKeyPressed(lua_State* state)
 
 	lua_pushboolean(state, keyPressed);
 
+	return 1;
+}
+
+int LuaComponent::GetTypeHash(lua_State* state)
+{
+	// I am storing the reflection's type hash's mother fucking memory address becuase LUA doesnt support unsigned types.
+	// I AM AWARE THİS İS SOME FUCKED UP WORK AROUND DON'T FUCKING JUDGE. I WROTE THIS CODE AT 5 FUCKING AM
+	Component* component = static_cast<Component*>(lua_touserdata(state, -1));
+	lua_pushlightuserdata(state, &component->Reflection.GetTypeHashRef());
+
+	//size_t& assads = *static_cast<size_t*>(lua_touserdata(state, -1));
+	//std::cout << "Casted Native: " << assads << std::endl;
+	//std::cout << "Native Native: " << component->Reflection.GetTypeHash() << std::endl;
+	
 	return 1;
 }

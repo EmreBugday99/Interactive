@@ -402,7 +402,8 @@ LUA_API const char *lua_tolstring (lua_State *L, int idx, size_t *len) {
   o = index2value(L, idx);
   if (!ttisstring(o)) {
     if (!cvt2str(o)) {  /* not convertible? */
-      if (len != NULL) *len = 0;
+      if (len != NULL) 
+          *len = 0;
       lua_unlock(L);
       return NULL;
     }

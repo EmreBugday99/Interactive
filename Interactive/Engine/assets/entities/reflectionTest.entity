@@ -1,2 +1,2 @@
-entityId = "Entity 1"
+entityId = "Reflection Entity"
 components = {"assets/scripts/testComponent.lua"}

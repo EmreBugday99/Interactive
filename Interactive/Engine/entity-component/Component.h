@@ -1,6 +1,7 @@
 #pragma once
 #include "../InteractiveObject.h"
 
+class ReflectionSystem;
 class Transform;
 class Entity;
 enum class Keys;

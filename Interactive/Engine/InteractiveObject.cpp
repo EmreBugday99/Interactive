@@ -1,8 +1,10 @@
 #include "InteractiveObject.h"
 #include "includes/CoreIncludes.h"
+#include "reflection-system/ReflectionSystem.hpp"
 
 InteractiveObject::InteractiveObject()
-	: WaitingForDestruction(false), Engine(nullptr)
+	: WaitingForDestruction(false), Engine(nullptr),
+	Reflection(ReflectionSystem::CreateClassReflection<InteractiveObject>("InteractiveObject"))
 {
 }
 

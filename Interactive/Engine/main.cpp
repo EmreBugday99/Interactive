@@ -1,6 +1,6 @@
 #include <iostream>
-#include "TestComponent.h"
 #include "includes/CoreIncludes.h"
+#include <functional>
 
 int main()
 {
@@ -9,11 +9,7 @@ int main()
 	Entity* cameraEntity = engine->ECManager->CreateEntity("Camera Entity");
 	Camera* cameraComp = cameraEntity->AddComponent<Camera>();
 	engine->MainCamera = cameraComp;
-
-	//Entity* testEntity = engine->ECManager->CreateEntity("Test Entity");
-	//testEntity->AddComponent<Sprite2D>();
-	//testEntity->AddComponent<TestComponent>();
-
+	
 	engine->Start();
 
 	delete(engine);
