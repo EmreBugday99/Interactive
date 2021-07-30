@@ -1,0 +1,5 @@
+entityId = "assetTestEntity"
+posX = 0
+posY = 0
+posZ = 0
+components = {"assets/scripts/testComponent.lua", "assets/scripts/testComponent.lua"}

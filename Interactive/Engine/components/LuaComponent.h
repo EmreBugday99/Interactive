@@ -60,7 +60,20 @@ private:
 	// IsKeyPressed(string(string representation of a key defined in LuaKeyMap.h))
 	// Cross references LuaKeyMap with Keys Enum and checks if that key is currently pressed.
 	static int IsKeyPressed(lua_State* state);
-	//HashString(string(string to hash))
+	// HashString(string(string to hash))
 	// Hashes the string provided by the lua function.
 	static int GetTypeHash(lua_State* state);
+	// GetXPosition(entity)
+	// Returns the x position of the specified entity as a float
+	static int GetPositionX(lua_State* state);
+	// GetYPosition(enitity)
+	// Returns the y position of the specified entity as a float
+	static int GetPositionY(lua_State* state);
+	// TranslateX(entity(entity to move), float(x vector))
+	// Modifies the x vector of the specified entity.
+	static int TranslateX(lua_State* state);
+	// TranslateY(entity(entity to move), float(y vector))
+	// Modifies the y vector of the specified entity.
+	static int TranslateY(lua_State* state);
+	
 };

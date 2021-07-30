@@ -1,9 +1,6 @@
-
 function BeginPlay()
-    selfEntity = GetEntity()
-    sprite = CreateSprite(selfEntity)
-    hashedTypeId = GetTypeHash(sprite)
-    print("Lua:", hashedTypeId)
+    entity = GetEntity()
+    CreateSprite(entity)
 end
 
 function Update(deltaTime)

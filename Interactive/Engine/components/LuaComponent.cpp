@@ -110,6 +110,18 @@ void LuaComponent::PrepareLuaStack()
 
 	lua_pushcfunction(ScriptState, &GetTypeHash);
 	lua_setglobal(ScriptState, "GetTypeHash");
+
+	lua_pushcfunction(ScriptState, &TranslateX);
+	lua_setglobal(ScriptState, "TranslateX");
+
+	lua_pushcfunction(ScriptState, &TranslateY);
+	lua_setglobal(ScriptState, "TranslateY");
+
+	lua_pushcfunction(ScriptState, &GetPositionX);
+	lua_setglobal(ScriptState, "GetPositionX");
+
+	lua_pushcfunction(ScriptState, &GetPositionY);
+	lua_setglobal(ScriptState, "GetPositionY");
 }
 
 int LuaComponent::CreateEntity(lua_State* state)
@@ -185,14 +197,54 @@ int LuaComponent::IsKeyPressed(lua_State* state)
 
 int LuaComponent::GetTypeHash(lua_State* state)
 {
-	// I am storing the reflection's type hash's mother fucking memory address becuase LUA doesnt support unsigned types.
-	// I AM AWARE THİS İS SOME FUCKED UP WORK AROUND DON'T FUCKING JUDGE. I WROTE THIS CODE AT 5 FUCKING AM
 	Component* component = static_cast<Component*>(lua_touserdata(state, -1));
+	// We are storing memory reference of the hash instead of copying the value to the Lua stack.
+	// Reason is that Lua can't handle unsigned integers.
 	lua_pushlightuserdata(state, &component->Reflection.GetTypeHashRef());
-
-	//size_t& assads = *static_cast<size_t*>(lua_touserdata(state, -1));
-	//std::cout << "Casted Native: " << assads << std::endl;
-	//std::cout << "Native Native: " << component->Reflection.GetTypeHash() << std::endl;
 	
 	return 1;
+}
+
+int LuaComponent::GetPositionX(struct lua_State* state)
+{
+	Entity* entity = static_cast<Entity*>(lua_touserdata(state, -1));
+
+	Transform* transform = static_cast<Transform*>(entity->GetComponentComplex("Transform"));
+	lua_pushnumber(state, transform->Position.x);
+
+	return 1;
+}
+
+int LuaComponent::GetPositionY(struct lua_State* state)
+{
+	Entity* entity = static_cast<Entity*>(lua_touserdata(state, -1));
+
+	Transform* transform = static_cast<Transform*>(entity->GetComponentComplex("Transform"));
+	
+	lua_pushnumber(state, transform->Position.y);
+
+	return 1;
+}
+
+int LuaComponent::TranslateX(struct lua_State* state)
+{
+	Entity* entity = static_cast<Entity*>(lua_touserdata(state, -1));
+	float newXVector = lua_tonumber(state, -2);
+
+	Transform* transform = static_cast<Transform*>(entity->GetComponentComplex("Transform"));
+	transform->Position.x = newXVector;
+
+	return 0;
+}
+
+int LuaComponent::TranslateY(struct lua_State* state)
+{
+	Entity* entity = static_cast<Entity*>(lua_touserdata(state, -2));
+	
+	float newYVector = lua_tonumber(state, -1);
+
+	Transform* transform = static_cast<Transform*>(entity->GetComponentComplex("Transform"));
+	transform->Position.y = newYVector;
+
+	return 0;
 }

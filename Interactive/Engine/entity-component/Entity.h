@@ -24,15 +24,15 @@ public:
 	/// <summary>
 	/// Components that are waiting to be initialized and enter the game loop.
 	/// </summary>
-	std::vector<Component*> ComponentsWaitingToJoin;
+	std::vector<Component*> ComponentsWaitingToJoin = {};
 	/// <summary>
 	/// Components that are currently in the game loop.
 	/// </summary>
-	std::vector<Component*> ComponentsInGameLoop;
+	std::vector<Component*> ComponentsInGameLoop = {};
 	/// <summary>
 	/// Components that are waiting to leave the game loop and get destroyed/garbage collected.
 	/// </summary>
-	std::vector<Component*> ComponentsWaitingToLeave;
+	std::vector<Component*> ComponentsWaitingToLeave = {};
 
 	~Entity() override;
 
@@ -65,12 +65,12 @@ public:
 	{
 		for (Component* component : ComponentsInGameLoop)
 		{
-			if(*component->Reflection.GetTypeName() == *typeName)
+			if (*component->Reflection.GetTypeName() == *typeName)
 			{
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -83,7 +83,7 @@ public:
 				return true;
 			}
 		}
-		
+
 		return false;
 	}
 
@@ -157,21 +157,21 @@ public:
 
 	Component* GetComponentComplex(const char* typeName)
 	{
-		for (Component* component : ComponentsInGameLoop)
-		{
-			if (*component->Reflection.GetTypeName() == *typeName)
+			for (Component* component : ComponentsInGameLoop)
 			{
-				return component;
+				if (*component->Reflection.GetTypeName() == *typeName)
+				{
+					return component;
+				}
 			}
-		}
 
-		for (Component* component : ComponentsWaitingToJoin)
-		{
-			if (*component->Reflection.GetTypeName() == *typeName)
+			for (Component* component : ComponentsWaitingToJoin)
 			{
-				return component;
+				if (*component->Reflection.GetTypeName() == *typeName)
+				{
+					return component;
+				}
 			}
-		}
 
 		return nullptr;
 	}
