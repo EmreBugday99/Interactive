@@ -7,5 +7,8 @@ Interactive is still on very early development. There are a lot of missing/not-o
 ## Finished Features Includes:
 #### Entity-Component
 #### Garbage Collection
+#### Reflection
+#### Scripting Language
+#### Asset System
 #### Rendering
 #### Disk Reading
