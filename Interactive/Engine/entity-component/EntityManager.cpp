@@ -6,7 +6,7 @@ EntityManager::~EntityManager() {}
 
 Entity* EntityManager::CreateEntity(std::string entityName)
 {
-	Entity* newEntity = new Entity(entityName, Engine);
+	Entity* newEntity = new Entity(entityName, Engine, false);
 	EntitiesWaitingToJoin.push_back(newEntity);
 
 	return newEntity;

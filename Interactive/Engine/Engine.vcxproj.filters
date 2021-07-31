@@ -204,6 +204,9 @@
     <ClCompile Include="asset-system\AssetDatabase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scene\SceneManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="asset-system\AssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -435,6 +438,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utils\Utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\SceneManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\AssetIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

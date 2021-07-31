@@ -218,6 +218,7 @@
     <ClCompile Include="external\lua\src\lutf8lib.c" />
     <ClCompile Include="external\lua\src\lvm.c" />
     <ClCompile Include="external\lua\src\lzio.c" />
+    <ClCompile Include="scene\SceneManager.cpp" />
     <ClCompile Include="script-system\ComponentFactory.cpp" />
     <ClCompile Include="GarbageCollector.cpp" />
     <ClCompile Include="input\InputManager.cpp" />
@@ -281,12 +282,15 @@
     <ClInclude Include="external\lua\src\lundump.h" />
     <ClInclude Include="external\lua\src\lvm.h" />
     <ClInclude Include="external\lua\src\lzio.h" />
+    <ClInclude Include="includes\AssetIncludes.h" />
     <ClInclude Include="reflection-system\empty.hpp" />
     <ClInclude Include="reflection-system\ClassReflection.hpp" />
     <ClInclude Include="reflection-system\FieldReflection.hpp" />
     <ClInclude Include="reflection-system\MethodReflection.hpp" />
     <ClInclude Include="reflection-system\TypeReflection.hpp" />
     <ClInclude Include="reflection-system\ReflectionSystem.hpp" />
+    <ClInclude Include="scene\SceneManager.h" />
+    <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="script-system\ComponentFactory.h" />
     <ClInclude Include="GarbageCollector.h" />
     <ClInclude Include="includes\Components.h" />

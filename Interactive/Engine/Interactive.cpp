@@ -1,3 +1,4 @@
+#include "asset-system/AssetManager.h"
 #include "includes/CoreIncludes.h"
 
 std::map<std::string, InteractiveObject*> Interactive::GlobalObjectPointers;
@@ -12,6 +13,8 @@ Interactive::Interactive(std::string gameName)
 	GC = new GarbageCollector(this);
 	Factory = new ComponentFactory(this);
 	AssetSystem = new AssetManager(this);
+	SceneSystem = new SceneManager(this);
+
 	AssetSystem->InitializeDatabase();
 
 	ImGui::CreateContext();
@@ -54,7 +57,7 @@ void Interactive::Update()
 		}
 
 		InputSystem->ClearKeyStates();
-		
+
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		GameWindow->Update();
@@ -88,6 +91,9 @@ void Interactive::Close()
 
 	delete(Factory);
 	Factory = nullptr;
+
+	delete(SceneSystem);
+	SceneSystem = nullptr;
 
 	glfwTerminate();
 }

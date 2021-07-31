@@ -12,7 +12,7 @@ int main()
 
 	//std::vector<std::string> comps = { "assets/scripts/testComponent.lua", "assets/scripts/testComponent.lua" };
 	//engine->AssetSystem->CreateEntityAsset("assetTestEntity", glm::vec3(0.0f, 0.0f, 0.0f), comps);
-
+	
 	engine->Start();
 
 	delete(engine);

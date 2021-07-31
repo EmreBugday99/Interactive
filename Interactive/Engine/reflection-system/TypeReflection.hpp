@@ -18,6 +18,7 @@ struct TypeReflection
 		HashedName = std::hash<std::string>{}(name);
 	}
 	const char* GetTypeName() const { return TypeName; }
+	bool IsOfType(const char* typeName) const { return *typeName == *TypeName; }
 	size_t GetTypeHash() const { return HashedName; }
 	size_t& GetTypeHashRef() { return HashedName; }
 
