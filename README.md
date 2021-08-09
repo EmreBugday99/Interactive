@@ -10,5 +10,6 @@ Interactive is still on very early development. There are a lot of missing/not-o
 #### Reflection
 #### Scripting Language
 #### Asset System
+  ##### Asset Serialization / Deserialization
 #### Rendering
 #### Disk Reading
