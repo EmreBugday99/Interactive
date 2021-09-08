@@ -6,7 +6,7 @@ int main()
 {
 	Interactive* engine = new Interactive("Test Game Window");
 
-	Entity* cameraEntity = engine->ECManager->CreateEntity("Camera Entity");
+	Entity* cameraEntity = engine->ECManager->CreateEntity("Camera Entity", engine->SceneSystem->ActiveScene);
 	Camera* cameraComp = cameraEntity->AddComponent<Camera>();
 	engine->MainCamera = cameraComp;
 

@@ -48,7 +48,7 @@ Entity* AssetManager::LoadEntityAsset(const char* assetPath)
 	float posY = lua_tonumber(state, -3);
 	float posZ = lua_tonumber(state, -2);
 
-	Entity* entity = Engine->ECManager->CreateEntity(entityId);
+	Entity* entity = Engine->ECManager->CreateEntity(entityId, Engine->SceneSystem->ActiveScene);
 	Transform* transform = reinterpret_cast<Transform*>(entity->GetComponentComplex("Transform"));
 
 	transform->Position.x = posX;

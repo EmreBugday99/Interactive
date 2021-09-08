@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include "../reflection-system/ClassReflection.hpp"
+#include "../Interactive.h"
+#include "../entity-component/EntityManager.h"
 
 class Entity;
 class Interactive;
@@ -8,15 +10,19 @@ class Interactive;
 struct Scene
 {
 	Interactive* Engine;
-	const char* SceneName;
-	const char* ScenePath;
+	std::string SceneName;
+	//const char* ScenePath;
 	bool IsInitialized;
 	std::vector<Entity*> EntitiesInScene;
 
-	ClassReflection Reflection;
+	void AddExistingEntityToScene(Entity* entity) { EntitiesInScene.push_back(entity); }
 
 private:
 	friend class SceneManager;
-	Scene();
+	Scene(Interactive* engine, std::string sceneName)
+	{
+		SceneName = sceneName;
+		Engine = engine;
+		IsInitialized = false;
+	}
 };
-

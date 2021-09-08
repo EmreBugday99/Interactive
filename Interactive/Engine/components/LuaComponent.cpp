@@ -4,6 +4,7 @@
 #include "../reflection-system/ReflectionSystem.hpp"
 #include "../script-system/LuaKeyMap.h"
 #include "../utils/Utils.hpp"
+#include "../InteractiveObject.h"
 
 std::map<lua_State*, LuaComponent*> LuaComponent::LuaComponents;
 
@@ -128,9 +129,9 @@ int LuaComponent::CreateEntity(lua_State* state)
 {
 	LuaComponent* component = LuaComponents[state];
 
-	Entity* entity = component->GetEnginePtr()->ECManager->CreateEntity(lua_tostring(state, -1));
+	//Entity* entity = component->GetEnginePtr()->ECManager->CreateEntity(lua_tostring(state, -1), GetEnginePtr()->SceneSystem->ActiveScene);
 
-	lua_pushlightuserdata(state, entity);
+	//lua_pushlightuserdata(state, entity);
 
 	return 1;
 }

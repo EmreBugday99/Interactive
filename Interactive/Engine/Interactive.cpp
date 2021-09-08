@@ -46,11 +46,11 @@ void Interactive::Update()
 
 		ECManager->JoinEntitiesIntoGameLoop();
 
-		size_t entityIndex = ECManager->EntitiesInGameLoop.size();
+		size_t entityIndex = SceneSystem->ActiveScene->EntitiesInScene.size();
 		while (entityIndex)
 		{
 			entityIndex--;
-			Entity* currentEntity = ECManager->EntitiesInGameLoop[entityIndex];
+			Entity* currentEntity = SceneSystem->ActiveScene->EntitiesInScene[entityIndex];
 
 			// TODO: Put real delta time here instead of 0.1f
 			currentEntity->Update(0.1f);
