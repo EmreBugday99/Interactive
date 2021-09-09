@@ -8,7 +8,7 @@ class Entity : public InteractiveObject
 private:
 	friend class EntityManager;
 
-	Entity(std::string entityName, Interactive* engine);
+	Entity(std::string entityName, Interactive* engine, bool isGlobalEntity);
 
 	/// <summary>
 	/// Joins the components inside ComponentsWaitingToJoin vector into the ComponentsInGameLoop vector.
@@ -20,6 +20,8 @@ private:
 	void RemoveComponentsFromGameLoop();
 
 public:
+	bool IsGlobalEntity;
+	
 	std::string EntityName;
 	/// <summary>
 	/// Components that are waiting to be initialized and enter the game loop.

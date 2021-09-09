@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 
+struct Scene;
 class Interactive;
 class Entity;
 class EntityManager
@@ -11,7 +12,7 @@ public:
 
 	~EntityManager();
 
-	Entity* CreateEntity(std::string entityName);
+	Entity* CreateEntity(std::string entityName, Scene* scene);
 	Entity* GetEntityByName(std::string entityName);
 
 	void JoinEntitiesIntoGameLoop();
@@ -29,7 +30,7 @@ private:
 	/// <summary>
 	/// Entities that are currently in the game loop.
 	/// </summary>
-	std::vector<Entity*> EntitiesInGameLoop;
+	//std::vector<Entity*> EntitiesInGameLoop;
 	/// <summary>
 	/// Entities that are waiting to be destroyed and leave the game loop.
 	/// </summary>

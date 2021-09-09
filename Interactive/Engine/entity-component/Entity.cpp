@@ -1,8 +1,8 @@
 #include "Entity.h"
 #include "../reflection-system/ReflectionSystem.hpp"
 
-Entity::Entity(std::string entityName, Interactive* engine)
-	: EntityName(entityName)
+Entity::Entity(std::string entityName, Interactive* engine, bool isGlobalEntity = false)
+	: IsGlobalEntity(isGlobalEntity), EntityName(entityName)
 {	
 	SetEnginePtr(engine);
 	AddComponent<Transform>();

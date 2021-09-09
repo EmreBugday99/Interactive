@@ -1,12 +1,14 @@
 #include "EntityManager.h"
 #include "Entity.h"
+#include "../scene/SceneManager.h"
+#include "../scene/Scene.h"
 
 EntityManager::EntityManager(Interactive* engine) : Engine(engine) {}
 EntityManager::~EntityManager() {}
 
-Entity* EntityManager::CreateEntity(std::string entityName)
+Entity* EntityManager::CreateEntity(std::string entityName, Scene* scene)
 {
-	Entity* newEntity = new Entity(entityName, Engine);
+	Entity* newEntity = new Entity(entityName, Engine, false);
 	EntitiesWaitingToJoin.push_back(newEntity);
 
 	return newEntity;
@@ -14,7 +16,13 @@ Entity* EntityManager::CreateEntity(std::string entityName)
 
 Entity* EntityManager::GetEntityByName(std::string entityName)
 {
-	for (Entity* entity : EntitiesInGameLoop)
+	for (Entity* entity : Engine->SceneSystem->ActiveScene->EntitiesInScene)
+	{
+		if (entity->EntityName == entityName)
+			return entity;
+	}
+
+	for (Entity* entity : EntitiesWaitingToJoin)
 	{
 		if (entity->EntityName == entityName)
 			return entity;
@@ -31,8 +39,10 @@ void EntityManager::JoinEntitiesIntoGameLoop()
 		entityIndex--;
 		Entity* entityToJoin = EntitiesWaitingToJoin[entityIndex];
 
-		EntitiesInGameLoop.push_back(entityToJoin);
-		
+		//EntitiesInGameLoop.push_back(entityToJoin);
+
+		Engine->SceneSystem->ActiveScene->EntitiesInScene.push_back(entityToJoin);
+
 		EntitiesWaitingToJoin.erase(EntitiesWaitingToJoin.begin() + entityIndex);
 	}
 }
@@ -45,15 +55,16 @@ void EntityManager::RemoveEntitiesFromGameLoop()
 		entityIndex--;
 		Entity* entityToLeave = EntitiesWaitingToLeave[entityIndex];
 
-		size_t secondEntityIndex = EntitiesInGameLoop.size();
+		size_t secondEntityIndex = Engine->SceneSystem->ActiveScene->EntitiesInScene.size();
 		while (secondEntityIndex)
 		{
 			secondEntityIndex--;
-			Entity* entityToCompareAgainst = EntitiesInGameLoop[secondEntityIndex];
+			Entity* entityToCompareAgainst = Engine->SceneSystem->ActiveScene->EntitiesInScene[secondEntityIndex];
 
 			if (entityToLeave == entityToCompareAgainst)
 			{
-				EntitiesInGameLoop.erase(EntitiesInGameLoop.begin() + secondEntityIndex);
+				Engine->SceneSystem->ActiveScene->EntitiesInScene.erase(
+					Engine->SceneSystem->ActiveScene->EntitiesInScene.begin() + secondEntityIndex);
 			}
 		}
 		EntitiesWaitingToLeave.erase(EntitiesWaitingToLeave.begin() + entityIndex);
