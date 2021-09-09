@@ -1,8 +1,9 @@
 #pragma once
 #include <map>
 #include <string>
+#include "../input/Keys.h"
 
-class LuaKeyMap
+class KeyMap
 {
 public:
 	inline static std::map<std::string, Keys> Keys = {

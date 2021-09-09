@@ -10,9 +10,6 @@ Interactive::Interactive(std::string gameName)
 	InputSystem = new InputManager(this);
 	TextureSystem = new TextureManager(this);
 	GC = new GarbageCollector(this);
-	Factory = new ComponentFactory(this);
-	AssetSystem = new AssetManager(this);
-	AssetSystem->InitializeDatabase();
 
 	ImGui::CreateContext();
 	ImGui_ImplGlfw_InitForOpenGL(GameWindow->GlWindow, true);
@@ -54,7 +51,7 @@ void Interactive::Update()
 		}
 
 		InputSystem->ClearKeyStates();
-		
+
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		GameWindow->Update();
@@ -85,9 +82,6 @@ void Interactive::Close()
 
 	delete(GC);
 	GC = nullptr;
-
-	delete(Factory);
-	Factory = nullptr;
 
 	glfwTerminate();
 }

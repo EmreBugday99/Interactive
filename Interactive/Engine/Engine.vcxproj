@@ -175,10 +175,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="asset-system\AssetDatabase.cpp" />
-    <ClCompile Include="asset-system\AssetManager.cpp" />
     <ClCompile Include="components\Camera.cpp" />
-    <ClCompile Include="components\LuaComponent.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
     <ClCompile Include="external\imgui\imgui_draw.cpp" />
@@ -218,7 +215,6 @@
     <ClCompile Include="external\lua\src\lutf8lib.c" />
     <ClCompile Include="external\lua\src\lvm.c" />
     <ClCompile Include="external\lua\src\lzio.c" />
-    <ClCompile Include="script-system\ComponentFactory.cpp" />
     <ClCompile Include="GarbageCollector.cpp" />
     <ClCompile Include="input\InputManager.cpp" />
     <ClCompile Include="Interactive.cpp" />
@@ -235,16 +231,12 @@
     <ClCompile Include="renderer\buffers\VertexArray.cpp" />
     <ClCompile Include="renderer\Window.cpp" />
     <ClCompile Include="components\Sprite2D.cpp" />
-    <ClCompile Include="script-system\ScriptEngine.cpp" />
     <ClCompile Include="renderer\texture\Texture.cpp" />
     <ClCompile Include="renderer\texture\TextureManager.cpp" />
     <ClCompile Include="components\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="asset-system\AssetDatabase.h" />
-    <ClInclude Include="asset-system\AssetManager.h" />
     <ClInclude Include="components\Camera.h" />
-    <ClInclude Include="components\LuaComponent.h" />
     <ClInclude Include="external\imgui\imconfig.h" />
     <ClInclude Include="external\imgui\imgui.h" />
     <ClInclude Include="external\imgui\imgui_impl_glfw.h" />
@@ -287,7 +279,6 @@
     <ClInclude Include="reflection-system\MethodReflection.hpp" />
     <ClInclude Include="reflection-system\TypeReflection.hpp" />
     <ClInclude Include="reflection-system\ReflectionSystem.hpp" />
-    <ClInclude Include="script-system\ComponentFactory.h" />
     <ClInclude Include="GarbageCollector.h" />
     <ClInclude Include="includes\Components.h" />
     <ClInclude Include="includes\CoreIncludes.h" />
@@ -311,8 +302,7 @@
     <ClInclude Include="renderer\buffers\VertexArray.h" />
     <ClInclude Include="renderer\Window.h" />
     <ClInclude Include="components\Sprite2D.h" />
-    <ClInclude Include="script-system\LuaKeyMap.h" />
-    <ClInclude Include="script-system\ScriptEngine.h" />
+    <ClInclude Include="input\LuaKeyMap.h" />
     <ClInclude Include="renderer\texture\Texture.h" />
     <ClInclude Include="renderer\texture\TextureManager.h" />
     <ClInclude Include="components\Transform.h" />
@@ -320,7 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\entities\test.entity" />
-    <None Include="assets\scripts\testComponent.lua" />
     <None Include="shaders\basicShader.frag" />
     <None Include="shaders\textureShader.frag">
       <DeploymentContent>true</DeploymentContent>

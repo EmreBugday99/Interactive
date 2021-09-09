@@ -22,8 +22,6 @@ public:
 	InputManager* InputSystem;
 	TextureManager* TextureSystem;
 	GarbageCollector* GC;
-	ComponentFactory* Factory;
-	AssetManager* AssetSystem;
 
 	static std::map<std::string, InteractiveObject*> GlobalObjectPointers;
 
