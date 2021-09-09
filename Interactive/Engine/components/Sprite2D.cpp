@@ -6,7 +6,10 @@
 #include "../reflection-system/ReflectionSystem.hpp"
 
 Sprite2D::Sprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
-	: Color(color), Shader(nullptr), VAO(nullptr), AttachedTexture(nullptr) {}
+	: Color(color), Shader(nullptr), VAO(nullptr), AttachedTexture(nullptr)
+{
+	
+}
 
 Sprite2D::Sprite2D()
 {
@@ -124,6 +127,7 @@ void Sprite2D::AttachTexture(Texture* textureToAttach)
 
 void Sprite2D::BeginPlay()
 {
+	std::cout << "I am alive!" << std::endl;
 }
 
 void Sprite2D::OnMarkedForDestruction()

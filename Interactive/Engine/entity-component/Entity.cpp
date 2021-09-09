@@ -38,6 +38,7 @@ void Entity::Update(float deltaTime)
 void Entity::JoinComponentsIntoGameLoop()
 {
 	size_t componentIndex = ComponentsWaitingToJoin.size();
+
 	while (componentIndex)
 	{
 		componentIndex--;

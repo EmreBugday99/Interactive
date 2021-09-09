@@ -17,6 +17,7 @@ private:
 public:
 	Entity* Owner;
 	InputManager* InputController;
+	std::vector<ClassReflection> Dependencies;
 
 	Component();
 	~Component() override;

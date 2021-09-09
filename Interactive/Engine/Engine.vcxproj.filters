@@ -192,6 +192,15 @@
     <ClCompile Include="external\lua\src\lzio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="scene\SceneManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="testGame\TestScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file-io\DiskReader.h">
@@ -405,6 +414,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="utils\Utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\SceneManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testGame\TestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

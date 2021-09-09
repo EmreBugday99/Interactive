@@ -5,9 +5,7 @@
 
 class Entity : public InteractiveObject
 {
-private:
 	friend class EntityManager;
-
 	Entity(std::string entityName, Interactive* engine, bool isGlobalEntity);
 
 	/// <summary>

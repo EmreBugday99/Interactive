@@ -1,4 +1,6 @@
 #include "includes/CoreIncludes.h"
+#include "scene/Scene.h"
+#include "scene/SceneManager.h"
 
 std::map<std::string, InteractiveObject*> Interactive::GlobalObjectPointers;
 
@@ -10,6 +12,7 @@ Interactive::Interactive(std::string gameName)
 	InputSystem = new InputManager(this);
 	TextureSystem = new TextureManager(this);
 	GC = new GarbageCollector(this);
+	SceneSystem = new SceneManager(this);
 
 	ImGui::CreateContext();
 	ImGui_ImplGlfw_InitForOpenGL(GameWindow->GlWindow, true);
@@ -40,11 +43,11 @@ void Interactive::Update()
 
 		ECManager->JoinEntitiesIntoGameLoop();
 
-		size_t entityIndex = ECManager->EntitiesInGameLoop.size();
+		size_t entityIndex = SceneSystem->ActiveScene->EntitiesInScene.size();
 		while (entityIndex)
 		{
 			entityIndex--;
-			Entity* currentEntity = ECManager->EntitiesInGameLoop[entityIndex];
+			Entity* currentEntity = SceneSystem->ActiveScene->EntitiesInScene[entityIndex];
 
 			// TODO: Put real delta time here instead of 0.1f
 			currentEntity->Update(0.1f);
@@ -82,6 +85,9 @@ void Interactive::Close()
 
 	delete(GC);
 	GC = nullptr;
+
+	delete(SceneSystem);
+	SceneSystem = nullptr;
 
 	glfwTerminate();
 }

@@ -2,6 +2,7 @@
 #include <map>
 #include <string>
 
+class SceneManager;
 class ComponentFactory;
 class AssetManager;
 class Entity;
@@ -22,6 +23,7 @@ public:
 	InputManager* InputSystem;
 	TextureManager* TextureSystem;
 	GarbageCollector* GC;
+	SceneManager* SceneSystem;
 
 	static std::map<std::string, InteractiveObject*> GlobalObjectPointers;
 

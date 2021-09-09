@@ -1,8 +1,6 @@
 #pragma once
 #include <vector>
-#include "../reflection-system/ClassReflection.hpp"
 #include "../Interactive.h"
-#include "../entity-component/EntityManager.h"
 
 class Entity;
 class Interactive;
@@ -16,8 +14,16 @@ struct Scene
 	std::vector<Entity*> EntitiesInScene;
 
 	void AddExistingEntityToScene(Entity* entity) { EntitiesInScene.push_back(entity); }
+	Entity* CreateNewEntity(std::string entityName);
 
-private:
+protected:
+	friend class SceneManager;
+	//TODO: Find a better name for the functions
+	virtual void OnSceneCreated();
+	virtual void OnSceneEnabled();
+	virtual void OnSceneDisabled();
+
+protected:
 	friend class SceneManager;
 	Scene(Interactive* engine, std::string sceneName)
 	{

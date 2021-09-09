@@ -1,6 +1,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 #include "../Interactive.h"
+#include "../entity-component/EntityManager.h"
 
 SceneManager::SceneManager(Interactive* engine)
 {
@@ -19,9 +20,11 @@ SceneManager::~SceneManager()
 Scene* SceneManager::CreateEmptyScene(std::string sceneName)
 {
 	Scene* scene = new Scene(Engine, sceneName);
-	//scene->SceneName = sceneName;
+	scene->SceneName = sceneName;
 
-	//Scenes.push_back(scene);
+	Scenes.push_back(scene);
+
+	scene->OnSceneCreated();
 
 	return nullptr;
 }
@@ -29,12 +32,4 @@ Scene* SceneManager::CreateEmptyScene(std::string sceneName)
 void SceneManager::SetActiveScene(Scene* scene)
 {
 	ActiveScene = scene;
-}
-
-Entity* SceneManager::CreateEntity(const char* entityName)
-{
-	Entity* newEntity = Engine->ECManager->CreateEntity(entityName, ActiveScene);
-	ActiveScene->EntitiesInScene.push_back(newEntity);
-
-	return newEntity;
 }

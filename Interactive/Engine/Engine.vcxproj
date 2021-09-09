@@ -234,6 +234,9 @@
     <ClCompile Include="renderer\texture\Texture.cpp" />
     <ClCompile Include="renderer\texture\TextureManager.cpp" />
     <ClCompile Include="components\Transform.cpp" />
+    <ClCompile Include="scene\Scene.cpp" />
+    <ClCompile Include="scene\SceneManager.cpp" />
+    <ClCompile Include="testGame\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
@@ -306,6 +309,9 @@
     <ClInclude Include="renderer\texture\Texture.h" />
     <ClInclude Include="renderer\texture\TextureManager.h" />
     <ClInclude Include="components\Transform.h" />
+    <ClInclude Include="scene\Scene.h" />
+    <ClInclude Include="scene\SceneManager.h" />
+    <ClInclude Include="testGame\TestScene.h" />
     <ClInclude Include="utils\Utils.hpp" />
   </ItemGroup>
   <ItemGroup>

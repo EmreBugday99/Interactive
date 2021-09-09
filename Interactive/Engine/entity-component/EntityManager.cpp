@@ -41,6 +41,9 @@ void EntityManager::JoinEntitiesIntoGameLoop()
 
 		//EntitiesInGameLoop.push_back(entityToJoin);
 
+		if (Engine->SceneSystem->ActiveScene == nullptr)
+			break;
+
 		Engine->SceneSystem->ActiveScene->EntitiesInScene.push_back(entityToJoin);
 
 		EntitiesWaitingToJoin.erase(EntitiesWaitingToJoin.begin() + entityIndex);
