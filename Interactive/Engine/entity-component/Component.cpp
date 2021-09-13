@@ -25,7 +25,7 @@ Transform* Component::GetTransform()
 	if (AttachedTransform != nullptr)
 		return AttachedTransform;
 
-	AttachedTransform = static_cast<Transform*>(Owner->GetComponent("Transform"));
+	AttachedTransform = static_cast<Transform*>(Owner->GetComponentComplex("Transform"));
 	return AttachedTransform;
 }
 

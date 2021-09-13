@@ -201,6 +201,9 @@
     <ClCompile Include="testGame\TestScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="testGame\GameSprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file-io\DiskReader.h">
@@ -423,6 +426,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="testGame\TestScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testGame\GameSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

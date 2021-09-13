@@ -27,7 +27,7 @@ void Transform::SetSize(glm::vec2 newSize)
 {
 	Size = newSize;
 	
-	Sprite2D* spriteComponent = static_cast<Sprite2D*>(Owner->GetComponent("Sprite2D"));
+	Sprite2D* spriteComponent = static_cast<Sprite2D*>(Owner->GetComponentComplex("Sprite2D"));
 	if (spriteComponent == nullptr)
 	{
 		std::cout << "Couldn't find Sprite2D component" << std::endl;

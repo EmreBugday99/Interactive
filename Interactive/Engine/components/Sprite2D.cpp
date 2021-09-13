@@ -57,6 +57,8 @@ void Sprite2D::CreateSprite2D()
 
 void Sprite2D::UpdateSprite()
 {
+	std::cout << "Transform X: " << GetTransform()->GetSize().x;
+
 	GLfloat vertices[] =
 	{
 		0,									0,									0,
