@@ -5,6 +5,7 @@
 Transform::Transform()
 	: Size(glm::vec2(10.0f, 10.0f)), Position(glm::vec3(0.0f, 0.0f, 0.0f))
 {
+	ReflectionSystem::AddInheritedClass<Transform>(Reflection, "Transform");
 	ReflectionSystem::UpdateClassReflection<Transform>(Reflection, "Transform");
 }
 

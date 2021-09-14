@@ -6,6 +6,7 @@ Component::Component()
 	: AttachedTransform(nullptr), FirstUpdateExecuted(false), Owner(nullptr), InputController(nullptr),
 	BeginPlayExecuted(false)
 {
+	ReflectionSystem::AddInheritedClass<Component>(Reflection, "Component");
 	ReflectionSystem::UpdateClassReflection<Component>(Reflection, "Component");
 }
 

@@ -21,6 +21,9 @@ void TestScene::OnSceneCreated()
 	Entity* newEntity = CreateNewEntity("New Test Entity");
 	GameSprite* sprite = newEntity->AddComponent<GameSprite>();
 
+	PrintComponentSize(cameraComp);
+	PrintComponentSize(sprite);
+
 	//Texture* smileyTexture = Engine->TextureSystem->CreateTexture("smiley", "smiley.jpg");
 	//sprite->AttachTexture(smileyTexture);
 }
@@ -33,4 +36,9 @@ void TestScene::OnSceneEnabled()
 void TestScene::OnSceneDisabled()
 {
 	Scene::OnSceneDisabled();
+}
+
+void TestScene::PrintComponentSize(Component* component)
+{
+	std::cout << "Size Of " << component->Reflection.GetTypeName() << ": " << sizeof(*component) << std::endl;
 }

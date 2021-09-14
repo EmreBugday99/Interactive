@@ -6,11 +6,12 @@ InteractiveObject::InteractiveObject()
 	: WaitingForDestruction(false), Engine(nullptr),
 	Reflection(ReflectionSystem::CreateClassReflection<InteractiveObject>("InteractiveObject"))
 {
+	std::cout << "Hello!" << std::endl;
+	ReflectionSystem::AddInheritedClass<InteractiveObject>(Reflection, "InteractiveObject");
 }
 
 InteractiveObject::~InteractiveObject()
 {
-	std::cout << "Uh" << std::endl;
 }
 
 void InteractiveObject::MarkForDestruction()
@@ -21,8 +22,6 @@ void InteractiveObject::MarkForDestruction()
 	OnMarkedForDestruction();
 
 	GetEnginePtr()->GC->InsertObject(this);
-
-	std::cout << "byee" << std::endl;
 }
 
 void InteractiveObject::OnMarkedForDestruction()

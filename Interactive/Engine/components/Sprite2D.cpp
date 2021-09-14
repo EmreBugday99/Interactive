@@ -8,7 +8,7 @@
 Sprite2D::Sprite2D(glm::vec3 position, glm::vec2 size, glm::vec4 color)
 	: Color(color), Shader(nullptr), VAO(nullptr), AttachedTexture(nullptr)
 {
-	
+	ReflectionSystem::AddInheritedClass<Sprite2D>(Reflection, "Sprite2D");
 }
 
 Sprite2D::Sprite2D()
@@ -19,6 +19,7 @@ Sprite2D::Sprite2D()
 
 	Color = glm::vec4(0.0f, 1.0f, 0.0f, 1.0f);
 
+	ReflectionSystem::AddInheritedClass<Sprite2D>(Reflection, "Sprite2D");
 	ReflectionSystem::UpdateClassReflection<Sprite2D>(Reflection, "Sprite2D");
 }
 

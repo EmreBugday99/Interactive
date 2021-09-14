@@ -12,11 +12,6 @@ struct TypeReflection
 		HashedName = std::hash<std::string>{}(name);
 	}
 
-	void SetTypeName(const char* name)
-	{
-		TypeName = name;
-		HashedName = std::hash<std::string>{}(name);
-	}
 	const char* GetTypeName() const { return TypeName; }
 
 	bool IsOfType(const char* typeName) const { return *typeName == *TypeName; }
@@ -26,6 +21,13 @@ struct TypeReflection
 	size_t& GetTypeHashRef() { return HashedName; }
 
 protected:
+	friend class ReflectionSystem;
+
+	void SetTypeName(const char* name)
+	{
+		TypeName = name;
+		HashedName = std::hash<std::string>{}(name);
+	}
 	const char* TypeName;
 	size_t HashedName;
 };

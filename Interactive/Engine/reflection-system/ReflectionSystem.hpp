@@ -26,6 +26,13 @@ public:
 		classType.SizeInBytes = sizeof T;
 	}
 
+	template<class T>
+	static void AddInheritedClass(ClassReflection& classType, const char* inheritedClassName)
+	{
+		ClassReflection inheritedClass(inheritedClassName, sizeof(T));
+		classType.InheritanceTree.push_back(classType);
+	}
+
 	static MethodReflection CreateMethodReflection(const char* name, TypeReflection returnType)
 	{
 		MethodReflection newMethodReflection(name, returnType);

@@ -215,6 +215,7 @@
     <ClCompile Include="external\lua\src\lutf8lib.c" />
     <ClCompile Include="external\lua\src\lvm.c" />
     <ClCompile Include="external\lua\src\lzio.c" />
+    <ClCompile Include="itl\InteractiveVector.hpp" />
     <ClCompile Include="testGame\GameSprite.cpp" />
     <ClCompile Include="GarbageCollector.cpp" />
     <ClCompile Include="input\InputManager.cpp" />
@@ -277,6 +278,8 @@
     <ClInclude Include="external\lua\src\lundump.h" />
     <ClInclude Include="external\lua\src\lvm.h" />
     <ClInclude Include="external\lua\src\lzio.h" />
+    <ClInclude Include="itl\SortedVector.hpp" />
+    <ClInclude Include="itl\Vector.hpp" />
     <ClInclude Include="testGame\GameSprite.h" />
     <ClInclude Include="reflection-system\empty.hpp" />
     <ClInclude Include="reflection-system\ClassReflection.hpp" />

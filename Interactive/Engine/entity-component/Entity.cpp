@@ -7,6 +7,7 @@ Entity::Entity(std::string entityName, Interactive* engine, bool isGlobalEntity 
 	SetEnginePtr(engine);
 	AddComponent<Transform>();
 
+	ReflectionSystem::AddInheritedClass<Entity>(Reflection, "Entity");
 	ReflectionSystem::UpdateClassReflection<Entity>(Reflection, "Entity");
 }
 
