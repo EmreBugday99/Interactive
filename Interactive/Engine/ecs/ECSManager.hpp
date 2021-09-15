@@ -44,11 +44,14 @@ namespace Interactive
 		}
 
 		template<typename T>
-		static T* FetchComponent(Entity* entity)
+		static T* FetchComponentFromEntity(Entity* entity)
 		{
 			auto search = entity->ComponentMap.find(ClassType<T>::TypeId);
-			if (search != entity->ComponentMap.end())
+			if (search == entity->ComponentMap.end())
+			{
+				ErrorHandler::OnError("Fetch failed nullptr");
 				return nullptr;
+			}
 
 			return (T*)search->second;
 		}

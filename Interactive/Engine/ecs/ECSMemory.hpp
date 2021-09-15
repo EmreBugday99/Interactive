@@ -35,7 +35,7 @@ namespace Interactive
 		/// <returns>T* which starts on the specified index</returns>
 		inline static T* FetchWithMemoryIndex(const memoryIndex index)
 		{
-			return reinterpret_cast<T*>(&Memory[index]);
+			return (T*)&Memory[index];
 		}
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace Interactive
 		/// <returns>T* which starts on the specified slice</returns>
 		inline static T* FetchWithDataIndex(memoryIndex index)
 		{
-			return reinterpret_cast<T*>(&Memory[index * sizeof(T)]);
+			return (T*)&Memory[index * sizeof(T)];
 		}
 
 		/// <summary>

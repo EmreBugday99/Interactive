@@ -8,7 +8,7 @@ int main()
 	Interactive::Entity* entity = ECSManager::CreateEntity();
 
 	ECSManager::CreateComponent<EcsTestComponent>(entity);
-	EcsTestComponent* testComponent = ECSManager::FetchComponent<EcsTestComponent>(entity);
+	EcsTestComponent* testComponent = ECSManager::FetchComponentFromEntity<EcsTestComponent>(entity);
 
 	testComponent->SayHello();
 
