@@ -1,36 +1,40 @@
 #pragma once
-#include <map>
-#include <vector>
-#include "../reflection/ClassType.hpp"
 
-class BaseSystem;
+#include "ECSMemory.hpp"
+#include "Entity.hpp"
 
 namespace Interactive
 {
-	namespace ECS
+	class ECSManager
 	{
-		class ECSManager
+	public:
+		static Entity* CreateEntity()
 		{
-			typedef unsigned int entity;
-			typedef unsigned int component;
+			const unsigned int memoryIndex = ECSMemory<Entity>::Add();
+			Entity* entity = ECSMemory<Entity>::FetchWithMemoryIndex(memoryIndex);
+			entity->EntityId = memoryIndex;
 
-		public:
-			template<typename T>
-			static unsigned int CreateComponent(std::vector<unsigned char>& memory, Reflection::ClassType<T>& classType)
-			{
-				const unsigned int index = memory.size();
-				memory.resize(index + classType.ClassSize);
-				T* newClass = new(&memory[index]) T(*classType.GetStaticClass());
+			return entity;
+		}
 
-				return index;
-			}
+		template<typename T>
+		inline static T* CreateComponent(Entity* entity)
+		{
+			const unsigned int memoryIndex = ECSMemory<T>::Add();
+			T* component = ECSMemory<T>::FetchWithMemoryIndex(memoryIndex);
 
-			template<typename T>
-			static void DeleteComponent() {}
+			component->TypeId = ClassType<T>::TypeId;
+			component->ComponentId = memoryIndex;
+			component->Entity = entity;
 
-		private:
-			std::vector<std::tuple<entity, std::vector<component>>> Entities;
-			std::vector<BaseSystem*> Systems;
-		};
-	}
+			entity->ComponentTypes.emplace_back(ClassType<T>::TypeId);
+
+			return component;
+		}
+
+	private:
+		static void Update()
+		{
+		}
+	};
 }

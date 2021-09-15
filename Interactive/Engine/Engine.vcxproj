@@ -241,8 +241,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
+    <ClInclude Include="ecs\Component.hpp" />
     <ClInclude Include="ecs\ECSManager.hpp" />
-    <ClInclude Include="ecs\BaseSystem.h" />
+    <ClInclude Include="ecs\ECSMemory.hpp" />
+    <ClInclude Include="ecs\Entity.hpp" />
     <ClInclude Include="external\imgui\imconfig.h" />
     <ClInclude Include="external\imgui\imgui.h" />
     <ClInclude Include="external\imgui\imgui_impl_glfw.h" />

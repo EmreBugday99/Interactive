@@ -437,7 +437,13 @@
     <ClInclude Include="ecs\ECSManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ecs\BaseSystem.h">
+    <ClInclude Include="ecs\ECSMemory.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ecs\Entity.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ecs\Component.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
