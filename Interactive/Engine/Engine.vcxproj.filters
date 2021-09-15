@@ -204,9 +204,6 @@
     <ClCompile Include="testGame\GameSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="itl\InteractiveVector.hpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file-io\DiskReader.h">
@@ -434,10 +431,13 @@
     <ClInclude Include="testGame\GameSprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="itl\Vector.hpp">
+    <ClInclude Include="reflection\ClassType.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="itl\SortedVector.hpp">
+    <ClInclude Include="ecs\ECSManager.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ecs\BaseSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

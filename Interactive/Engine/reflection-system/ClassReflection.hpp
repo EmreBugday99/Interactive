@@ -1,7 +1,5 @@
 #pragma once
 #include <vector>
-
-
 #include "FieldReflection.hpp"
 #include "MethodReflection.hpp"
 #include "TypeReflection.hpp"
