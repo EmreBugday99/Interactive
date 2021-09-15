@@ -176,6 +176,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="components\Camera.cpp" />
+    <ClCompile Include="components\EcsTestComponent.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
     <ClCompile Include="external\imgui\imgui_draw.cpp" />
@@ -241,6 +242,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
+    <ClInclude Include="debugging\ErrorHandler.hpp" />
+    <ClInclude Include="components\EcsTestComponent.h" />
     <ClInclude Include="ecs\Component.hpp" />
     <ClInclude Include="ecs\ECSManager.hpp" />
     <ClInclude Include="ecs\ECSMemory.hpp" />

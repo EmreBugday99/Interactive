@@ -204,6 +204,9 @@
     <ClCompile Include="testGame\GameSprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="components\EcsTestComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="file-io\DiskReader.h">
@@ -444,6 +447,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ecs\Component.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debugging\ErrorHandler.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="components\EcsTestComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,12 +1,11 @@
 #pragma once
-class Entity;
-
+#include "Entity.hpp"
 namespace Interactive
 {
 	struct Component
 	{
 		unsigned int TypeId;
-		Entity* EntityId;
+		Interactive::Entity* Entity;
 		unsigned int ComponentId;
 	};
 }
