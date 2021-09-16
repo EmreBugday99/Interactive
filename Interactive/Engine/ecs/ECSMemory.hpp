@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "../includes/EngineInclude.hpp"
+#include "../reflection/ClassType.hpp"
 
 namespace Interactive
 {

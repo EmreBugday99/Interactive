@@ -1,4 +1,6 @@
 #include "ECSManager.h"
+
+#include "BaseSystem.h"
 #include "ECSMemory.hpp"
 #include "Entity.hpp"
 
@@ -30,5 +32,13 @@ namespace Interactive
 
 	void ECSManager::Update()
 	{
+		for (BaseSystem* system : Systems)
+		{
+			system->OnUpdate(1.0f);
+		}
+		for (BaseSystem* system : Systems)
+		{
+			system->OnRender();
+		}
 	}
 }

@@ -3,8 +3,9 @@
 #include "TestComponent.hpp"
 #include "TestComponent2.hpp"
 #include "../ecs/ECSManager.h"
+#include "../ecs/Entity.hpp"
 
-void TestSystem::OnUpdate(const float deltaTime)
+void Interactive::TestSystem::OnUpdate(const float deltaTime)
 {
 	using namespace Interactive;
 
@@ -21,13 +22,13 @@ void TestSystem::OnUpdate(const float deltaTime)
 		if (testComp == nullptr && testComp2 == nullptr)
 			continue;
 
-		testComp->TestInt += 100;
+		testComp->TestInt += 1;
 
-		std::cout << "[Test System] [Test Comp] [TestInt]: " << testComp->TestInt << std::endl;
+		std::cout << "[Test System] [Test Comp] [TestInt]: " << i << " " << testComp->TestInt << std::endl;
 	}
 }
 
-void TestSystem::OnRender()
+void Interactive::TestSystem::OnRender()
 {
 	BaseSystem::OnRender();
 }

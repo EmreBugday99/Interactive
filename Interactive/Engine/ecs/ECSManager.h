@@ -4,6 +4,7 @@
 #include "../ecs/ECSReturn.hpp"
 #include "../ecs/ECSMemory.hpp"
 #include "../debugging/ErrorHandler.hpp"
+#include "../reflection/ClassType.hpp"
 
 namespace Interactive
 {
@@ -64,9 +65,9 @@ namespace Interactive
 
 		static void AddSystem(BaseSystem* system);
 
+		static void Update();
+
 	private:
 		inline static std::vector<BaseSystem*> Systems;
-
-		static void Update();
 	};
 }

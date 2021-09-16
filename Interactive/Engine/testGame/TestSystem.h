@@ -1,9 +1,12 @@
 #pragma once
 #include "../ecs/BaseSystem.h"
 
-class TestSystem : public Interactive::BaseSystem
+namespace Interactive
 {
-public:
-	void OnUpdate(const float deltaTime) override;
-	void OnRender() override;
-};
+	class TestSystem : public Interactive::BaseSystem
+	{
+	public:
+		void OnUpdate(const float deltaTime) override;
+		void OnRender() override;
+	};
+}
