@@ -21,7 +21,9 @@ namespace Interactive
 		/// <summary>
 		/// TypeId of this specific ClassType
 		/// </summary>
-		inline static const typeId TypeId = GetNewTypeId();
+		inline static const unsigned int TypeId = GetNewTypeId();
+
+		static unsigned int GetTypeId() { return TypeId; }
 
 		static void AssignStaticClass(T staticClass) { StaticClass = staticClass; }
 		static T GetStaticClass() { return StaticClass; }

@@ -198,13 +198,16 @@
     <ClCompile Include="scene\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="testGame\TestScene.cpp">
+    <ClCompile Include="ecs\ECSManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="testGame\GameSprite.cpp">
+    <ClCompile Include="ecs\BaseSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="components\EcsTestComponent.cpp">
+    <ClCompile Include="testGame\TestSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="testGame\TestSystem2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -428,16 +431,10 @@
     <ClInclude Include="scene\SceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testGame\TestScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testGame\GameSprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="reflection\ClassType.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ecs\ECSManager.hpp">
+    <ClInclude Include="ecs\ECSManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ecs\ECSMemory.hpp">
@@ -452,7 +449,28 @@
     <ClInclude Include="debugging\ErrorHandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="components\EcsTestComponent.h">
+    <ClInclude Include="ecs\ECSReturn.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ecs\BaseSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\EngineInclude.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testGame\TestComponent.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testGame\TestComponent2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testGame\TestComponent3.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testGame\TestSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="testGame\TestSystem2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

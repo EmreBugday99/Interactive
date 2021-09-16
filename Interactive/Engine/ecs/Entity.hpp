@@ -1,13 +1,9 @@
 #pragma once
-#include <map>
 
 namespace Interactive
 {
-	struct Entity
+	struct Entity2
 	{
 		unsigned int EntityId;
-		std::map<unsigned int, void*> ComponentMap;
-
-		Entity() : EntityId(0) {}
 	};
 }

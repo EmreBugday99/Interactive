@@ -176,7 +176,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="components\Camera.cpp" />
-    <ClCompile Include="components\EcsTestComponent.cpp" />
+    <ClCompile Include="ecs\BaseSystem.cpp" />
+    <ClCompile Include="ecs\ECSManager.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
     <ClCompile Include="external\imgui\imgui_draw.cpp" />
@@ -216,7 +217,6 @@
     <ClCompile Include="external\lua\src\lutf8lib.c" />
     <ClCompile Include="external\lua\src\lvm.c" />
     <ClCompile Include="external\lua\src\lzio.c" />
-    <ClCompile Include="testGame\GameSprite.cpp" />
     <ClCompile Include="GarbageCollector.cpp" />
     <ClCompile Include="input\InputManager.cpp" />
     <ClCompile Include="Interactive.cpp" />
@@ -238,15 +238,17 @@
     <ClCompile Include="components\Transform.cpp" />
     <ClCompile Include="scene\Scene.cpp" />
     <ClCompile Include="scene\SceneManager.cpp" />
-    <ClCompile Include="testGame\TestScene.cpp" />
+    <ClCompile Include="testGame\TestSystem.cpp" />
+    <ClCompile Include="testGame\TestSystem2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\Camera.h" />
     <ClInclude Include="debugging\ErrorHandler.hpp" />
-    <ClInclude Include="components\EcsTestComponent.h" />
+    <ClInclude Include="ecs\BaseSystem.h" />
     <ClInclude Include="ecs\Component.hpp" />
-    <ClInclude Include="ecs\ECSManager.hpp" />
+    <ClInclude Include="ecs\ECSManager.h" />
     <ClInclude Include="ecs\ECSMemory.hpp" />
+    <ClInclude Include="ecs\ECSReturn.hpp" />
     <ClInclude Include="ecs\Entity.hpp" />
     <ClInclude Include="external\imgui\imconfig.h" />
     <ClInclude Include="external\imgui\imgui.h" />
@@ -284,8 +286,8 @@
     <ClInclude Include="external\lua\src\lundump.h" />
     <ClInclude Include="external\lua\src\lvm.h" />
     <ClInclude Include="external\lua\src\lzio.h" />
+    <ClInclude Include="includes\EngineInclude.hpp" />
     <ClInclude Include="reflection\ClassType.hpp" />
-    <ClInclude Include="testGame\GameSprite.h" />
     <ClInclude Include="reflection-system\empty.hpp" />
     <ClInclude Include="reflection-system\ClassReflection.hpp" />
     <ClInclude Include="reflection-system\FieldReflection.hpp" />
@@ -321,7 +323,11 @@
     <ClInclude Include="components\Transform.h" />
     <ClInclude Include="scene\Scene.h" />
     <ClInclude Include="scene\SceneManager.h" />
-    <ClInclude Include="testGame\TestScene.h" />
+    <ClInclude Include="testGame\TestComponent3.hpp" />
+    <ClInclude Include="testGame\TestComponent2.hpp" />
+    <ClInclude Include="testGame\TestComponent.hpp" />
+    <ClInclude Include="testGame\TestSystem.h" />
+    <ClInclude Include="testGame\TestSystem2.h" />
     <ClInclude Include="utils\Utils.hpp" />
   </ItemGroup>
   <ItemGroup>

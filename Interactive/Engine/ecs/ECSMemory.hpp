@@ -1,19 +1,21 @@
 #pragma once
 #include <vector>
-#include <iostream>
-#include "../reflection/ClassType.hpp"
+#include "../includes/EngineInclude.hpp"
 
 namespace Interactive
 {
 	template<typename T>
 	class ECSMemory
 	{
+		typedef void (*newMemoryFunc) ();
 		typedef unsigned char byte;
 		typedef unsigned int memoryIndex;
 
 		inline static std::vector<byte> Memory;
+		inline static std::vector<memoryIndex> AvailableMemorySlices;
 
 	public:
+		inline static newMemoryFunc NewMemoryFunction;
 
 		/// <summary>
 		/// Allocates new memory size of T and insert a new T into the allocated memory block.
@@ -24,6 +26,9 @@ namespace Interactive
 			const unsigned int index = Memory.size();
 			Memory.resize(index + ClassType<T>::ClassSize);
 			T* newClass = new(&Memory[index]) T;
+
+			if (NewMemoryFunction != nullptr)
+				NewMemoryFunction();
 
 			return index;
 		}
@@ -43,7 +48,7 @@ namespace Interactive
 		/// </summary>
 		/// <param name="index">From which slice index T* would be fetched?</param>
 		/// <returns>T* which starts on the specified slice</returns>
-		inline static T* FetchWithDataIndex(memoryIndex index)
+		inline static T* FetchWithSliceIndex(memoryIndex index)
 		{
 			return (T*)&Memory[index * sizeof(T)];
 		}
@@ -54,11 +59,16 @@ namespace Interactive
 		/// <returns>Total size of this memory</returns>
 		inline static memoryIndex GetMemorySize() { return Memory.size(); }
 
-		inline static memoryIndex GetDataCount() { return Memory.size() / sizeof(T); }
+		inline static memoryIndex GetSliceCount() { return Memory.size() / sizeof(T); }
 
 		inline static void Remove(const memoryIndex index)
 		{
 			Memory.erase(Memory.begin() + index, Memory.begin() + (index + sizeof(T)));
+		}
+
+		inline static void MarkSliceAvailable(const memoryIndex index)
+		{
+			AvailableMemorySlices.emplace_back(index);
 		}
 	};
 }
