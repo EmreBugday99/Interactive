@@ -246,6 +246,7 @@
     <ClInclude Include="debugging\ErrorHandler.hpp" />
     <ClInclude Include="ecs\BaseSystem.h" />
     <ClInclude Include="ecs\Component.hpp" />
+    <ClInclude Include="ecs\ECSMacros.hpp" />
     <ClInclude Include="ecs\ECSManager.h" />
     <ClInclude Include="ecs\ECSMemory.hpp" />
     <ClInclude Include="ecs\ECSReturn.hpp" />

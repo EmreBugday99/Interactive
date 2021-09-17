@@ -14,9 +14,7 @@ namespace Interactive
 	class ECSManager
 	{
 	public:
-		static void Initialize()
-		{
-		}
+		static void Initialize();
 
 		static ECSReturn CreateEntity();
 
@@ -66,6 +64,8 @@ namespace Interactive
 		static void AddSystem(BaseSystem* system);
 
 		static void Update();
+
+		static void OnEntityRemoved(const std::string& memoryAlias, void* data);
 
 	private:
 		inline static std::vector<BaseSystem*> Systems;
