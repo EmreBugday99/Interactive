@@ -6,11 +6,6 @@
 
 namespace Interactive
 {
-	void ECSManager::Initialize()
-	{
-		RemovalObservers.push_back(OnEntityRemoved);
-	}
-
 	ECSReturn ECSManager::CreateEntity()
 	{
 		ECSReturn ecsReturn = ECSReturn();
@@ -45,9 +40,5 @@ namespace Interactive
 		{
 			system->OnRender();
 		}
-	}
-
-	void ECSManager::OnEntityRemoved(const std::string& memoryAlias, void* data)
-	{
 	}
 }

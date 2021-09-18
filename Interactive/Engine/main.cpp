@@ -7,25 +7,40 @@
 
 int main()
 {
-	const auto ecsReturnEntity = Interactive::ECSManager::CreateEntity();
-	const auto ecsReturnEntity2 = Interactive::ECSManager::CreateEntity();
+	using namespace  Interactive;
 
-	Interactive::ECSManager::CreateComponent<TestComponent>(ecsReturnEntity.ReturnIndex);
-	Interactive::ECSManager::CreateComponent<TestComponent2>(ecsReturnEntity.ReturnIndex);
-	Interactive::ECSManager::CreateComponent<TestComponent>(ecsReturnEntity2.ReturnIndex);
-	Interactive::ECSManager::CreateComponent<TestComponent2>(ecsReturnEntity2.ReturnIndex);
+	ECSMemory<Entity2>::InitializeMemory();
+	ECSMemory<Entity2>::SetAlias("Entity");
 
-	Interactive::ECSMemory<TestComponent3>::Add();
+	ECSMemory<TestComponent>::InitializeMemory();
+	ECSMemory<TestComponent>::SetAlias("TestComponent");
 
-	Interactive::TestSystem* testSystem = new Interactive::TestSystem();
-	Interactive::TestSystem2* testSystem2 = new Interactive::TestSystem2();
+	ECSMemory<TestComponent2>::InitializeMemory();
+	ECSMemory<TestComponent2>::SetAlias("TestComponent2");
 
-	Interactive::ECSManager::AddSystem(testSystem);
-	Interactive::ECSManager::AddSystem(testSystem2);
+	ECSMemory<TestComponent3>::InitializeMemory();
+	ECSMemory<TestComponent3>::SetAlias("TestComponent3");
+
+	const auto ecsReturnEntity = ECSManager::CreateEntity();
+	const auto ecsReturnEntity2 = ECSManager::CreateEntity();
+
+	ECSManager::CreateComponent<TestComponent>(ecsReturnEntity.ReturnIndex);
+	ECSManager::CreateComponent<TestComponent2>(ecsReturnEntity.ReturnIndex);
+	ECSManager::CreateComponent<TestComponent>(ecsReturnEntity2.ReturnIndex);
+	ECSManager::CreateComponent<TestComponent2>(ecsReturnEntity2.ReturnIndex);
+
+	ECSMemory<TestComponent3>::Add();
+	ECSMemory<TestComponent3>::Add();
+
+	TestSystem* testSystem = new TestSystem();
+	TestSystem2* testSystem2 = new TestSystem2();
+
+	ECSManager::AddSystem(testSystem);
+	ECSManager::AddSystem(testSystem2);
 
 	while (true)
 	{
-		Interactive::ECSManager::Update();
+		ECSManager::Update();
 	}
 
 	return 0;

@@ -5,12 +5,15 @@
 #include "../ecs/ECSManager.h"
 #include "../ecs/Entity.hpp"
 
+Interactive::TestSystem::TestSystem() : deleted(false)
+{
+}
+
 void Interactive::TestSystem::OnUpdate(const float deltaTime)
 {
 	using namespace Interactive;
 
 	BaseSystem::OnUpdate(deltaTime);
-
 	const unsigned int entityCount = ECSMemory<Entity2>::GetSliceCount();
 	for (unsigned int i = 0; i < entityCount; i++)
 	{
@@ -19,7 +22,7 @@ void Interactive::TestSystem::OnUpdate(const float deltaTime)
 		TestComponent* testComp = ECSManager::GetComponentFromEntity<TestComponent>(entity->EntityId);
 		TestComponent2* testComp2 = ECSManager::GetComponentFromEntity<TestComponent2>(entity->EntityId);
 
-		if (testComp == nullptr && testComp2 == nullptr)
+		if (testComp == nullptr || testComp2 == nullptr)
 			continue;
 
 		testComp->TestInt += 1;

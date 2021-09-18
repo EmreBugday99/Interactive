@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <vector>
 #include "Component.hpp"
@@ -10,9 +11,11 @@ namespace Interactive
 {
 	//TODO: FIND A SEXIER NAME
 	typedef void (*RemovalOperationEvent) (const std::string&, void*);
+	typedef void (*EntityIdChangeUpdate) (const Entity2*, const unsigned int);
 
 	//TODO: FIND A SEXIER NAME
-	inline static std::vector<RemovalOperationEvent> RemovalObservers;
+	inline static std::vector<RemovalOperationEvent> removalObservers;
+	inline static std::vector<EntityIdChangeUpdate> entityUpdateObservers;
 
 	template<typename T>
 	class ECSMemory
@@ -34,12 +37,14 @@ namespace Interactive
 
 		static void InitializeMemory()
 		{
-			if (std::is_base_of_v<T, Component>)
+			if (std::is_base_of_v<Component, T>)
 			{
-				RemovalObservers.push_back(OnDataRemoved);
 				Type = ECS_TYPE_COMPONENT;
+
+				removalObservers.push_back(BeforeDataRemoveObserver);
+				entityUpdateObservers.push_back(UpdateComponentAfterEntityUpdate);
 			}
-			else if (std::is_base_of_v<T, Entity2>)
+			else if (std::is_base_of_v<Entity2, T>)
 			{
 				Type = ECS_TYPE_ENTITY;
 			}
@@ -47,6 +52,8 @@ namespace Interactive
 			{
 				Type = ECS_TYPE_OTHER;
 			}
+
+			std::cout << "Memory Type: " << Type << std::endl;
 		}
 
 		static void SetAlias(const std::string typeName) { MemoryAlias = typeName; }
@@ -106,54 +113,84 @@ namespace Interactive
 		static void RemoveSlice(const sliceIndex index)
 		{
 			void* dataToBeRemoved = FetchWithMemoryIndex(index);
+			InformObservers(dataToBeRemoved);
 
-			if (RemovalObservers.empty() == false && !MemoryAlias.empty)
-			{
-				for (const RemovalOperationEvent observer : RemovalObservers)
-				{
-					observer(MemoryAlias, dataToBeRemoved);
-				}
-			}
 			//					***Beginning Index***							***Ending Index***
 			Memory.erase(Memory.begin() + (index * sizeof(T)), Memory.begin() + (index * sizeof(T)));
 		}
 
-		static void MarkSliceAvailable(const memoryIndex index)
-		{
-			AvailableMemorySlices.emplace_back(index);
-		}
-
 		static void InformObservers(void* data)
 		{
-			if (RemovalObservers.empty() == false && !MemoryAlias.empty)
+			if (removalObservers.empty() == false && !MemoryAlias.empty())
 			{
-				for (const RemovalOperationEvent observer : RemovalObservers)
+				for (const RemovalOperationEvent observer : removalObservers)
 				{
 					observer(MemoryAlias, data);
 				}
 			}
 		}
 
-		static void OnDataRemoved(const std::string& memoryAlias, void* data)
+		static void BeforeDataRemoveObserver(const std::string& memoryAlias, void* data)
 		{
+			UpdateComponentBeforeEntityRemoval(memoryAlias, data);
+			UpdateEntitiesOnRemoval(memoryAlias, data);
+		}
+
+		static void UpdateEntitiesOnRemoval(const std::string& memoryAlias, void* removedData)
+		{
+			// We make sure this method block only runs in Entity Virtual Memory
 			if (memoryAlias == "Entity" && Type == ECS_TYPE_ENTITY)
 			{
+				const Entity2* removingEntity = (Entity2*)removedData;
+
+				unsigned int newEntityId = 0;
+				for (unsigned int i = 0; i < GetSliceCount(); i++)
+				{
+					Entity2* iteratedEntity = (Entity2*)FetchWithSliceIndex(i);
+
+					if (iteratedEntity != removingEntity)
+					{
+						const unsigned int oldEntityId = iteratedEntity->EntityId;
+						iteratedEntity->EntityId = newEntityId;
+						newEntityId = (newEntityId + 1) * sizeof(T);
+
+						for (const EntityIdChangeUpdate observer : entityUpdateObservers)
+						{
+							observer(iteratedEntity, oldEntityId);
+						}
+					}
+				}
 			}
+		}
+
+		static void UpdateComponentBeforeEntityRemoval(const std::string& memoryAlias, void* removedData)
+		{
+			std::cout << "I don't know what am I doing." << std::endl;
 
 			if (memoryAlias == "Entity" && Type == ECS_TYPE_COMPONENT)
 			{
-				Entity2* entity = (Entity2*)data;
+				Entity2* entity = (Entity2*)removedData;
 
 				unsigned int reverseIndex = 0;
-				for (unsigned int componentIndex = GetSliceCount(); componentIndex > 0; --componentIndex)
+				for (unsigned int componentIndex = GetSliceCount() - 1; componentIndex > 0; --componentIndex)
 				{
-					Component* component = FetchWithSliceIndex(componentIndex);
+					Component* component = (Component*)FetchWithSliceIndex(componentIndex);
 
 					if (component->OwnerId == entity->EntityId)
 						RemoveSlice(componentIndex);
 					else
 						component->ComponentId = reverseIndex++;
 				}
+			}
+		}
+
+		static void UpdateComponentAfterEntityUpdate(const Entity2* updatedEntity, const unsigned int oldEntityId)
+		{
+			for (unsigned int i = 0; i < GetSliceCount(); i++)
+			{
+				Component* component = (Component*)FetchWithSliceIndex(i);
+				if (component->OwnerId == oldEntityId)
+					component->OwnerId = updatedEntity->EntityId;
 			}
 		}
 	};
