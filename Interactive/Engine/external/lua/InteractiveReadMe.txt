@@ -1,1 +1,0 @@
-Remove lua.c and luac.c from the source before compilation.

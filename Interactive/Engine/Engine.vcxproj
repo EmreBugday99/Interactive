@@ -142,7 +142,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -185,38 +185,6 @@
     <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="external\imgui\imgui_tables.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="external\lua\src\lapi.c" />
-    <ClCompile Include="external\lua\src\lauxlib.c" />
-    <ClCompile Include="external\lua\src\lbaselib.c" />
-    <ClCompile Include="external\lua\src\lcode.c" />
-    <ClCompile Include="external\lua\src\lcorolib.c" />
-    <ClCompile Include="external\lua\src\lctype.c" />
-    <ClCompile Include="external\lua\src\ldblib.c" />
-    <ClCompile Include="external\lua\src\ldebug.c" />
-    <ClCompile Include="external\lua\src\ldo.c" />
-    <ClCompile Include="external\lua\src\ldump.c" />
-    <ClCompile Include="external\lua\src\lfunc.c" />
-    <ClCompile Include="external\lua\src\lgc.c" />
-    <ClCompile Include="external\lua\src\linit.c" />
-    <ClCompile Include="external\lua\src\liolib.c" />
-    <ClCompile Include="external\lua\src\llex.c" />
-    <ClCompile Include="external\lua\src\lmathlib.c" />
-    <ClCompile Include="external\lua\src\lmem.c" />
-    <ClCompile Include="external\lua\src\loadlib.c" />
-    <ClCompile Include="external\lua\src\lobject.c" />
-    <ClCompile Include="external\lua\src\lopcodes.c" />
-    <ClCompile Include="external\lua\src\loslib.c" />
-    <ClCompile Include="external\lua\src\lparser.c" />
-    <ClCompile Include="external\lua\src\lstate.c" />
-    <ClCompile Include="external\lua\src\lstring.c" />
-    <ClCompile Include="external\lua\src\lstrlib.c" />
-    <ClCompile Include="external\lua\src\ltable.c" />
-    <ClCompile Include="external\lua\src\ltablib.c" />
-    <ClCompile Include="external\lua\src\ltm.c" />
-    <ClCompile Include="external\lua\src\lundump.c" />
-    <ClCompile Include="external\lua\src\lutf8lib.c" />
-    <ClCompile Include="external\lua\src\lvm.c" />
-    <ClCompile Include="external\lua\src\lzio.c" />
     <ClCompile Include="GarbageCollector.cpp" />
     <ClCompile Include="input\InputManager.cpp" />
     <ClCompile Include="Interactive.cpp" />
@@ -259,34 +227,6 @@
     <ClInclude Include="external\imgui\imstb_rectpack.h" />
     <ClInclude Include="external\imgui\imstb_textedit.h" />
     <ClInclude Include="external\imgui\imstb_truetype.h" />
-    <ClInclude Include="external\lua\src\lapi.h" />
-    <ClInclude Include="external\lua\src\lauxlib.h" />
-    <ClInclude Include="external\lua\src\lcode.h" />
-    <ClInclude Include="external\lua\src\lctype.h" />
-    <ClInclude Include="external\lua\src\ldebug.h" />
-    <ClInclude Include="external\lua\src\ldo.h" />
-    <ClInclude Include="external\lua\src\lfunc.h" />
-    <ClInclude Include="external\lua\src\lgc.h" />
-    <ClInclude Include="external\lua\src\ljumptab.h" />
-    <ClInclude Include="external\lua\src\llex.h" />
-    <ClInclude Include="external\lua\src\llimits.h" />
-    <ClInclude Include="external\lua\src\lmem.h" />
-    <ClInclude Include="external\lua\src\lobject.h" />
-    <ClInclude Include="external\lua\src\lopcodes.h" />
-    <ClInclude Include="external\lua\src\lopnames.h" />
-    <ClInclude Include="external\lua\src\lparser.h" />
-    <ClInclude Include="external\lua\src\lprefix.h" />
-    <ClInclude Include="external\lua\src\lstate.h" />
-    <ClInclude Include="external\lua\src\lstring.h" />
-    <ClInclude Include="external\lua\src\ltable.h" />
-    <ClInclude Include="external\lua\src\ltm.h" />
-    <ClInclude Include="external\lua\src\lua.h" />
-    <ClInclude Include="external\lua\src\lua.hpp" />
-    <ClInclude Include="external\lua\src\luaconf.h" />
-    <ClInclude Include="external\lua\src\lualib.h" />
-    <ClInclude Include="external\lua\src\lundump.h" />
-    <ClInclude Include="external\lua\src\lvm.h" />
-    <ClInclude Include="external\lua\src\lzio.h" />
     <ClInclude Include="includes\EngineInclude.hpp" />
     <ClInclude Include="reflection\ClassType.hpp" />
     <ClInclude Include="reflection-system\empty.hpp" />
@@ -311,6 +251,10 @@
     <ClInclude Include="file-io\DiskReader.h" />
     <ClInclude Include="includes\RendererIncludes.h" />
     <ClInclude Include="InteractiveObject.h" />
+    <ClInclude Include="reflection\ClassDefinition.hpp" />
+    <ClInclude Include="reflection\ReflectionMacros.hpp" />
+    <ClInclude Include="reflection\RuntimeClass.hpp" />
+    <ClInclude Include="reflection\RuntimeReflection.hpp" />
     <ClInclude Include="renderer\buffers\IndexBuffer.h" />
     <ClInclude Include="renderer\shader\ShaderProgram.h" />
     <ClInclude Include="renderer\shader\ShaderTypes.h" />

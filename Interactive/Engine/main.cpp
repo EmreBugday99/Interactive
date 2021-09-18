@@ -4,10 +4,25 @@
 #include "testGame/TestComponent3.hpp"
 #include "testGame/TestSystem.h"
 #include "testGame/TestSystem2.h"
+#include <source_location>
+
+void TestSourceLoc(int i)
+{
+	const std::source_location& srcLoc = std::source_location::current();
+	std::cout << "Function: " << srcLoc.function_name() << std::endl;
+}
 
 int main()
 {
 	using namespace  Interactive;
+
+	TestSourceLoc(123);
+
+	//std::string className = RuntimeReflection::GET_CLASS_NAME;
+
+	//std::cout << className << std::endl;
+
+	return 0;
 
 	ECSMemory<Entity2>::InitializeMemory();
 	ECSMemory<Entity2>::SetAlias("Entity");

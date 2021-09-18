@@ -4,6 +4,7 @@
 #include "TestComponent2.hpp"
 #include "../ecs/ECSManager.h"
 #include "../ecs/Entity.hpp"
+#include <typeinfo>
 
 Interactive::TestSystem::TestSystem() : deleted(false)
 {
@@ -15,6 +16,13 @@ void Interactive::TestSystem::OnUpdate(const float deltaTime)
 
 	BaseSystem::OnUpdate(deltaTime);
 	const unsigned int entityCount = ECSMemory<Entity2>::GetSliceCount();
+
+	//std::cout << "File Name: " << __FILE__ << std::endl;
+
+	std::cout << __FILE__ << std::endl;
+	std::cout << __FUNCTION__ << std::endl;
+	std::cout << __FUNCSIG__ << std::endl;
+
 	for (unsigned int i = 0; i < entityCount; i++)
 	{
 		Entity2* entity = ECSMemory<Entity2>::FetchWithSliceIndex(i);
