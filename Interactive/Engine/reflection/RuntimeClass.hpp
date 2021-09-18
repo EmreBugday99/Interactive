@@ -23,10 +23,21 @@ namespace Interactive
 
 		// [Data]
 		void* ClassPtr;
-		ClassDefinition* ClassType;
+		ClassDefinition* Definition;
 
 		RuntimeClass(void* classPtr, ClassDefinition* classDefinition)
-			: ClassPtr(classPtr), ClassType(classDefinition) {}
+			: ClassPtr(classPtr), Definition(classDefinition) {}
+
+		~RuntimeClass()
+		{
+			if (ClassDestroyObservers.empty() == false)
+			{
+				for (ClassDestroyFunc destroyFunc : ClassDestroyObservers)
+				{
+					destroyFunc(this);
+				}
+			}
+		}
 
 	public:
 		//TODO: All the getters will be here

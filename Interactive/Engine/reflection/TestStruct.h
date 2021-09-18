@@ -14,4 +14,8 @@ struct TestStruct
 		a = 10;
 		b = 12.0f;
 	}
+	~TestStruct()
+	{
+		DESTROY_RUNTIME_CLASS;
+	}
 };

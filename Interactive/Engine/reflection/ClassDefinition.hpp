@@ -10,10 +10,10 @@ namespace Interactive
 		friend class RuntimeReflection;
 
 		std::string DefinitionName;
-		DEFINITON_ID  DefinitionId;
+		DEFINITION_ID  DefinitionId;
 		DEFINITION_SIZE DefinitionSize;
 
-		ClassDefinition(std::string className, const DEFINITON_ID typeId, const DEFINITION_SIZE classSize)
+		ClassDefinition(std::string className, const DEFINITION_ID typeId, const DEFINITION_SIZE classSize)
 		{
 			DefinitionName = className;
 			DefinitionId = typeId;

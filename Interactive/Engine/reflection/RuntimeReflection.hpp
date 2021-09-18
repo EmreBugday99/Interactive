@@ -11,25 +11,33 @@ namespace Interactive
 	{
 		inline static std::vector<ClassDefinition*> ClassDefinitions;
 		inline static std::vector<RuntimeClass*> RuntimeClasses;
+		inline static DEFINITION_SIZE DefinitionCounter;
 
 	public:
 
-		static DEFINITON_ID GenerateClassDefinition(std::string className, DEFINITION_SIZE classSize)
+		static void Initialize()
 		{
-			const std::string typeName = GetClassName(className);
-			const DEFINITON_ID classId = GenerateClassDefinitionId(typeName);
-
-			// If a class definition already exists for a certain type we return -1 indicating instruction failure.
-			if (classId == -1)
-				return classId;
-
-			const auto classType = new ClassDefinition(typeName, classId, classSize);
-			ClassDefinitions.push_back(classType);
-
-			return classId;
+			RuntimeClass::ClassPtrChangeObservers.push_back(BeforeRuntimeClassPtrChange);
+			RuntimeClass::ClassDestroyObservers.push_back(BeforeRuntimeClassDestroy);
 		}
 
-		static ClassDefinition* FetchClassDefinition(DEFINITON_ID classId)
+		static DEFINITION_ID GenerateClassDefinition(std::string className, DEFINITION_SIZE classSize)
+		{
+			const std::string typeName = GetClassName(className);
+			// bool = brand new definition | DEFINITION_ID = pretty self explanatory...
+			const std::pair<bool, DEFINITION_ID> definitionPair = GenerateClassDefinitionId(typeName);
+
+			// If a class definition already exists for a certain type we return the existing definition id for the type.
+			if (definitionPair.first == true)
+				return definitionPair.second;
+
+			const auto classType = new ClassDefinition(typeName, definitionPair.second, classSize);
+			ClassDefinitions.push_back(classType);
+
+			return definitionPair.second;
+		}
+
+		static ClassDefinition* FetchClassDefinition(DEFINITION_ID classId)
 		{
 			for (ClassDefinition* classDef : ClassDefinitions)
 			{
@@ -46,19 +54,28 @@ namespace Interactive
 	private:
 		// *** Class Definition Start ***
 
-		static DEFINITON_ID GenerateClassDefinitionId(std::string className)
+		static std::pair<bool, DEFINITION_ID> GenerateClassDefinitionId(std::string className)
 		{
-			bool typeAlreadyExists = false;
-			for (const ClassDefinition* classType : ClassDefinitions)
+			ClassDefinition* existingDefinition = nullptr;
+
+			for (ClassDefinition* definition : ClassDefinitions)
 			{
-				if (className == classType->DefinitionName)
-					typeAlreadyExists = true;
+				if (className == definition->DefinitionName)
+				{
+					std::cout << "kjhasahkjdas";
+					existingDefinition = definition;
+				}
 			}
 
-			if (typeAlreadyExists == false)
-				return __COUNTER__;
+			if (existingDefinition == nullptr)
+			{
+				bool newDef = false;
+				DEFINITION_ID id = DefinitionCounter++;
 
-			return -1;
+				return std::make_pair(newDef, id);
+			}
+
+			return std::make_pair(true, existingDefinition->DefinitionId);
 		}
 
 		static std::string GetClassName(std::string& classFile)
@@ -93,7 +110,7 @@ namespace Interactive
 
 		// *** Runtime Classes Start ***
 	public:
-		static RuntimeClass* GenerateRuntimeClass(DEFINITON_ID classDefinitionId, void* runtimePtrToClass)
+		static RuntimeClass* GenerateRuntimeClass(DEFINITION_ID classDefinitionId, void* runtimePtrToClass)
 		{
 			ClassDefinition* classDefinition = FetchClassDefinition(classDefinitionId);
 			RuntimeClass* runtimeClass = new RuntimeClass(runtimePtrToClass, classDefinition);
@@ -103,7 +120,23 @@ namespace Interactive
 			return runtimeClass;
 		}
 
-		static RuntimeClass* FetchRuntimeClass() {}
+		static char FetchAllRuntimeClassesOfDefinition(std::vector<RuntimeClass*>& vectorToFill, DEFINITION_ID definitionId)
+		{
+			bool foundAnyDefinitionMatch = false;
+
+			for (RuntimeClass* runtimeClass : RuntimeClasses)
+			{
+				if (definitionId == runtimeClass->Definition->DefinitionId)
+				{
+					vectorToFill.push_back(runtimeClass);
+					foundAnyDefinitionMatch = true;
+				}
+			}
+
+			if (!foundAnyDefinitionMatch)
+				return -1;
+			return 1;
+		}
 
 	private:
 		static void BeforeRuntimeClassPtrChange(RuntimeClass* oldPtr, RuntimeClass* updatedPtr)
@@ -116,6 +149,23 @@ namespace Interactive
 				runtimeClass = updatedPtr;
 				break;
 			}
+		}
+
+		static void BeforeRuntimeClassDestroy(RuntimeClass* runtimePtr)
+		{
+			unsigned int index = 0;
+
+			for (RuntimeClass* runtimeClass : RuntimeClasses)
+			{
+				if (runtimePtr == runtimeClass)
+					break;
+
+				index++;
+			}
+
+			std::cout << "Deleting: " << RuntimeClasses[index]->Definition->DefinitionName << std::endl;
+
+			RuntimeClasses.erase(RuntimeClasses.begin() + index);
 		}
 
 		// *** Runtime Classes End ***

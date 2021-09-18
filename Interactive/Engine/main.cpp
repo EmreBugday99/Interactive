@@ -1,19 +1,34 @@
 #include <iostream>
 #include "reflection/RuntimeReflection.hpp"
+#include "reflection/TestShit.hpp"
 #include "reflection/TestStruct.h"
 
 int main()
 {
 	using namespace  Interactive;
 
+	RuntimeReflection::Initialize();
+
+	TestShit* testStructyy = new TestShit();
+
 	TestStruct* testStruct = new TestStruct();
+
 	ClassDefinition* def = RuntimeReflection::FetchClassDefinition(testStruct->DefinitionId);
+	ClassDefinition* def2 = RuntimeReflection::FetchClassDefinition(testStructyy->DefinitionId);
 
 	std::cout << "Def Id: " << def->DefinitionId << std::endl;
 	std::cout << "Def Name: " << def->DefinitionName << std::endl;
 	std::cout << "Def Size: " << def->DefinitionSize << std::endl;
 
-	std::cout << "Runtime Class Def: " << testStruct->RuntimeReflection->ClassType->DefinitionName << std::endl;
+	std::cout << "Runtime Class Def: " << testStruct->RuntimeReflection->Definition->DefinitionName << std::endl;
+
+	std::cout << "Def2 Id: " << def2->DefinitionId << std::endl;
+	std::cout << "Def2 Name: " << def2->DefinitionName << std::endl;
+	std::cout << "Def2 Size: " << def2->DefinitionSize << std::endl;
+
+	std::cout << "Runtime Class Def2: " << testStructyy->RuntimeReflection->Definition->DefinitionName << std::endl;
+
+	delete testStruct;
 
 	//std::string className = RuntimeReflection::GET_CLASS_NAME;
 
