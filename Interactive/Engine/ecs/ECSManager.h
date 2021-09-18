@@ -37,7 +37,7 @@ namespace Interactive
 			const unsigned int memoryIndex = ECSMemory<T>::Add();
 			T* newComponent = ECSMemory<T>::FetchWithMemoryIndex(memoryIndex);
 
-			newComponent->TypeId = ClassType<T>::TypeId;
+			newComponent->DefinitionId = ClassType<T>::DefinitionId;
 			newComponent->ComponentId = memoryIndex;
 			newComponent->OwnerId = entityId;
 

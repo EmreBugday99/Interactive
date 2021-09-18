@@ -5,16 +5,19 @@ namespace Interactive
 {
 	class ClassDefinition
 	{
+		//TODO: MAKE THIS ACCESS MODIFIER PRIVATE AFTER DEBUGGING IS OVER
+	public:
 		friend class RuntimeReflection;
 
-		const char* ClassName;
-		CLASS_ID_TYPE  TypeId;
-		CLASS_SIZE ClassSize;
+		std::string DefinitionName;
+		DEFINITON_ID  DefinitionId;
+		DEFINITION_SIZE DefinitionSize;
 
-		ClassDefinition(const char* className, CLASS_ID_TYPE typeId)
+		ClassDefinition(std::string className, const DEFINITON_ID typeId, const DEFINITION_SIZE classSize)
 		{
-			ClassName = className;
-			TypeId = typeId;
+			DefinitionName = className;
+			DefinitionId = typeId;
+			DefinitionSize = classSize;
 		}
 
 	public:

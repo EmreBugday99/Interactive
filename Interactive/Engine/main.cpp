@@ -1,22 +1,19 @@
-#include "ecs/ECSManager.h"
-#include "testGame/TestComponent.hpp"
-#include "testGame/TestComponent2.hpp"
-#include "testGame/TestComponent3.hpp"
-#include "testGame/TestSystem.h"
-#include "testGame/TestSystem2.h"
-#include <source_location>
-
-void TestSourceLoc(int i)
-{
-	const std::source_location& srcLoc = std::source_location::current();
-	std::cout << "Function: " << srcLoc.function_name() << std::endl;
-}
+#include <iostream>
+#include "reflection/RuntimeReflection.hpp"
+#include "reflection/TestStruct.h"
 
 int main()
 {
 	using namespace  Interactive;
 
-	TestSourceLoc(123);
+	TestStruct* testStruct = new TestStruct();
+	ClassDefinition* def = RuntimeReflection::FetchClassDefinition(testStruct->DefinitionId);
+
+	std::cout << "Def Id: " << def->DefinitionId << std::endl;
+	std::cout << "Def Name: " << def->DefinitionName << std::endl;
+	std::cout << "Def Size: " << def->DefinitionSize << std::endl;
+
+	std::cout << "Runtime Class Def: " << testStruct->RuntimeReflection->ClassType->DefinitionName << std::endl;
 
 	//std::string className = RuntimeReflection::GET_CLASS_NAME;
 
@@ -24,39 +21,39 @@ int main()
 
 	return 0;
 
-	ECSMemory<Entity2>::InitializeMemory();
-	ECSMemory<Entity2>::SetAlias("Entity");
+	//ECSMemory<Entity2>::InitializeMemory();
+	//ECSMemory<Entity2>::SetAlias("Entity");
 
-	ECSMemory<TestComponent>::InitializeMemory();
-	ECSMemory<TestComponent>::SetAlias("TestComponent");
+	//ECSMemory<TestComponent>::InitializeMemory();
+	//ECSMemory<TestComponent>::SetAlias("TestComponent");
 
-	ECSMemory<TestComponent2>::InitializeMemory();
-	ECSMemory<TestComponent2>::SetAlias("TestComponent2");
+	//ECSMemory<TestComponent2>::InitializeMemory();
+	//ECSMemory<TestComponent2>::SetAlias("TestComponent2");
 
-	ECSMemory<TestComponent3>::InitializeMemory();
-	ECSMemory<TestComponent3>::SetAlias("TestComponent3");
+	//ECSMemory<TestComponent3>::InitializeMemory();
+	//ECSMemory<TestComponent3>::SetAlias("TestComponent3");
 
-	const auto ecsReturnEntity = ECSManager::CreateEntity();
-	const auto ecsReturnEntity2 = ECSManager::CreateEntity();
+	//const auto ecsReturnEntity = ECSManager::CreateEntity();
+	//const auto ecsReturnEntity2 = ECSManager::CreateEntity();
 
-	ECSManager::CreateComponent<TestComponent>(ecsReturnEntity.ReturnIndex);
-	ECSManager::CreateComponent<TestComponent2>(ecsReturnEntity.ReturnIndex);
-	ECSManager::CreateComponent<TestComponent>(ecsReturnEntity2.ReturnIndex);
-	ECSManager::CreateComponent<TestComponent2>(ecsReturnEntity2.ReturnIndex);
+	//ECSManager::CreateComponent<TestComponent>(ecsReturnEntity.ReturnIndex);
+	//ECSManager::CreateComponent<TestComponent2>(ecsReturnEntity.ReturnIndex);
+	//ECSManager::CreateComponent<TestComponent>(ecsReturnEntity2.ReturnIndex);
+	//ECSManager::CreateComponent<TestComponent2>(ecsReturnEntity2.ReturnIndex);
 
-	ECSMemory<TestComponent3>::Add();
-	ECSMemory<TestComponent3>::Add();
+	//ECSMemory<TestComponent3>::Add();
+	//ECSMemory<TestComponent3>::Add();
 
-	TestSystem* testSystem = new TestSystem();
-	TestSystem2* testSystem2 = new TestSystem2();
+	//TestSystem* testSystem = new TestSystem();
+	//TestSystem2* testSystem2 = new TestSystem2();
 
-	ECSManager::AddSystem(testSystem);
-	ECSManager::AddSystem(testSystem2);
+	//ECSManager::AddSystem(testSystem);
+	//ECSManager::AddSystem(testSystem2);
 
-	while (true)
-	{
-		ECSManager::Update();
-	}
+	//while (true)
+	//{
+	//	ECSManager::Update();
+	//}
 
 	return 0;
 }

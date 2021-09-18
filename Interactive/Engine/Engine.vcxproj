@@ -255,6 +255,7 @@
     <ClInclude Include="reflection\ReflectionMacros.hpp" />
     <ClInclude Include="reflection\RuntimeClass.hpp" />
     <ClInclude Include="reflection\RuntimeReflection.hpp" />
+    <ClInclude Include="reflection\TestStruct.h" />
     <ClInclude Include="renderer\buffers\IndexBuffer.h" />
     <ClInclude Include="renderer\shader\ShaderProgram.h" />
     <ClInclude Include="renderer\shader\ShaderTypes.h" />
