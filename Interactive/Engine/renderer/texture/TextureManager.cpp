@@ -4,8 +4,7 @@
 
 #include "Texture.h"
 
-TextureManager::TextureManager(Interactive* engine)
-	: Engine(engine)
+TextureManager::TextureManager()
 {
 	glGetIntegerv(GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS, &MaxTextureCap);
 	std::cout << "[OpenGL] Max Texture Count: " << MaxTextureCap << std::endl;

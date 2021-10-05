@@ -1,93 +1,65 @@
-#include "includes/CoreIncludes.h"
-#include "scene/Scene.h"
-#include "scene/SceneManager.h"
+#include "Interactive.h"
+#include "external/imgui/imgui.h"
+#include "external/imgui/imgui_impl_glfw.h"
+#include "external/imgui/imgui_impl_opengl3.h"
+#include "ecs/SystemManager.hpp"
+#include <GLFW/glfw3.h>
+#include "renderer/texture/TextureManager.h"
 
-std::map<std::string, InteractiveObject*> Interactive::GlobalObjectPointers;
-
-Interactive::Interactive(std::string gameName)
-	: GameName(gameName), MainCamera(nullptr)
+namespace IE
 {
-	GameWindow = new Window(gameName, 800, 800, this);
-	ECManager = new EntityManager(this);
-	InputSystem = new InputManager(this);
-	TextureSystem = new TextureManager(this);
-	GC = new GarbageCollector(this);
-	SceneSystem = new SceneManager(this);
+	const char* Interactive::GameName;
+	Window Interactive::GameWindow;
+	InputManager Interactive::InputSystem;
+	TextureManager Interactive::TextureSystem;
 
-	ImGui::CreateContext();
-	ImGui_ImplGlfw_InitForOpenGL(GameWindow->GlWindow, true);
-	ImGui_ImplOpenGL3_Init("#version 150");
-	ImGui::StyleColorsDark();
-
-	GlobalObjectPointers.emplace("null", nullptr);
-}
-
-Interactive::~Interactive() {}
-
-void Interactive::Start()
-{
-	Update();
-}
-
-void Interactive::Update()
-{
-	while (GameWindow->IsClosed() == false)
+	void Interactive::Initialize(const char* gameName)
 	{
-		GameWindow->Clear();
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+		GameWindow = Window(gameName, 800, 800);
+		InputSystem = InputManager();
+		TextureSystem = TextureManager();
 
-		if (GC->GetGCQueueSize() >= GC->ForceEnterThreshold)
-			GC->CollectGarbage();
-
-		ECManager->JoinEntitiesIntoGameLoop();
-
-		size_t entityIndex = SceneSystem->ActiveScene->EntitiesInScene.size();
-		while (entityIndex)
-		{
-			entityIndex--;
-			Entity* currentEntity = SceneSystem->ActiveScene->EntitiesInScene[entityIndex];
-
-			// TODO: Put real delta time here instead of 0.1f
-			currentEntity->Update(0.1f);
-		}
-
-		InputSystem->ClearKeyStates();
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-		GameWindow->Update();
-
-		ECManager->RemoveEntitiesFromGameLoop();
+		ImGui::CreateContext();
+		ImGui_ImplGlfw_InitForOpenGL(GameWindow.GlWindow, true);
+		ImGui_ImplOpenGL3_Init("#version 150");
+		ImGui::StyleColorsDark();
 	}
 
-	Close();
-}
+	void Interactive::Start()
+	{
+		Update();
+	}
 
-void Interactive::Close()
-{
-	ImGui_ImplOpenGL3_Shutdown();
-	ImGui_ImplGlfw_Shutdown();
-	ImGui::DestroyContext();
+	void Interactive::Update()
+	{
+		while (GameWindow.IsClosed() == false)
+		{
+			GameWindow.Clear();
+			ImGui_ImplOpenGL3_NewFrame();
+			ImGui_ImplGlfw_NewFrame();
+			ImGui::NewFrame();
 
-	delete(GameWindow);
-	GameWindow = nullptr;
+			for (const auto renderCallback : SystemManager::RenderCallbacks)
+			{
+				renderCallback();
+			}
 
-	delete(ECManager);
-	ECManager = nullptr;
+			InputSystem.ClearKeyStates();
 
-	delete(InputSystem);
-	InputSystem = nullptr;
+			ImGui::Render();
+			ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+			GameWindow.Update();
+		}
 
-	delete(TextureSystem);
-	TextureSystem = nullptr;
+		Close();
+	}
 
-	delete(GC);
-	GC = nullptr;
+	void Interactive::Close()
+	{
+		ImGui_ImplOpenGL3_Shutdown();
+		ImGui_ImplGlfw_Shutdown();
+		ImGui::DestroyContext();
 
-	delete(SceneSystem);
-	SceneSystem = nullptr;
-
-	glfwTerminate();
+		glfwTerminate();
+	}
 }

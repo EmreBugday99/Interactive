@@ -39,22 +39,7 @@
     <ClCompile Include="renderer\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="entity-component\EntityManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="entity-component\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="entity-component\Component.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="components\Sprite2D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Interactive.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="components\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="input\InputManager.cpp">
@@ -64,15 +49,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="renderer\texture\TextureManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InteractiveObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GarbageCollector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="components\Transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="external\imgui\imgui.cpp">
@@ -96,22 +72,13 @@
     <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scene\SceneManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scene\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ecs\ECSManager.cpp">
+    <ClCompile Include="ecs\Entity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ecs\BaseSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="testGame\TestSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="testGame\TestSystem2.cpp">
+    <ClCompile Include="renderer\RendererSystem2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -137,22 +104,7 @@
     <ClInclude Include="renderer\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="entity-component\EntityManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="entity-component\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="entity-component\Component.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="components\Sprite2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Interactive.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="components\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="input\InputManager.h">
@@ -164,37 +116,10 @@
     <ClInclude Include="input\KeyActions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\RendererIncludes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\InputIncludes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\CoreIncludes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\EcIncludes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="renderer\texture\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="renderer\texture\TextureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\TextureIncludes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\Components.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InteractiveObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GarbageCollector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="components\Transform.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="external\imgui\imconfig.h">
@@ -224,94 +149,34 @@
     <ClInclude Include="input\LuaKeyMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="reflection-system\TypeReflection.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection-system\FieldReflection.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection-system\MethodReflection.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection-system\ClassReflection.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection-system\ReflectionSystem.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection-system\empty.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="utils\Utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="scene\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scene\SceneManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\ClassType.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ecs\ECSManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ecs\ECSMemory.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ecs\Entity.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ecs\Component.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="debugging\ErrorHandler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ecs\ECSReturn.hpp">
+    <ClInclude Include="external\entt\entt.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ecs\BaseSystem.h">
+    <ClInclude Include="ecs\Entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\EngineInclude.hpp">
+    <ClInclude Include="components\CameraComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testGame\TestComponent.hpp">
+    <ClInclude Include="components\TransformComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testGame\TestComponent2.hpp">
+    <ClInclude Include="components\SpriteComponent.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testGame\TestComponent3.hpp">
+    <ClInclude Include="renderer\RendererSystem2D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="testGame\TestSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="testGame\TestSystem2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ecs\ECSMacros.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\ReflectionMacros.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\ClassDefinition.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\RuntimeReflection.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\RuntimeClass.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\TestStruct.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="reflection\TestShit.hpp">
+    <ClInclude Include="ecs\SystemManager.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

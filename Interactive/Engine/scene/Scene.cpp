@@ -1,15 +1,19 @@
 #include "Scene.h"
-#include "../entity-component/EntityManager.h"
 
-Entity* Scene::CreateNewEntity(std::string entityName)
-{
-	Entity* newEntity = Engine->ECManager->CreateEntity(entityName, this);
+namespace IE {
+	Scene::Scene()
+	{
+		entt::entity entity = Registry.create();
+	}
 
-	return newEntity;
+	Scene::~Scene()
+	{
+		Registry.clear();
+	}
+
+	entt::entity Scene::CreateEntity()
+	{
+		return Registry.create();
+	}
+
 }
-
-void Scene::OnSceneCreated() {}
-
-void Scene::OnSceneEnabled() {}
-
-void Scene::OnSceneDisabled() {}

@@ -1,39 +1,24 @@
 #pragma once
-#include <iostream>
-#include <map>
-#include <string>
+#include "input/InputManager.h"
+#include "renderer/Window.h"
+#include "renderer/texture/TextureManager.h"
 
-class SceneManager;
-class ComponentFactory;
-class AssetManager;
-class Entity;
-class InteractiveObject;
-class TextureManager;
-class InputManager;
-class Camera;
-class EntityManager;
-class Window;
-class GarbageCollector;
-class Interactive
+namespace IE
 {
-public:
-	std::string GameName;
-	Window* GameWindow;
-	EntityManager* ECManager;
-	Camera* MainCamera;
-	InputManager* InputSystem;
-	TextureManager* TextureSystem;
-	GarbageCollector* GC;
-	SceneManager* SceneSystem;
+	class Interactive
+	{
+	public:
+		static const char* GameName;
+		static Window GameWindow;
+		static InputManager InputSystem;
+		static TextureManager TextureSystem;
 
-	static std::map<std::string, InteractiveObject*> GlobalObjectPointers;
+		static void Initialize(const char* gameName);
 
-	Interactive(std::string gameName);
-	~Interactive();
+		void Start();
+		void Update();
 
-	void Start();
-	void Update();
-
-private:
-	void Close();
-};
+	private:
+		void Close();
+	};
+}

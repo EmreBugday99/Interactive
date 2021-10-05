@@ -1,35 +1,33 @@
 #pragma once
-#include <vector>
 #include <map>
 #include "KeyActions.h"
+#include <GLFW/glfw3.h>
 
-enum class Keys;
-class Component;
-class Interactive;
-class InputManager
+
+namespace IE
 {
-public:
-	Interactive* Engine;
+	enum class Keys;
+	class InputManager
+	{
+	public:
 
-	void BindKeyboardCallback(Component* callbackListener);
-	void UnbindKeyboardCallback(Component* component);
+		KeyActions GetKeyState(Keys key);
+		bool IsKeyPressed(Keys key);
+		bool IsKeyHold(Keys key);
+		bool IsKeyReleased(Keys key);
 
-	KeyActions GetKeyState(Keys key);
-	bool IsKeyPressed(Keys key);
-	bool IsKeyHold(Keys key);
-	bool IsKeyReleased(Keys key);
+		void ClearKeyStates();
 
-	void ClearKeyStates();
+	private:
+		friend struct GLFWwindow;
+		friend class Interactive;
 
-private:
-	friend struct GLFWwindow;
-	friend class Interactive;
+		KeyActions KeyBuffer[400] = { KeyActions::None };
 
-	KeyActions KeyBuffer[400] = { KeyActions::None };
-	
-	std::map<int, KeyActions> KeysActionsWaitingToBeCleaned;
+		std::map<int, KeyActions> KeysActionsWaitingToBeCleaned;
 
-	InputManager(Interactive* engine);
-	
-	static void KeyboardCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
-};
+		InputManager();
+
+		static void KeyboardCallback(GLFWwindow* window, int key, int scanCode, int action, int mods);
+	};
+}

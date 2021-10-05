@@ -5,7 +5,6 @@
 #include <glad/glad.h>
 #include "ShaderTypes.h"
 #include <glm/glm.hpp>
-#include <glm/ext.hpp>
 
 class ShaderProgram
 {
