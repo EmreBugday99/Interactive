@@ -3,6 +3,7 @@
 #include "../Engine.h"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
+#include "../debugging/Logger.h"
 
 namespace TurtleEngine
 {
@@ -29,12 +30,8 @@ namespace TurtleEngine
 
 	bool Window::InitializeWindow(int width, int height)
 	{
-		std::cout << "aaa" << std::endl;
-
 		if (glfwInit() == GLFW_FALSE)
 			return false;
-
-		std::cout << "bbb" << std::endl;
 
 		Width = width;
 		Height = height;
@@ -46,7 +43,7 @@ namespace TurtleEngine
 		GlWindow = glfwCreateWindow(Width, Height, Engine::GetGameName(), nullptr, nullptr);
 		if (GlWindow == nullptr)
 		{
-			std::cerr << "[ERROR] Failed to initialize window!" << std::endl;
+			Logger::LogError("Failed to initialize window!");
 			glfwTerminate();
 			return false;
 		}
@@ -55,7 +52,10 @@ namespace TurtleEngine
 		glfwSetWindowSizeCallback(GlWindow, WindowResizeCallback);
 		gladLoadGL();
 
-		std::cout << "[OPEN GL] Version: " << glGetString(GL_VERSION) << std::endl;
+		std::stringstream ss;
+		ss << "[OPEN GL] Version: " << glGetString(GL_VERSION);
+		Logger::LogWarning(ss.str());
+		ss.clear();
 
 		return true;
 	}

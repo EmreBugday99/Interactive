@@ -176,6 +176,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="components\SpriteComponent.cpp" />
+    <ClCompile Include="debugging\Logger.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="renderer\BufferManager.cpp" />
     <ClCompile Include="ecs\Entity.cpp" />
@@ -198,12 +199,12 @@
     <ClCompile Include="renderer\ShaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="debugging\Logger.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="renderer\BufferManager.h" />
     <ClInclude Include="components\CameraComponent.hpp" />
     <ClInclude Include="components\SpriteComponent.h" />
     <ClInclude Include="components\TransformComponent.hpp" />
-    <ClInclude Include="debugging\ErrorHandler.hpp" />
     <ClInclude Include="ecs\Entity.h" />
     <ClInclude Include="ecs\SystemManager.hpp" />
     <ClInclude Include="external\entt\entt.hpp" />
