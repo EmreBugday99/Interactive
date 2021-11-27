@@ -1,10 +1,10 @@
 #pragma once
 
-namespace IE
+namespace TurtleEngine
 {
 	class RendererSystem2D
 	{
 	public:
-		static void Render();
+		static void Render(float deltaTime);
 	};
 }

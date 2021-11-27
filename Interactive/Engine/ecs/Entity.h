@@ -2,7 +2,7 @@
 
 #include "../external/entt/entt.hpp"
 
-namespace IE {
+namespace TurtleEngine {
 
 	struct Entity
 	{

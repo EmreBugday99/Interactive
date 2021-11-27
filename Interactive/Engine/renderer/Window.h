@@ -1,36 +1,31 @@
 #pragma once
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
-#include "../Interactive.h"
 
-class Interactive;
-namespace IE
+namespace TurtleEngine
 {
-
 	class Window
 	{
 	public:
-		Window(const char* windowName, int width, int height);
-		~Window();
+		static bool IsClosed() { return glfwWindowShouldClose(GlWindow); }
 
-		void Update() const;
-		static void Clear();
-		bool IsClosed() const { return glfwWindowShouldClose(GlWindow); }
-
-		int GetWidth() const { return Width; }
-		int GetHeight() const { return Height; }
-		GLFWwindow* GetGlfwWindow() const { return GlWindow; }
+		static int GetWidth() { return Width; }
+		static int GetHeight() { return Height; }
+		static GLFWwindow* GetGlfwWindow() { return GlWindow; }
 
 	private:
 		friend struct GLFWwindow;
-		friend class Interactive;
+		friend class Engine;
 
-		GLint Width;
-		GLint Height;
-		const char* WindowName;
-		GLFWwindow* GlWindow;
+		static GLint Width;
+		static GLint Height;
+		static GLFWwindow* GlWindow;
 
-		bool InitializeWindow();
+		static bool InitializeWindow(int width, int height);
+		static void Update();
+		static void Clear();
+		static void DestroyWindow();
+
 		friend static void WindowResizeCallback(GLFWwindow* window, GLint width, GLint height);
 	};
 }

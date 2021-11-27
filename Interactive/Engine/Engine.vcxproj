@@ -175,6 +175,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="components\SpriteComponent.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="renderer\BufferManager.cpp" />
     <ClCompile Include="ecs\Entity.cpp" />
     <ClCompile Include="external\imgui\imgui.cpp" />
     <ClCompile Include="external\imgui\imgui_demo.cpp" />
@@ -183,24 +186,22 @@
     <ClCompile Include="external\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="external\imgui\imgui_tables.cpp" />
     <ClCompile Include="external\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="input\InputManager.cpp" />
-    <ClCompile Include="Interactive.cpp" />
     <ClCompile Include="file-io\DiskReader.cpp" />
     <ClCompile Include="external\glad.c" />
-    <ClCompile Include="renderer\buffers\IndexBuffer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="renderer\RendererSystem2D.cpp" />
-    <ClCompile Include="renderer\shader\ShaderProgram.cpp" />
-    <ClCompile Include="renderer\buffers\VertexBuffer.cpp" />
-    <ClCompile Include="renderer\buffers\VertexArray.cpp" />
-    <ClCompile Include="renderer\Window.cpp" />
     <ClCompile Include="renderer\texture\Texture.cpp" />
     <ClCompile Include="renderer\texture\TextureManager.cpp" />
-    <ClCompile Include="scene\Scene.cpp" />
+    <ClCompile Include="renderer\Window.cpp" />
+    <ClCompile Include="TestWorld.cpp" />
+    <ClCompile Include="World\World.cpp" />
+    <ClCompile Include="renderer\ShaderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine.h" />
+    <ClInclude Include="renderer\BufferManager.h" />
     <ClInclude Include="components\CameraComponent.hpp" />
-    <ClInclude Include="components\SpriteComponent.hpp" />
+    <ClInclude Include="components\SpriteComponent.h" />
     <ClInclude Include="components\TransformComponent.hpp" />
     <ClInclude Include="debugging\ErrorHandler.hpp" />
     <ClInclude Include="ecs\Entity.h" />
@@ -214,22 +215,17 @@
     <ClInclude Include="external\imgui\imstb_rectpack.h" />
     <ClInclude Include="external\imgui\imstb_textedit.h" />
     <ClInclude Include="external\imgui\imstb_truetype.h" />
-    <ClInclude Include="input\InputManager.h" />
     <ClInclude Include="input\KeyActions.h" />
     <ClInclude Include="input\Keys.h" />
-    <ClInclude Include="Interactive.h" />
     <ClInclude Include="file-io\DiskReader.h" />
-    <ClInclude Include="renderer\buffers\IndexBuffer.h" />
     <ClInclude Include="renderer\RendererSystem2D.h" />
-    <ClInclude Include="renderer\shader\ShaderProgram.h" />
-    <ClInclude Include="renderer\shader\ShaderTypes.h" />
-    <ClInclude Include="renderer\buffers\VertexBuffer.h" />
-    <ClInclude Include="renderer\buffers\VertexArray.h" />
-    <ClInclude Include="renderer\Window.h" />
     <ClInclude Include="input\LuaKeyMap.h" />
     <ClInclude Include="renderer\texture\Texture.h" />
     <ClInclude Include="renderer\texture\TextureManager.h" />
-    <ClInclude Include="scene\Scene.h" />
+    <ClInclude Include="renderer\Window.h" />
+    <ClInclude Include="TestWorld.h" />
+    <ClInclude Include="World\World.h" />
+    <ClInclude Include="renderer\ShaderManager.h" />
     <ClInclude Include="utils\Utils.hpp" />
   </ItemGroup>
   <ItemGroup>

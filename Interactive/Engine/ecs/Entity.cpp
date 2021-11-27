@@ -1,6 +1,6 @@
 #include "Entity.h"
 
-namespace IE {
+namespace TurtleEngine {
 	Entity::Entity()
 	{
 	}

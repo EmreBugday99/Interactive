@@ -1,44 +1,64 @@
 #include "RendererSystem2D.h"
 
+#include <sstream>
+
 #include "../external/entt/entt.hpp"
-#include "../components/TransformComponent.hpp"
-#include "../components/SpriteComponent.hpp"
-#include "buffers/IndexBuffer.h"
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
-#include "../components/CameraComponent.hpp"
 #include <glad/glad.h>
+#include "../components/TransformComponent.hpp"
+#include "ShaderManager.h"
+#include "../components/SpriteComponent.h"
+#include "../Engine.h"
+#include "../external/imgui/imgui.h"
 
-namespace IE
+namespace TurtleEngine
 {
-	void RendererSystem2D::Render()
+	void RendererSystem2D::Render(float deltaTime)
 	{
-		entt::registry Registry;
-		const auto view = Registry.view<TransformComponent, SpriteComponent>();
+		const auto view = Engine::GetWorld().Registry.view<TransformComponent, SpriteComponent>();
+
+		int i = 0;
 
 		for (const entt::entity entity : view)
 		{
+			i++;
 			SpriteComponent& sprite = view.get<SpriteComponent>(entity);
 			TransformComponent& transform = view.get<TransformComponent>(entity);
-			CameraComponent& camera = Registry.ctx<CameraComponent>();
+			//CameraComponent& camera = Registry.ctx<CameraComponent>();
 
-			IndexBuffer* ibo = sprite.VAO.IBuffer;
-			sprite.VAO.Bind();
-			ibo->Bind();
+			std::stringstream ssX;
+			ssX << "Entity ";
+			ssX << std::to_string(i);
+			ssX << "Position X";
 
-			glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), transform.Position);
+			std::stringstream ssY;
+			ssY << "Entity ";
+			ssY << std::to_string(i);
+			ssY << "Position Y";
 
-			sprite.Shader.UseProgram();
-			sprite.Shader.SetUniformData("model_mx", translationMatrix);
-			sprite.Shader.SetUniformData("projection_mx", camera.ProjectionMatrix);
-			sprite.Shader.SetUniformData("componentColor", sprite.Color);
+			ImGui::Begin("Entity");
+			ImGui::SliderFloat(ssX.str().c_str(), &transform.Position.x, 0, 2);
+			ImGui::SliderFloat(ssY.str().c_str(), &transform.Position.y, 0, 2);
+			ImGui::End();
 
-			glDrawElements(GL_TRIANGLES, ibo->GetElementCount(), GL_UNSIGNED_INT, nullptr);
+			glBindVertexArray(sprite.VAO);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, sprite.IBO);
 
-			sprite.Shader.UnbindProgram();
-			ibo->Unbind();
-			sprite.VAO.Unbind();
+			glm::mat4 translationMatrix = glm::translate(glm::mat4(1.0f), glm::vec3(transform.Position.x, transform.Position.y, 0.0f));
+
+			glUseProgram(sprite.ProgramId);
+			ShaderManager::SetUniformData(sprite.ProgramId, "model_mx", translationMatrix);
+			ShaderManager::SetUniformData(sprite.ProgramId, "model_mx", translationMatrix);
+			//ShaderManager::SetUniformData(sprite.ProgramId, "projection_mx", camera.ProjectionMatrix);
+			ShaderManager::SetUniformData(sprite.ProgramId, "projection_mx", Engine::ProjectionMatrix);
+			ShaderManager::SetUniformData(sprite.ProgramId, "componentColor", sprite.Color);
+
+			glDrawElements(GL_TRIANGLES, sprite.ElementCount, GL_UNSIGNED_INT, nullptr);
+
+			glUseProgram(0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+			glBindVertexArray(0);
 		}
 	}
-
 }
