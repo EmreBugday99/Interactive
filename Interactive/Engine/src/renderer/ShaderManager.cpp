@@ -1,6 +1,6 @@
 #include "ShaderManager.h"
 #include <iostream>
-#include <ext.hpp>
+#include <glm/ext.hpp>
 #include "../file-io/DiskReader.h"
 
 namespace TurtleEngine

@@ -2,8 +2,8 @@
 
 #include <map>
 #include <string>
-#include <glad.h>
-#include <glm.hpp>
+#include <glad/glad.h>
+#include <glm/glm.hpp>
 
 namespace TurtleEngine
 {

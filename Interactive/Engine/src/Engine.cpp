@@ -4,9 +4,9 @@
 #include "external/imgui/imgui_impl_glfw.h"
 #include "external/imgui/imgui_impl_opengl3.h"
 #include "renderer/Window.h"
-#include "World/World.h"
-#include <glm.hpp>
-#include <ext.hpp>
+#include "world/World.h"
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 
 namespace TurtleEngine
 {

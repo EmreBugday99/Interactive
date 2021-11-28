@@ -1,6 +1,6 @@
 #pragma once
-#include <glad.h>
-#include <glfw3.h>
+#include <glad/glad.h>
+#include "GLFW/glfw3.h"
 
 namespace TurtleEngine
 {

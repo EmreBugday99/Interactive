@@ -1,15 +1,14 @@
 project "GLFW"
     kind "StaticLib"
     language "C"
-    architecture "x64"
 
     targetdir ("../../binaries/" .. outputdirectory .. "/%{prj.name}")
     objdir ("../../intermediate/" .. outputdirectory .. "/%{prj.name}")
 
-    includedirs { "glfw/include/" }
-
     files 
     {
+        "glfw/include/GLFW/glfw3.h",
+        "glfw/include/GLFW/glfw3native.h",
         "glfw/src/glfw_config.h",
         "glfw/src/context.c",
         "glfw/src/init.c",
@@ -33,7 +32,7 @@ project "GLFW"
             "glfw/src/win32_window.c",
             "glfw/src/wgl_context.c",
             "glfw/src/egl_context.c",
-            "glfw/src/osmesa_context_c",
+            "glfw/src/osmesa_context.c",
         }
 
         defines 
