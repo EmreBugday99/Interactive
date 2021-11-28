@@ -1,8 +1,8 @@
 #include "RendererSystem2D.h"
 #include <sstream>
 #include "../external/entt/entt.hpp"
-#include <glm/glm.hpp>
-#include <glm/ext.hpp>
+#include <glm.hpp>
+#include <ext.hpp>
 #include <glad/glad.h>
 #include "../components/TransformComponent.hpp"
 #include "ShaderManager.h"

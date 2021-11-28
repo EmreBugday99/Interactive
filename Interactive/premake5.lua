@@ -10,6 +10,4 @@ workspace "TurtleEngine"
 		"Release"
 	}
 
-include "Engine/dependencies/glfw.lua"
-include "Engine/dependencies/glad.lua"
 include "Engine/engine.lua"

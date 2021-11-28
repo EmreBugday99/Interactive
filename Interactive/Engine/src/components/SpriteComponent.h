@@ -1,6 +1,6 @@
 #pragma once
 
-#include <glm/vec4.hpp>
+#include <vec4.hpp>
 #include <glad/glad.h>
 
 namespace TurtleEngine

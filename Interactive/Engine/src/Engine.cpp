@@ -5,8 +5,8 @@
 #include "external/imgui/imgui_impl_opengl3.h"
 #include "renderer/Window.h"
 #include "world/World.h"
-#include <glm/glm.hpp>
-#include <glm/ext.hpp>
+#include <glm.hpp>
+#include <ext.hpp>
 
 namespace TurtleEngine
 {

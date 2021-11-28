@@ -1,6 +1,6 @@
 #include "Window.h"
 #include "../Engine.h"
-#include <glm/ext.hpp>
+#include <ext.hpp>
 #include "../debugging/Logger.h"
 
 namespace TurtleEngine

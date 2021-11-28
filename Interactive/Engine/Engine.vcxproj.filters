@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="dependencies">
+      <UniqueIdentifier>{8CAD9F58-7810-2FFD-2196-67B30DD8FA7F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\glad">
+      <UniqueIdentifier>{13D8926A-7FEE-9000-C865-1C2234BB6188}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\glad\src">
+      <UniqueIdentifier>{AA67B2A9-16D4-6DA4-DFC7-05024BF38F0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dependencies\stb">
+      <UniqueIdentifier>{E451AFD4-D04A-CE26-F97C-B3ABE5D4AD32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\components">
+      <UniqueIdentifier>{423E2ECF-2E0C-22D5-17A0-92FB030DFE39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\debugging">
+      <UniqueIdentifier>{4805A578-B4C5-20AF-7D00-6A2CE97F658B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ecs">
+      <UniqueIdentifier>{57FA2FA9-C3D9-AE44-CCF1-391B385015A6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\external">
+      <UniqueIdentifier>{1F3C6D0D-0B9F-FCB1-B424-3568A066C834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\external\entt">
+      <UniqueIdentifier>{C96CEEBA-3583-EC50-7EFA-7772EA4FBDD8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\external\imgui">
+      <UniqueIdentifier>{C9A40319-B588-C46E-1EE9-BEC10AECAEF0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\file-io">
+      <UniqueIdentifier>{810276B5-EDB7-EEAA-76AC-E881E260E5AE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\renderer">
+      <UniqueIdentifier>{936D1A48-7FD0-A9EC-2856-E2A21498756F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utils">
+      <UniqueIdentifier>{6DAA42B6-D914-F72C-2253-A8D28EFCD481}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\world">
+      <UniqueIdentifier>{C44364B6-30AE-182D-79EC-C9D2E595F681}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="dependencies\stb\stb_image.h">
+      <Filter>dependencies\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TestWorld.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\CameraComponent.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\SpriteComponent.h">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\components\TransformComponent.hpp">
+      <Filter>src\components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\debugging\Logger.h">
+      <Filter>src\debugging</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\Entity.h">
+      <Filter>src\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ecs\SystemManager.hpp">
+      <Filter>src\ecs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\entt\entt.hpp">
+      <Filter>src\external\entt</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\imgui\imconfig.h">
+      <Filter>src\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\imgui\imgui.h">
+      <Filter>src\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\imgui\imgui_impl_glfw.h">
+      <Filter>src\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\imgui\imgui_impl_opengl3.h">
+      <Filter>src\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\imgui\imgui_impl_opengl3_loader.h">
+      <Filter>src\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\imgui\imgui_internal.h">
+      <Filter>src\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\imgui\imstb_rectpack.h">
+      <Filter>src\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\imgui\imstb_textedit.h">
+      <Filter>src\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\external\imgui\imstb_truetype.h">
+      <Filter>src\external\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\file-io\DiskReader.h">
+      <Filter>src\file-io</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\BufferManager.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\RendererSystem2D.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\ShaderManager.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\Window.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\Utils.hpp">
+      <Filter>src\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\world\World.h">
+      <Filter>src\world</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dependencies\glad\src\glad.c">
+      <Filter>dependencies\glad\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TestWorld.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\components\SpriteComponent.cpp">
+      <Filter>src\components</Filter>
+    </ClCompile>
+    <ClCompile Include="src\debugging\Logger.cpp">
+      <Filter>src\debugging</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ecs\Entity.cpp">
+      <Filter>src\ecs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\external\imgui\imgui.cpp">
+      <Filter>src\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\external\imgui\imgui_demo.cpp">
+      <Filter>src\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\external\imgui\imgui_draw.cpp">
+      <Filter>src\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\external\imgui\imgui_impl_glfw.cpp">
+      <Filter>src\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\external\imgui\imgui_impl_opengl3.cpp">
+      <Filter>src\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\external\imgui\imgui_tables.cpp">
+      <Filter>src\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\external\imgui\imgui_widgets.cpp">
+      <Filter>src\external\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\file-io\DiskReader.cpp">
+      <Filter>src\file-io</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\BufferManager.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\RendererSystem2D.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\ShaderManager.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\Window.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\world\World.cpp">
+      <Filter>src\world</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
