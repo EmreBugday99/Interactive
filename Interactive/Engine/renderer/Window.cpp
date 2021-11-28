@@ -52,10 +52,7 @@ namespace TurtleEngine
 		glfwSetWindowSizeCallback(GlWindow, WindowResizeCallback);
 		gladLoadGL();
 
-		std::stringstream ss;
-		ss << "[OPEN GL] Version: " << glGetString(GL_VERSION);
-		Logger::LogWarning(ss.str());
-		ss.clear();
+		Logger::LogWarning("[OPEN GL] Version: ", (const char*)glGetString(GL_VERSION));
 
 		return true;
 	}
