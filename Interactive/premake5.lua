@@ -9,6 +9,8 @@ workspace "TurtleEngine"
 		"Release"
 	}
 
+include "Engine/submodules/glfw.lua"
+
 project "Engine"
 	location "Engine"
 	kind "ConsoleApp"
@@ -27,7 +29,8 @@ project "Engine"
 
 	includedirs
 	{
-		"%{prj.name}/libraries/include/**"
+		"%{prj.name}/libraries/include/**",
+		"%{prj.name}/submodules/glfw/include/**"
 	}
 
 	libdirs
@@ -37,12 +40,12 @@ project "Engine"
 
 	links 
 	{
-		"opengl32",
-		"glfw3"
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
-		cppdialect "C++20"
+		cppdialect "C++17"
 		staticruntime "On"
 		systemversion "latest"
 		defines "OS_WINDOWS"

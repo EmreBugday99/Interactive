@@ -3,8 +3,8 @@ project "GLFW"
     language "C"
     architecture "x64"
 
-    targetdir ("binaries/" .. outputdirectory .. "/%{prj.name}")
-    objdir ("intermediate/" .. outputdirectory .. "/%{prj.name}")
+    targetdir ("../../binaries/" .. outputdirectory .. "/%{prj.name}")
+    objdir ("../../intermediate/" .. outputdirectory .. "/%{prj.name}")
 
     includedirs { "glfw/include/" }
 
@@ -20,7 +20,6 @@ project "GLFW"
     }
 
     filter "system:windows"
-        buildoptions {"-std=c11", "-lgdi32"}
         systemversion "latest"
         staticruntime "On"
 
@@ -37,7 +36,40 @@ project "GLFW"
             "glfw/src/osmesa_context_c",
         }
 
+        defines 
+        { 
+            "_GLFW_WIN32",
+            "_CRT_SECURE_NO_WARNINGS"
+        }
+
     filter "system:linux"
         pic "On"
         systemversion "latest"
         staticruntime "On"
+
+        files
+        {
+            "glfw/src/x11_init.c",
+            "glfw/src/x11_monitor.c",
+            "glfw/src/x11_window.c",
+            "glfw/src/xkb_unicode.c",
+            "glfw/src/posix_time.c",
+            "glfw/src/posix_thread.c",
+            "glfw/src/glx_context.c",
+            "glfw/src/egl_context.c",
+            "glfw/src/osmesa_context.c",
+            "glfw/src/linux_joystick.c"
+        }
+
+        defines
+        {
+            "_GLFW_X11"
+        }
+
+    filter "configurations:Debug"
+        runtime "Debug"
+        symbols "on"
+
+    filter "configurations:Release"
+        runtime "Release"
+        optimize "on"
