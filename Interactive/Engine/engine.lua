@@ -33,7 +33,7 @@ project "Engine"
 	filter "configurations:Debug"
 		defines "TURTLE_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		runtime "Release"
