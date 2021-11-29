@@ -1,5 +1,5 @@
 project "Engine"
-	kind "ConsoleApp"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
 
@@ -12,8 +12,6 @@ project "Engine"
 		"src/**.hpp",
 		"src/**.cpp",
 		"src/**.c",
-		"dependencies/stb/stb_image.h",
-		"dependencies/glad/src/glad.c"
 	}
 
 	includedirs
@@ -23,12 +21,12 @@ project "Engine"
 		"dependencies/glm"
 	}
 
-	libdirs {"dependencies/glfw/lib-vc2019"}
-	links {"glfw3.lib", "opengl32.lib"}
+	links {"GLFW", "Glad","opengl32.lib"}
 
 	filter "system:windows"
+		staticruntime "on"
 		systemversion "latest"
-		defines "TURTLE_OS_WINDOWS"
+		defines {"TURTLE_OS_WINDOWS", "GLFW_INCLUDE_NONE"}
 
 	filter "configurations:Debug"
 		defines "TURTLE_DEBUG"

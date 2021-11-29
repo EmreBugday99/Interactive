@@ -1,8 +1,8 @@
 outputdirectory = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 workspace "TurtleEngine"
-	architecture "x64"
 	startproject "Engine"
+	architecture "x64"
 
 	configurations
 	{
@@ -11,3 +11,5 @@ workspace "TurtleEngine"
 	}
 
 include "Engine/engine.lua"
+include "Engine/dependencies/glfw.lua"
+include "Engine/dependencies/glad.lua"
