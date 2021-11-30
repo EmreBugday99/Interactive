@@ -1,11 +1,10 @@
 #pragma once
-#include <cstdlib>
 #include <iostream>
 #include <sstream>
 #include <vector>
 #include "../TurtleCore.h"
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	TURTLE_API class Logger
 	{

@@ -3,7 +3,7 @@
 #include "../external/entt/entt.hpp"
 #include <vector>
 
-namespace TurtleEngine {
+namespace TurtleCore {
 	struct World
 	{
 		using UpdateCallback = void(*) (float deltaTime);
@@ -14,7 +14,8 @@ namespace TurtleEngine {
 		World();
 		virtual ~World();
 
-		virtual void OnWorldLoad();
+		virtual void OnWorldLoad() = 0;
+		virtual void OnWorldUnloaded() = 0;
 
 		entt::entity CreateEntity();
 	};

@@ -1,8 +1,11 @@
 #pragma once
 #include <string>
 
-class DiskReader
+namespace TurtleCore
 {
-public:
-	static bool ReadString(std::string& stringToFill, std::string filePath);
-};
+	class DiskReader
+	{
+	public:
+		static bool ReadString(std::string& stringToFill, std::string filePath);
+	};
+}

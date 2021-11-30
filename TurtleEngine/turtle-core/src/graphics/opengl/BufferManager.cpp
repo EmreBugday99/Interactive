@@ -1,6 +1,6 @@
 #include "BufferManager.h"
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	GLuint BufferManager::CreateVertexArray()
 	{
@@ -26,6 +26,7 @@ namespace TurtleEngine
 		glVertexAttribPointer(layoutIndex, groupCount, GL_FLOAT, GL_FALSE, 0, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindVertexArray(0);
+		
 
 		return vertexBufferId;
 	}

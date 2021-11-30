@@ -3,7 +3,7 @@
 #include <vec4.hpp>
 #include <glad/glad.h>
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	struct TransformComponent;
 	struct SpriteComponent

@@ -2,7 +2,7 @@
 
 #include <vec2.hpp>
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	struct TransformComponent
 	{

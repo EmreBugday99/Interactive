@@ -3,22 +3,46 @@
 #include "world/World.h"
 #include <glm.hpp>
 #include <ext.hpp>
+#include "debugging/Logger.h"
+#include "graphics/opengl/os-windows/GlWindowsWindow.h"
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	bool Engine::IsInitialized;
-	const char* Engine::GameName;
+	bool Engine::HasStarted;
 	World* Engine::ActiveWorld;
 	glm::mat4 Engine::ProjectionMatrix;
+	BaseWindow* Engine::GameWindow;
 
-	void Engine::Initialize(const char* gameName, int width, int height)
+	void Engine::Initialize(bool& successful, const char* gameName, int width, int height)
 	{
+		successful = false;
+		HasStarted = false;
+
 		if (IsInitialized)
 			return;
 
-		GameName = gameName;
+		ProjectionMatrix = glm::ortho(0.f, static_cast<float>(width), 0.0f, static_cast<float>(height));
 
-		ProjectionMatrix = glm::ortho(0.f, (float)width, 0.0f, (float)height);
+#ifdef TURTLE_OS_WINDOWS
+		GameWindow = new GlWindowsWindow();
+		GameWindow->Initialize(successful, gameName, width, height);
+		if (successful == false)
+		{
+			Logger::LogError("Failed to initialize Game Window!");
+			return;
+		}
+#else
+		Logger::LogError("Only Windows is supported for the time being!");
+		return;
+#endif
+
+		GameWindow->ConstructWindow(successful);
+		if (successful == false)
+		{
+			Logger::LogError("Failed to construct Game Window!");
+			return;
+		}
 
 		ActiveWorld = nullptr;
 		IsInitialized = true;
@@ -26,14 +50,45 @@ namespace TurtleEngine
 
 	void Engine::Start()
 	{
+		bool successful = false;
+		if (HasStarted == true)
+		{
+			Logger::LogError("Attempted to start engine when already started!");
+			return;
+		}
+
+		if (ActiveWorld == nullptr)
+		{
+			Logger::LogError("A world must be loaded before starting!");
+			return;
+		}
+
+		HasStarted = true;
 		Update();
+	}
+
+	void Engine::Stop()
+	{
+		GameWindow->CloseWindow();
 	}
 
 	void Engine::Update()
 	{
-		for (const World::UpdateCallback callback : ActiveWorld->SystemUpdateCallbacks)
+		while (GameWindow->IsOpen())
 		{
-			callback(1.2f);
+			GameWindow->Clear();
+			for (const World::UpdateCallback callback : ActiveWorld->SystemUpdateCallbacks)
+			{
+				callback(1.2f);
+			}
+			GameWindow->Update();
 		}
+
+		OnStop();
+	}
+
+	void Engine::OnStop()
+	{
+		delete GameWindow;
 	}
 }

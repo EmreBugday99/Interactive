@@ -5,7 +5,7 @@
 #include <glad/glad.h>
 #include <glm.hpp>
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	class ShaderManager
 	{

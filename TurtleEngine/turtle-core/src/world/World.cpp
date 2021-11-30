@@ -1,6 +1,6 @@
 #include "World.h"
 
-namespace TurtleEngine {
+namespace TurtleCore {
 	World::World()
 	{
 	}
@@ -9,9 +9,6 @@ namespace TurtleEngine {
 	{
 		Registry.clear();
 	}
-
-	void World::OnWorldLoad()
-	{}
 
 	entt::entity World::CreateEntity()
 	{

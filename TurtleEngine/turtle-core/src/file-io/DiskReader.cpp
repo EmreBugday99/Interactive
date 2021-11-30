@@ -1,25 +1,30 @@
 #include "DiskReader.h"
 #include <fstream>
 #include <sstream>
+#include "../debugging/Logger.h"
 
-bool DiskReader::ReadString(std::string& stringToFill, std::string filePath)
+namespace TurtleCore
 {
-	std::stringstream stringStream;
-	std::ifstream file;
-
-	try
+	bool DiskReader::ReadString(std::string& stringToFill, std::string filePath)
 	{
-		file.open(filePath, std::ios::in);
+		std::stringstream stringStream;
+		std::ifstream file;
 
-		if (file.fail() == false)
-			stringStream << file.rdbuf();
-		file.close();
+		try
+		{
+			file.open(filePath, std::ios::in);
 
-		stringToFill = stringStream.str();
-		return true;
-	}
-	catch (std::exception& ex)
-	{
-		return false;
+			if (file.fail() == false)
+				stringStream << file.rdbuf();
+			file.close();
+
+			stringToFill = stringStream.str();
+			return true;
+		}
+		catch (std::exception& ex)
+		{
+			Logger::LogError("Failed to read file from disk at path: ", filePath);
+			return false;
+		}
 	}
 }

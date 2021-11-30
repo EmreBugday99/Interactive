@@ -1,17 +1,14 @@
-#include <iostream>
-#include "TurtleCore.h"
-#include "debugging/Logger.h"
-
-namespace TurtleCore
-{
-	TURTLE_API void SayShit();
-}
+#include "Engine.h"
+#include "TestWorld.h"
 
 int main()
 {
-	std::cout << "Hello" << std::endl;
-	TurtleCore::SayShit();
-	TurtleEngine::Logger::LogError("It kind a works?");
+	bool successful = false;
+	TurtleCore::Engine::Initialize(successful, "Test Shit", 600, 800);
+	TurtleCore::Engine::LoadWorld<TestWorld>();
+
+	TurtleCore::Engine::Start();
+
 
 	return 0;
 }

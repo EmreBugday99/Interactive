@@ -2,7 +2,7 @@
 
 #include <ext.hpp>
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	struct CameraComponent
 	{

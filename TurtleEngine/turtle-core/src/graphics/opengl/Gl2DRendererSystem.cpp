@@ -1,17 +1,16 @@
-#include "RendererSystem2D.h"
-#include <sstream>
-#include "../external/entt/entt.hpp"
+#include "Gl2DRendererSystem.h"
+#include "../../external/entt/entt.hpp"
 #include <glm.hpp>
 #include <ext.hpp>
 #include <glad/glad.h>
-#include "../components/TransformComponent.hpp"
+#include "../../components/TransformComponent.hpp"
 #include "ShaderManager.h"
-#include "../components/SpriteComponent.h"
-#include "../Engine.h"
+#include "../../components/SpriteComponent.h"
+#include "../../Engine.h"
 
-namespace TurtleEngine
+namespace TurtleCore
 {
-	void RendererSystem2D::Render(float deltaTime)
+	void Gl2DRendererSystem::Render(float deltaTime)
 	{
 		const auto view = Engine::GetWorld().Registry.view<TransformComponent, SpriteComponent>();
 

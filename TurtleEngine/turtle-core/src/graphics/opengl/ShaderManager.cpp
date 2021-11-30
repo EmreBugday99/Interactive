@@ -1,9 +1,9 @@
 #include "ShaderManager.h"
-#include <iostream>
 #include <ext.hpp>
-#include "../file-io/DiskReader.h"
+#include "../../file-io/DiskReader.h"
+#include "../../debugging/Logger.h"
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	std::map<std::string, GLuint> ShaderManager::ShaderCache;
 	std::map<std::string, GLint> ShaderManager::ShaderUniformCache;
@@ -128,8 +128,8 @@ namespace TurtleEngine
 			GLchar logMessage[2000];
 			glGetShaderInfoLog(shader, messageLength, &messageLength, logMessage);
 
-			std::cerr << "[ERROR] Shader Compile Error!" << std::endl;
-			std::cerr << logMessage << std::endl;
+			Logger::LogError("Shader Compile Error!");
+			Logger::LogError(logMessage);
 		}
 	}
 
@@ -150,7 +150,7 @@ namespace TurtleEngine
 
 		// TODO: Integrate this into log handling when implemented
 		if (location == -1)
-			std::cerr << "[ERROR] Failed to get Uniform Location for: " << uniformName << std::endl;
+			Logger::LogError("Failed to get Uniform Location for: ", uniformName);
 
 		return location;
 	}

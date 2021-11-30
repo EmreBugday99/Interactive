@@ -1,5 +1,5 @@
 #include "Logger.h"
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 }

@@ -1,10 +1,13 @@
 #pragma once
 #include <functional>
 
-struct Utils
+namespace TurtleCore
 {
-	static void HashString(size_t& dataToFill, const char* stringToHash)
+	struct Utils
 	{
-		dataToFill = std::hash<std::string>{}(stringToHash);
-	}
-};
+		static void HashString(size_t& dataToFill, const char* stringToHash)
+		{
+			dataToFill = std::hash<std::string>{}(stringToHash);
+		}
+	};
+}

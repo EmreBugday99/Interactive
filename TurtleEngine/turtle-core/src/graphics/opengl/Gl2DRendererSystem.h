@@ -1,8 +1,8 @@
 #pragma once
 
-namespace TurtleEngine
+namespace TurtleCore
 {
-	class RendererSystem2D
+	class Gl2DRendererSystem
 	{
 	public:
 		static void Render(float deltaTime);

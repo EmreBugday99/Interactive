@@ -1,5 +1,5 @@
 project "TurtleCore"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
 
@@ -28,11 +28,7 @@ project "TurtleCore"
 	filter "system:windows"
 		staticruntime "on"
 		systemversion "latest"
-		defines {"TURTLE_OS_WINDOWS", "TURTLE_CORE_SHARED"}
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../binaries/" .. outputdirectory .. "/Game")
-		}
+		defines {"TURTLE_OS_WINDOWS", "TURTLE_CORE_STATIC"}
 
 	filter "configurations:Debug"
 		defines "TURTLE_DEBUG"

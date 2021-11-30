@@ -1,7 +1,8 @@
 #pragma once
 #include <glad/glad.h>
+#include <glad/glad_wgl.h>
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	class BufferManager
 	{

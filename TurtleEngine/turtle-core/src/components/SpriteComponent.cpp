@@ -1,10 +1,10 @@
 #include "SpriteComponent.h"
 #include <iostream>
 #include "TransformComponent.hpp"
-#include "../renderer/BufferManager.h"
-#include "../renderer/ShaderManager.h"
+#include "../graphics/opengl/BufferManager.h"
+#include "../graphics/opengl/ShaderManager.h"
 
-namespace TurtleEngine
+namespace TurtleCore
 {
 	SpriteComponent::SpriteComponent(const TransformComponent& transform)
 		: Color(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)), TextureId(0), NeedsRecompiling(false)
