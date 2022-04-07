@@ -3,6 +3,8 @@
 #include "world/World.h"
 #include <mat4x4.hpp>
 
+#include "input/InputManager.h"
+
 namespace TurtleCore
 {
 	class BaseWindow;
@@ -11,6 +13,7 @@ namespace TurtleCore
 	public:
 		static glm::mat4 ProjectionMatrix;
 		static BaseWindow* GameWindow;
+		static InputManager* InputSystem;
 
 	public:
 		static void Initialize(bool& successful, const char* gameName, int width, int height);

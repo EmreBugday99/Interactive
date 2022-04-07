@@ -19,7 +19,7 @@ namespace TurtleCore
 		constexpr GLuint indices[] = { 0, 1, 2, 2, 3, 0 };
 
 		VAO = BufferManager::CreateVertexArray();
-		VBO[0] = BufferManager::CreateVertexBuffer(VAO, 0, vertices, 3*4, 3);
+		VBO[0] = BufferManager::CreateVertexBuffer(VAO, 0, vertices, 3 * 4, 3);
 		ElementCount = 6;
 		IBO = BufferManager::CreateIndexBuffer(VAO, indices, ElementCount);
 

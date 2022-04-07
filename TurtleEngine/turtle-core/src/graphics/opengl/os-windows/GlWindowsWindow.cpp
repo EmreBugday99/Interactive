@@ -4,6 +4,7 @@
 #include "../../../debugging/Logger.h"
 #include <glad/glad.h>
 #include <glad/glad_wgl.h>
+#include "../../../Engine.h"
 
 namespace TurtleCore
 {
@@ -180,7 +181,30 @@ namespace TurtleCore
 			PostQuitMessage(0);
 			break;
 		}
+		case WM_SYSKEYDOWN:
+		{
+			break;
+		}
+		case WM_SYSKEYUP:
+		{
+			break;
+		}
+		case WM_KEYDOWN:
+		{
+			bool isDown = (lParam & (1 << 31)) == 0;
+			bool wasDown = (lParam & (1 << 30)) != 0;
 
+			Engine::InputSystem->ProcessKeyboardInput(static_cast<uint8_t>(wParam), wasDown, isDown);
+			break;
+		}
+		case WM_KEYUP:
+		{
+			bool isDown = (lParam & (1 << 31)) == 0;
+			bool wasDown = (lParam & (1 << 30)) != 0;
+
+			Engine::InputSystem->ProcessKeyboardInput(static_cast<uint8_t>(wParam), wasDown, isDown);
+			break;
+		}
 		default:
 			return DefWindowProc(windowHandle, message, wParam, lParam);
 		}

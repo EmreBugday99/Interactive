@@ -13,6 +13,7 @@ namespace TurtleCore
 	World* Engine::ActiveWorld;
 	glm::mat4 Engine::ProjectionMatrix;
 	BaseWindow* Engine::GameWindow;
+	InputManager* Engine::InputSystem;
 
 	void Engine::Initialize(bool& successful, const char* gameName, int width, int height)
 	{
@@ -23,6 +24,7 @@ namespace TurtleCore
 			return;
 
 		ProjectionMatrix = glm::ortho(0.f, static_cast<float>(width), 0.0f, static_cast<float>(height));
+		InputSystem = new InputManager();
 
 #ifdef TURTLE_OS_WINDOWS
 		GameWindow = new GlWindowsWindow();

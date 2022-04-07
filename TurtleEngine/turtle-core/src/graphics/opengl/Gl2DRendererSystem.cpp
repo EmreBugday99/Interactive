@@ -14,11 +14,8 @@ namespace TurtleCore
 	{
 		const auto view = Engine::GetWorld().Registry.view<TransformComponent, SpriteComponent>();
 
-		int i = 0;
-
 		for (const entt::entity entity : view)
 		{
-			i++;
 			SpriteComponent& sprite = view.get<SpriteComponent>(entity);
 			TransformComponent& transform = view.get<TransformComponent>(entity);
 			//CameraComponent& camera = Registry.ctx<CameraComponent>();
