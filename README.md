@@ -1,3 +1,4 @@
 # Interactive
 
-### THIS BRANCH IS MASSIVELY UNSTABLE AND IT WON'T EVEN COMPILE! DON'T USE IT!
+Rewriting the entire code base with ECS in priority. 
+Framework itself is developed as a standalone library.
