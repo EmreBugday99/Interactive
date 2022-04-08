@@ -2,13 +2,11 @@
 
 out vec4 FragColor;
 
-uniform vec4 componentColor;
-uniform mat4 entityPosition;
-uniform float light_distance;
+uniform vec4 component_color_vec4;
 
 in vec2 texCoordinate;
 
 void main()
 {
-	FragColor = componentColor;
+	FragColor = component_color_vec4;
 }

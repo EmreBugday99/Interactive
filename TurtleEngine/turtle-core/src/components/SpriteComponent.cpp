@@ -1,8 +1,8 @@
 #include "SpriteComponent.h"
-#include <iostream>
 #include "TransformComponent.hpp"
 #include "../graphics/opengl/BufferManager.h"
 #include "../graphics/opengl/ShaderManager.h"
+#include "../debugging/Logger.h"
 
 namespace TurtleCore
 {
@@ -27,6 +27,6 @@ namespace TurtleCore
 		ProgramId = ShaderManager::CreateShader(successful, "default shader", "assets/shaders/shader.vert", "assets/shaders/basicShader.frag");
 
 		if (successful == false)
-			std::cerr << "Shader not created" << std::endl;
+			Logger::LogError("Shader not created!");
 	}
 }
