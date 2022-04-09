@@ -1,7 +1,7 @@
 #include "ShaderManager.h"
-#include <ext.hpp>
 #include "../../file-io/DiskReader.h"
 #include "../../debugging/Logger.h"
+#include "glm/ext.hpp"
 
 namespace TurtleCore
 {

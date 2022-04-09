@@ -19,8 +19,8 @@ project "Game"
 	includedirs
 	{
         "../turtle-core/src",
-		"../turtle-core/dependencies/glad/include",
-		"../turtle-core/dependencies/glm"
+		"../dependencies/glad/include",
+		"../dependencies/glm"
 	}
 
 	links {"TurtleCore"}

@@ -1,7 +1,7 @@
 #pragma once
 
-#include <vec4.hpp>
-#include <glad/glad.h>
+#include "glad/glad.h"
+#include "glm/vec4.hpp"
 
 namespace TurtleCore
 {

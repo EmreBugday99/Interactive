@@ -10,5 +10,6 @@ workspace "TurtleEngine"
 	}
 
 include "turtle-core/core.lua"
+include "dependencies/glad.lua"
+include "dependencies/glm.lua"
 include "game/game.lua"
-include "turtle-core/dependencies/glad.lua"

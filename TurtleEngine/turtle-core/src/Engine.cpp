@@ -1,9 +1,8 @@
 #include "Engine.h"
 
 #include "world/World.h"
-#include <glm.hpp>
-#include <ext.hpp>
 #include "debugging/Logger.h"
+#include "glm/ext.hpp"
 #include "graphics/opengl/os-windows/GlWindowsWindow.h"
 
 namespace TurtleCore

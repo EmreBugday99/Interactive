@@ -1,12 +1,12 @@
 #include "Gl2DRendererSystem.h"
 #include "../../external/entt/entt.hpp"
-#include <glm.hpp>
-#include <ext.hpp>
 #include <glad/glad.h>
 #include "../../components/TransformComponent.hpp"
 #include "../../components/SpriteComponent.h"
 #include "../../Engine.h"
 #include "../../graphics/opengl/ShaderManager.h"
+#include "glm/ext.hpp"
+
 
 namespace TurtleCore
 {

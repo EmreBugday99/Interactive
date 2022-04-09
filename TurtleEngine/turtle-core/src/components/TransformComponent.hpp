@@ -1,6 +1,5 @@
 #pragma once
-
-#include <vec2.hpp>
+#include "glm/vec2.hpp"
 
 namespace TurtleCore
 {

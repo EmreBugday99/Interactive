@@ -1,6 +1,5 @@
 #pragma once
-#include <glad/glad.h>
-#include <glad/glad_wgl.h>
+#include "glad/glad.h"
 
 namespace TurtleCore
 {
