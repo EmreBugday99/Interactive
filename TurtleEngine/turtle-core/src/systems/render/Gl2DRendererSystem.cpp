@@ -4,9 +4,9 @@
 #include <ext.hpp>
 #include <glad/glad.h>
 #include "../../components/TransformComponent.hpp"
-#include "ShaderManager.h"
 #include "../../components/SpriteComponent.h"
 #include "../../Engine.h"
+#include "../../graphics/opengl/ShaderManager.h"
 
 namespace TurtleCore
 {

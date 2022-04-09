@@ -165,9 +165,9 @@ namespace TurtleCore
 
 		glViewport(0, 0, WindowWidth, WindowHeight);
 
-		Logger::LogNormal(reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
-		Logger::LogNormal(reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
-		Logger::LogNormal(reinterpret_cast<const char*>(glGetString(GL_VERSION)));
+		Logger::Log(reinterpret_cast<const char*>(glGetString(GL_VENDOR)));
+		Logger::Log(reinterpret_cast<const char*>(glGetString(GL_RENDERER)));
+		Logger::Log(reinterpret_cast<const char*>(glGetString(GL_VERSION)));
 
 		successful = true;
 	}

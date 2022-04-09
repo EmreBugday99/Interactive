@@ -54,7 +54,7 @@ namespace TurtleCore
 		}
 
 		template<typename... TArgs>
-		static void LogNormal(const TArgs&... args)
+		static void Log(const TArgs&... args)
 		{
 			time_t now = time(0);
 			struct tm* tm_struct = new struct tm;

@@ -11,10 +11,10 @@ namespace TurtleCore
 	{
 		const GLfloat vertices[] =
 		{
-			0,									0,									0,
-			0,									transform.Size.y,					0,
-			transform.Size.x,					transform.Size.y,					0,
-			transform.Size.x,					0,									0
+			0,					0,					0,
+			0,					1,					0,
+			1,					1,					0,
+			1,					0,					0
 		};
 		constexpr GLuint indices[] = { 0, 1, 2, 2, 3, 0 };
 
