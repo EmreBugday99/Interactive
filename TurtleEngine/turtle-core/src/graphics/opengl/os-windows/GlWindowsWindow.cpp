@@ -181,6 +181,7 @@ namespace TurtleCore
 		{
 		case WM_CLOSE:
 		{
+			Engine::Stop();
 			PostQuitMessage(0);
 			break;
 		}

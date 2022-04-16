@@ -8,7 +8,7 @@ namespace TurtleCore {
 		Registry.clear();
 	}
 
-	void World::OnWorldLoad() {}
+	void World::OnWorldLoad(){}
 
 	void World::OnWorldUnloaded() {}
 

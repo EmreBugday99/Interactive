@@ -85,10 +85,12 @@ namespace TurtleCore
 		while (GameWindow->IsOpen())
 		{
 			GameWindow->Clear();
-			for (const World::UpdateCallback callback : ActiveWorld->SystemUpdateCallbacks)
+
+			for (int i = ActiveWorld->SystemUpdateCallbacks.size() - 1; i >= 0 ; i--)
 			{
-				callback(0.01f);
+				ActiveWorld->SystemUpdateCallbacks[i](0.1f);
 			}
+
 			GameWindow->Update();
 		}
 
@@ -97,6 +99,13 @@ namespace TurtleCore
 
 	void Engine::OnStop()
 	{
+		if (ActiveWorld != nullptr)
+		{
+			ActiveWorld->OnWorldUnloaded();
+			ActiveWorld->Registry.clear();
+			delete ActiveWorld;
+			ActiveWorld = nullptr;
+		}
 		delete GameWindow;
 	}
 }

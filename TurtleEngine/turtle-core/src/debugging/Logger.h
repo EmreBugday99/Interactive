@@ -16,7 +16,10 @@ namespace TurtleCore
 			struct tm* tm_struct = new struct tm;
 			localtime_s(tm_struct, &now);
 
+#ifdef TURTLE_DEBUG
 			std::cout << "\033[31m";
+#endif // TURTLE_DEBUG
+
 			std::cout << "[" << tm_struct->tm_hour << ":" << tm_struct->tm_min << ":" << tm_struct->tm_sec << "] ";
 
 			const std::vector<std::string> unpackedStrings = { args... };
@@ -28,7 +31,10 @@ namespace TurtleCore
 
 			delete tm_struct;
 
+#ifdef TURTLE_DEBUG
 			std::cout << "\033[37m";
+#endif // TURTLE_DEBUG
+
 		}
 
 		template<typename... TArgs>
@@ -38,7 +44,11 @@ namespace TurtleCore
 			struct tm* tm_struct = new struct tm;
 			localtime_s(tm_struct, &now);
 
+
+#ifdef TURTLE_DEBUG
 			std::cout << "\033[33m";
+#endif // TURTLE_DEBUG
+
 			std::cout << "[" << tm_struct->tm_hour << ":" << tm_struct->tm_min << ":" << tm_struct->tm_sec << "] ";
 
 			const std::vector<std::string> unpackedStrings = { args... };
@@ -50,7 +60,9 @@ namespace TurtleCore
 
 			delete tm_struct;
 
+#ifdef TURTLE_DEBUG
 			std::cout << "\033[37m";
+#endif // TURTLE_DEBUG
 		}
 
 		template<typename... TArgs>
@@ -60,16 +72,18 @@ namespace TurtleCore
 			struct tm* tm_struct = new struct tm;
 			localtime_s(tm_struct, &now);
 
+#ifdef TURTLE_DEBUG
 			std::cout << "\033[37m";
+#endif // TURTLE_DEBUG
 			std::cout << "[" << tm_struct->tm_hour << ":" << tm_struct->tm_min << ":" << tm_struct->tm_sec << "] ";
 
-			const std::vector<std::string> unpackedStrings = {args...};
+			const std::vector<std::string> unpackedStrings = { args... };
 			for (auto string : unpackedStrings)
 			{
 				std::cout << string;
 			}
 			std::cout << std::endl;
-			
+
 			delete tm_struct;
 		}
 	};

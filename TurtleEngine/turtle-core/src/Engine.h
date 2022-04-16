@@ -25,13 +25,17 @@ namespace TurtleCore
 			World* newWorld = new T(std::forward<TArgs>(args)...);
 
 			if (ActiveWorld != nullptr)
+			{
 				ActiveWorld->OnWorldUnloaded();
+				ActiveWorld->Registry.clear();
+			}
 
 			const World* oldActiveWorld = ActiveWorld;
 			ActiveWorld = newWorld;
 			delete oldActiveWorld;
 
 			newWorld->OnWorldLoad();
+			newWorld->IsLoaded = true;
 			return *ActiveWorld;
 		}
 

@@ -12,6 +12,7 @@ namespace TurtleCore {
 		entt::registry Registry;
 		std::vector<UpdateCallback> SystemUpdateCallbacks;
 		b2World PhysicsWorld;
+		bool IsLoaded = false;;
 
 		World();
 		virtual ~World();
