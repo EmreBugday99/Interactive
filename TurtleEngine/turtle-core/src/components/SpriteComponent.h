@@ -25,8 +25,12 @@ namespace TurtleCore
 		SpriteComponent(const TransformComponent& transform);
 
 		SpriteComponent(const SpriteComponent& copied) :
-			Color(glm::vec4(copied.Color.x, copied.Color.y, copied.Color.z, copied.Color.w)), VAO(copied.VAO),
-			IBO(copied.IBO), ElementCount(copied.ElementCount), ProgramId(copied.ProgramId),
-			TextureId(copied.TextureId), NeedsRecompiling(copied.NeedsRecompiling) {}
+			Color(glm::vec4(copied.Color.x, copied.Color.y, copied.Color.z, copied.Color.w)),
+			VAO(copied.VAO),
+			IBO(copied.IBO),
+			ElementCount(copied.ElementCount),
+			ProgramId(copied.ProgramId),
+			TextureId(copied.TextureId),
+			NeedsRecompiling(copied.NeedsRecompiling) {}
 	};
 }

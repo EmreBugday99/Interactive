@@ -1,6 +1,6 @@
 #pragma once
+#include "components/CameraComponent.hpp"
 #include "world/World.h"
-#include "glm/mat4x4.hpp"
 #include "input/InputManager.h"
 
 namespace TurtleCore
@@ -9,7 +9,7 @@ namespace TurtleCore
 	class Engine
 	{
 	public:
-		static glm::mat4 ProjectionMatrix;
+		static CameraComponent Camera;
 		static BaseWindow* GameWindow;
 		static InputManager* InputSystem;
 
@@ -23,7 +23,6 @@ namespace TurtleCore
 		static World& LoadWorld(TArgs... args)
 		{
 			World* newWorld = new T(std::forward<TArgs>(args)...);
-			newWorld->OnWorldLoad();
 
 			if (ActiveWorld != nullptr)
 				ActiveWorld->OnWorldUnloaded();
@@ -32,6 +31,7 @@ namespace TurtleCore
 			ActiveWorld = newWorld;
 			delete oldActiveWorld;
 
+			newWorld->OnWorldLoad();
 			return *ActiveWorld;
 		}
 

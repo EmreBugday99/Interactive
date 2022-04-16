@@ -1,5 +1,6 @@
 #pragma once
 #include "../TurtleCore.h"
+#include "glm/vec2.hpp"
 
 namespace TurtleCore
 {
@@ -14,8 +15,14 @@ namespace TurtleCore
 		virtual void Update() = 0;
 		virtual void Clear() = 0;
 		virtual bool IsOpen() = 0;
+		glm::vec2 GetWindowSize();
 
 	protected:
+#ifdef TURTLE_OS_WINDOWS
+		friend class GlWindowsWindow;
+#endif // TURTLE_OS_WINDOWS
+
+
 		bool IsRunning;
 		int WindowWidth;
 		int WindowHeight;

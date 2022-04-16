@@ -2,6 +2,7 @@
 
 #include "../external/entt/entt.hpp"
 #include <vector>
+#include "include/box2d/b2_world.h"
 
 namespace TurtleCore {
 	struct World
@@ -10,6 +11,7 @@ namespace TurtleCore {
 
 		entt::registry Registry;
 		std::vector<UpdateCallback> SystemUpdateCallbacks;
+		b2World PhysicsWorld;
 
 		World();
 		virtual ~World();

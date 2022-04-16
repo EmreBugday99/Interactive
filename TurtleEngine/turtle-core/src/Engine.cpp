@@ -2,7 +2,6 @@
 
 #include "world/World.h"
 #include "debugging/Logger.h"
-#include "glm/ext.hpp"
 #include "graphics/opengl/os-windows/GlWindowsWindow.h"
 
 namespace TurtleCore
@@ -10,7 +9,8 @@ namespace TurtleCore
 	bool Engine::IsInitialized;
 	bool Engine::HasStarted;
 	World* Engine::ActiveWorld;
-	glm::mat4 Engine::ProjectionMatrix;
+	CameraComponent Engine::Camera(CameraComponent{ 0.0f, 0.0f, 0.0f, 0.0f });
+
 	BaseWindow* Engine::GameWindow;
 	InputManager* Engine::InputSystem;
 
@@ -22,7 +22,6 @@ namespace TurtleCore
 		if (IsInitialized)
 			return;
 
-		ProjectionMatrix = glm::ortho(0.f, static_cast<float>(width), 0.0f, static_cast<float>(height));
 		InputSystem = new InputManager();
 
 #ifdef TURTLE_OS_WINDOWS
@@ -38,6 +37,8 @@ namespace TurtleCore
 		return;
 #endif
 
+
+
 		GameWindow->ConstructWindow(successful);
 		if (successful == false)
 		{
@@ -47,6 +48,12 @@ namespace TurtleCore
 
 		ActiveWorld = nullptr;
 		IsInitialized = true;
+
+		const float aspect = static_cast<float>(GameWindow->WindowWidth) / static_cast<float>(GameWindow->WindowHeight);
+		const float halfHeight = static_cast<float>(GameWindow->WindowWidth) / 2.0f;
+		const float halfWidth = static_cast<float>(GameWindow->WindowHeight) * aspect;
+		Camera.ProjectionMatrix = glm::ortho(0.0f, static_cast<float>(GameWindow->WindowWidth), 0.0f, static_cast<float>(GameWindow->WindowHeight), 0.0001f, 3000.0f);
+		//Camera.ProjectionMatrix = glm::ortho(0.0f, 1.0f, 0.0f, 1.0f);
 	}
 
 	void Engine::Start()
@@ -80,7 +87,7 @@ namespace TurtleCore
 			GameWindow->Clear();
 			for (const World::UpdateCallback callback : ActiveWorld->SystemUpdateCallbacks)
 			{
-				callback(1.2f);
+				callback(0.01f);
 			}
 			GameWindow->Update();
 		}

@@ -9,4 +9,8 @@ namespace TurtleCore
 	{
 	}
 
+	glm::vec2 BaseWindow::GetWindowSize()
+	{
+		return glm::vec2(WindowWidth, WindowHeight);
+	}
 }

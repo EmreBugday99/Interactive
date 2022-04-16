@@ -1,6 +1,6 @@
 #pragma once
 
-#include <ext.hpp>
+#include <glm/ext.hpp>
 
 namespace TurtleCore
 {
@@ -8,7 +8,8 @@ namespace TurtleCore
 	{
 		glm::mat4 ProjectionMatrix;
 
-		CameraComponent() : ProjectionMatrix(glm::ortho(0.0f, 0.0f, 0.0f, 0.0f)) {}
+		CameraComponent(float left, float right, float bottom, float top) : ProjectionMatrix(glm::ortho(left, right, bottom, top)) {}
+
 		CameraComponent(const CameraComponent& copied) = default;
 	};
 }

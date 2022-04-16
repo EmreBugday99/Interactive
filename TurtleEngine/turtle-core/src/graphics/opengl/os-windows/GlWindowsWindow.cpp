@@ -5,6 +5,7 @@
 #include <glad/glad.h>
 #include <glad/glad_wgl.h>
 #include "../../../Engine.h"
+#include "glm/ext.hpp"
 
 namespace TurtleCore
 {
@@ -45,10 +46,12 @@ namespace TurtleCore
 			Logger::LogError("Failed to register Windows Class");
 
 		RECT rc = { 0, 0, width, height };
-		AdjustWindowRect(&rc, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU, false);
+		AdjustWindowRect(&rc, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, false);
 
 		WindowWidth = rc.right - rc.left;
 		WindowHeight = rc.bottom - rc.top;
+
+		Logger::Log("Left: ", std::to_string(rc.left), " Right: ", std::to_string(rc.right), " Top: ", std::to_string(rc.top), " Bottom ", std::to_string(rc.bottom));
 	}
 
 	void GlWindowsWindow::ConstructWindow(bool& result)
@@ -128,7 +131,7 @@ namespace TurtleCore
 		pfd.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;
 		pfd.iPixelType = PFD_TYPE_RGBA;
 		pfd.cColorBits = 32;
-		pfd.cDepthBits = 24;
+		//pfd.cDepthBits = 24;
 		pfd.cStencilBits = 8;
 
 		const int format = ChoosePixelFormat(DeviceContext, &pfd);
@@ -203,6 +206,25 @@ namespace TurtleCore
 			bool wasDown = (lParam & (1 << 30)) != 0;
 
 			Engine::InputSystem->ProcessKeyboardInput(static_cast<uint8_t>(wParam), wasDown, isDown);
+			break;
+		}
+		case WM_SIZE:
+		{
+			const UINT width = LOWORD(lParam);
+			const UINT height = HIWORD(lParam);
+
+			RECT rc;
+			rc = { 0, 0, static_cast<LONG>(width), static_cast<LONG>(height) };
+			AdjustWindowRect(&rc, WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX, false);
+
+			Engine::GameWindow->WindowWidth = rc.right - rc.left;
+			Engine::GameWindow->WindowHeight = rc.bottom - rc.top;
+
+			if (glViewport == nullptr)
+				break;
+
+			glViewport(0, 0, Engine::GameWindow->WindowWidth, Engine::GameWindow->WindowHeight);
+
 			break;
 		}
 		default:

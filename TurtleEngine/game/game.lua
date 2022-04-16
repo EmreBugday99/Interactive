@@ -20,7 +20,8 @@ project "Game"
 	{
         "../turtle-core/src",
 		"../dependencies/glad/include",
-		"../dependencies/glm"
+		"../dependencies/glm",
+		"../dependencies/box2d"
 	}
 
 	links {"TurtleCore"}

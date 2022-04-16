@@ -17,10 +17,11 @@ project "TurtleCore"
 	includedirs
 	{
 		"../dependencies/glad/include",
-		"../dependencies/glm"
+		"../dependencies/glm",
+		"../dependencies/box2d"
 	}
 
-	links {"Glad", "GLM","opengl32.lib"}
+	links {"Glad", "GLM", "Box2D", "opengl32.lib"}
 
 	-- Defines without any filter
 	defines {"TURTLE_CORE"}

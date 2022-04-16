@@ -9,14 +9,14 @@ namespace TurtleCore
 	SpriteComponent::SpriteComponent(const TransformComponent& transform)
 		: Color(glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)), TextureId(0), NeedsRecompiling(false)
 	{
-		const GLfloat vertices[] =
+		constexpr GLfloat vertices[] =
 		{
-			0,					0,					0,
-			0,					1,					0,
-			1,					1,					0,
-			1,					0,					0
+			-0.5f,					-0.5f,					0,
+			-0.5f,					 0.5f,					0,
+			 0.5f,					 0.5f,					0,
+			 0.5f,					-0.5f,					0
 		};
-		constexpr GLuint indices[] = { 0, 1, 2, 2, 3, 0 };
+		constexpr GLuint indices[] = { 0, 2, 1, 0, 3, 2 };
 
 		VAO = BufferManager::CreateVertexArray();
 		VBO[0] = BufferManager::CreateVertexBuffer(VAO, 0, vertices, 3 * 4, 3);
